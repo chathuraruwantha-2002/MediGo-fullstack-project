@@ -1,0 +1,101 @@
+.hero-section {
+    background-image: url('/src/assets/logos/Screenshot_2025-03-05_031256-removebg.png');
+    /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    color: rgb(132, 171, 213);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+    height: 90vh;
+    padding-top: 235px;
+    /* Adjust as needed */
+    padding-bottom: 100px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: aliceblue;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*background-color: rgba(0, 0, 0, 0.3); /* Adjusted to 30% opacity */
+    z-index: 1;
+}
+
+.jumbotron-heading {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.lead {
+    font-size: 1.5rem;
+}
+
+.btn {
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    background-color: #0056b3;
+    /* Darker shade for primary button */
+}
+
+.animated {
+    opacity: 0;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.fadeInDown {
+    animation-name: fadeInDown;
+}
+
+.fadeInUp {
+    animation-name: fadeInUp;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#getStarted {
+    background-color: #0056b3;
+    font-size: 17px;
+}
+
+#Aibutton {
+    background-color: #0056b3;
+    font-size: 17px;
+    width: 80px;
+    height: 70px;
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px;
+    margin: 50px;
+}
