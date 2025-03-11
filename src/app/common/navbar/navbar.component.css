@@ -1,12 +1,13 @@
 .navbar {
     padding: 1rem;
-    background-color: aliceblue;
     width: 100%;
     height: 80px;
 }
 
 .nav-link {
     margin-left: 15px;
+    font-weight: 700;
+    color: #0c3868;
 }
 
 .nav-link:hover {
@@ -19,4 +20,15 @@
     font-weight: bold;
     font-size: 25px;
     
+}
+#loginbtn{
+    margin-left: 60px;
+    border-radius: 5px;
+    background-color:#3a8ce4;
+    color:rgb(255, 255, 255)
+
+}
+#loginbtn:hover {
+    background-color: #1271d1;
+    border-radius: 5px;
 }
