@@ -153,5 +153,58 @@
 
 
 
+
+
+  .footer {
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 40px 0;
+    border-top: 1px solid #ddd;
+}
+
+.footer-title {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.nav-link {
+    color: #555;
+    padding: 3px 0;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.newsletter input {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    color: #007bff;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.social-icon:hover {
+    color: #0056b3;
+}
+
+#icon{
+    color: #004085;
+}
+
+
+
+
   
   
