@@ -3,7 +3,7 @@
     /* Replace with your image path */
     background-size: cover;
     background-position: center;
-    color: rgb(132, 171, 213);
+    color: #004085;
     padding: 100px 0;
     position: relative;
     overflow: hidden;
@@ -85,8 +85,24 @@
 }
 
 #getStarted {
-    background-color: #0056b3;
+    background-color: #007BFF;
+    color: aliceblue;
     font-size: 17px;
+}
+#getStarted:hover {
+    transform: scale(1.05);
+    background-color: #0056b3;
+}
+
+#learnMore {
+    background-color: #6C757D;
+    color: aliceblue;
+    font-size: 17px;
+}
+
+#learnMore:hover {
+    transform: scale(1.05);
+    background-color: #0056b3;
 }
 
 #Aibutton {
@@ -130,8 +146,8 @@
   }
 
   p {
-    font-size: 1rem;
-    color: #555;
+    font-size: 19px;
+    color:#6C757D;
   }
 
 
