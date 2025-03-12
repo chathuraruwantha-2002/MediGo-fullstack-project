@@ -37,12 +37,14 @@
 
 .btn {
     transition: transform 0.3s, background-color 0.3s;
+    background-color: #004085;
+    font-weight: bold;
 }
 
 .btn:hover {
     transform: scale(1.05);
     background-color: #0056b3;
-    /* Darker shade for primary button */
+    
 }
 
 .animated {
@@ -84,16 +86,18 @@
 }
 
 #getStarted {
-    background-color: #007BFF;
+    transition: transform 0.3s, background-color 0.3s;
+    background-color: #004085;
     color: #FFFFFF;
     font-size: 17px;
 }
 #getStarted:hover {
     transform: scale(1.05);
-    background-color: #004085;
+    background-color:#0056b3;
 }
 
 #learnMore {
+    transition: transform 0.3s, background-color 0.3s;
     background-color: #FFFFFF;
     color: #004085;
     border: 1px solid #004085;
@@ -147,7 +151,7 @@
 
   p {
     font-size: 19px;
-    color:#6C757D;
+    color:#293754;
   }
 
 
@@ -174,7 +178,7 @@
 }
 
 .nav-link:hover {
-    color: #007bff;
+    color: #0056b3;
     text-decoration: underline;
 }
 
@@ -190,7 +194,7 @@
 }
 
 .social-icon {
-    color: #007bff;
+    color: #004085;
     font-size: 20px;
     transition: 0.3s;
 }
