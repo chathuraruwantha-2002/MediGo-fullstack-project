@@ -3,9 +3,8 @@
     width: 200px;
     background: white;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     padding: 20px;
-    font-family: Arial, sans-serif;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 .card-status:hover {
@@ -63,4 +62,75 @@
     margin-top: 3px;
     width: 80px;
 }
+.card-Ai {
+    background: white;
+    border-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 30px;
+    padding-top:60px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    height: 400px;
+    font-size: 22px;
+    color: #004085;
+    font-weight: 300;
+    text-align: center;
+}
+.card-Ai:hover {
+    background-color: #f5f5f5;
+}
 
+
+
+
+
+
+
+.ai-prompt-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+/* Styling for the input field */
+.ai-prompt-input {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+/* Styling for the send button inside the input */
+.ai-prompt-button {
+    background-color: #ffffff;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    position: absolute;
+    right: 1px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ai-prompt-button:hover {
+    background-color: #e2e8ef;
+}
+
+/* Focus effect on the input field */
+.ai-prompt-input:focus {
+    border-color: #004085;
+    box-shadow: 0 0 5px rgba(0, 68, 133, 0.5);
+}
+.card-reports{
+    background: white;
+    border-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
