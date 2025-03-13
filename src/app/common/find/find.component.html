@@ -1,0 +1,93 @@
+<div class="container-fluid" style=" font-family: 'Urbanist', sans-serif;">
+    <div class="row">
+        <div class="button-container mt-4">
+            <button class="custom-btn" id="findDoctorBtn">Find Doctor</button>
+            <button class="custom-btn" id="findHospitalBtn">Find Hospital</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card"
+                style="height: 150px; border:1px solid #ffffff; margin-top: 30px; justify-content: center;">
+                <div class="search-container">
+                    <form class="search-form" id="doctorSearchForm">
+                        <div class="form-group">
+                            <label for="doctorName">Doctor name</label>
+                            <input type="text" id="doctorName" placeholder="Search Doctor Name" name="doctorName"
+                                class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="specialization">Specialization</label>
+                            <div class="select-wrapper">
+                                <select id="specialization" name="specialization" class="form-control">
+                                    <option value="" disabled selected>Select Specialization</option>
+                                    <option value="cardiology">Cardiology</option>
+                                    <option value="dermatology">Dermatology</option>
+                                    <option value="neurology">Neurology</option>
+                                    <option value="orthopedics">Orthopedics</option>
+                                    <option value="pediatrics">Pediatrics</option>
+                                </select>
+                                <span class="dropdown-icon">▼</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hospital">Hospital</label>
+                            <div class="select-wrapper">
+                                <select id="hospital" name="hospital" class="form-control">
+                                    <option value="" disabled selected>Select Hospital</option>
+                                    <option value="general">General Hospital</option>
+                                    <option value="city">City Medical Center</option>
+                                    <option value="university">University Hospital</option>
+                                    <option value="stmarys">St. Mary's Hospital</option>
+                                </select>
+                                <span class="dropdown-icon">▼</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <div class="date-input-wrapper">
+                                <input type="text" id="date" placeholder="MM/DD/YYYY" name="date" class="form-control">
+                                <span class="calendar-icon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group search-btn-group">
+                            <button type="submit" class="search-btn">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="results-container" id="searchResults">
+            <h2 style="color:#004085;">Search Results</h2>
+            <div class="results-grid">
+                <div class="doctor-card">
+                    <div class="doctor-image">
+                        <img src="/Icons/man.png" alt="Doctor">
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Jane Smith</h3>
+                        <p class="specialization">Cardiology</p>
+                        <p class="hospital">General Hospital</p>
+                        <div class="availability">
+                            <span class="available-date">Available: Mar 15, 2025</span>
+                            <button class="book-btn">Book Appointment</button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    
+</div>
