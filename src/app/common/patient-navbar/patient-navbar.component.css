@@ -8,8 +8,8 @@
 }
 
 .nav-link {
-    margin-left: 30px;
-    margin-right:30px;
+    margin-left: 20px;
+    margin-right:20px;
     margin-top: 10px;
     margin-bottom: 10px;
     font-weight: 500;
@@ -49,5 +49,118 @@ ul {
     margin-left: 100px;
     border-radius: 10px;
    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+}
+
+
+
+
+
+
+
+
+/* Profile Dropdown Container */
+.profile-animation {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* Profile Image Styling */
+.profile-img {
+    width: 45px; /* Adjust size as needed */
+    height: 45px;
+    border-radius: 50%; /* Circular profile image */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    position: absolute;
+    top: 60px; /* Adjust spacing from profile image */
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    min-width: 150px;
+    z-index: 1000;
+}
+
+/* Show dropdown on click */
+.profile-animation:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Dropdown Items */
+.dropdown-item {
+    padding: 10px 15px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    transition: background 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+}
+
+.dropdown-item i {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+/* Hover effect for menu items */
+.dropdown-item:hover {
+    background: #004085;
+    color: white;
+    border-radius: 5px;
+}
+
+
+
+
+#logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer; /* Indicates interactivity */
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+#logo:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.logo-icon {
+    width: 50px;
+    height: auto;
+    transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+#logo:hover .logo-icon {
+    transform: scale(1.1); /* Gentle enlargement */
+    filter: brightness(1.1); /* Slight brightness boost */
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #004085;
+    margin-top: 5px;
+    transition: color 0.3s ease;
+}
+
+#logo:hover .logo-text {
+    color: #007bff; /* Slight color change to blue */
 }
 
