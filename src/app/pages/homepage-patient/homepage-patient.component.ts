@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PatientNavbarComponent } from "../../common/patient-navbar/patient-navbar.component";
 
 @Component({
   selector: 'app-homepage-patient',
