@@ -5,7 +5,6 @@ import { HomepageComponent } from "./pages/homepage/homepage.component";
 import { PatientNavbarComponent } from "./common/patient-navbar/patient-navbar.component";
 import { HomepagePatientComponent } from "./pages/homepage-patient/homepage-patient.component";
 import { FindComponent } from "./pages/find/find.component";
-import { initFlowbite } from 'flowbite';
 import { OnInit } from '@angular/core';
 
 @Component({
@@ -15,9 +14,6 @@ import { OnInit } from '@angular/core';
   styleUrl: './app.component.css'
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent {
   title = 'MediGo_fullstack_Project';
-  ngOnInit(): void {
-    initFlowbite();
-  }
 }
