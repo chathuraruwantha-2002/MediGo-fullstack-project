@@ -15,7 +15,7 @@
       
       <!-- Recent Conversations -->
       <div class="flex-grow-1 overflow-auto p-2">
-        <div class="text-uppercase small text-muted px-2 py-1 fw-medium">Recent chats</div>
+        <div class="text-uppercase small px-2 py-1 fw-medium" style="color: #011429;">Recent chats</div>
         <div class="mt-1 sidebar-chats">
           <div class="px-2 py-2 rounded chat-item text-secondary small">
             <div class="d-flex align-items-center">
@@ -42,11 +42,13 @@
       <div class="p-3 border-top">
         <div class="d-flex align-items-center">
           <div class="rounded-circle bg-secondary bg-opacity-25 d-flex align-items-center justify-content-center text-secondary user-icon">
-            <i class="fas fa-user"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cpu" viewBox="0 0 16 16">
+              <path d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0m-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z"/>
+            </svg>
           </div>
           <div class="ms-2">
-            <div class="small fw-medium text-dark">Chathura Ruwantha</div>
-            <div class="small text-muted">Premium Member</div>
+            <div class="small fw-medium text-dark">MEDI<sup class="fw-bold fs-6">+</sup></div>
+            <div class="small text-muted">Premium Plan</div>
           </div>
         </div>
       </div>
@@ -58,8 +60,8 @@
       <div class="flex-grow-1 overflow-auto p-4 message-container">
         <!-- AI and User Messages -->
         <div class="d-flex align-items-start max-w-messages mx-auto w-100 mb-4">
-          <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0 message-avatar">
-            <i class="fas fa-robot small"></i>
+          <div class="bg-white text-white rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0 message-avatar">
+            <img src="/Icons/1.png" alt="AI" class="ai-icon" style="width: 22px; height: 22px;">
           </div>
           <div class="text-dark message-content">
             <div>AI response here...</div>
@@ -67,7 +69,9 @@
         </div>
         <div class="d-flex align-items-start max-w-messages mx-auto w-100 mb-4">
           <div class="bg-light text-muted rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0 message-avatar">
-            <i class="fas fa-user small"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+            </svg>
           </div>
           <div class="text-dark message-content">
             <div>User message here...</div>
@@ -76,8 +80,8 @@
         
         <!-- Typing indicator -->
         <div class="d-flex align-items-start max-w-messages mx-auto w-100 opacity-75">
-          <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center text-white me-3 flex-shrink-0 message-avatar">
-            <i class="fas fa-robot small"></i>
+          <div class="rounded-circle bg-white d-flex align-items-center justify-content-center text-white me-3 flex-shrink-0 message-avatar">
+            <img src="/Icons/1.png" alt="AI" class="ai-icon" style="width: 22px; height: 22px;">
           </div>
           <div class="text-dark flex-grow-1">
             <div class="d-flex align-items-center typing-indicator">
@@ -90,7 +94,7 @@
       </div>
       
       <!-- Input Area -->
-      <div class="border-top p-3">
+      <div class="p-3 shadow" style="border-radius: 0 30px 0 0; align-self:end; width: 1255px;">
         <div class="max-w-messages mx-auto">
           <div class="d-flex align-items-center">
             <button class="btn btn-light rounded-circle me-2">

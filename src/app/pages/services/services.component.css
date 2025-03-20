@@ -112,8 +112,8 @@
   
   /* Input area */
   .form-control:focus {
-    border-color: #81b1ff;
-    box-shadow: 0 0 0 0.25rem rgba(111, 169, 255, 0.25);
+    border-color: #47566e;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
   
   /* Responsive adjustments */
@@ -162,4 +162,7 @@
 
   .zoom-effect:hover {
     transform: scale(1.2); /* Slight zoom effect */
+  }
+  .shadow {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
