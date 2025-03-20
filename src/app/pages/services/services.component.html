@@ -3,20 +3,11 @@
   <!-- Sidebar and Main Content Layout -->
   <div class="d-flex h-100">
     <!-- Sidebar -->
-    <div class="sidebar border-end bg-light d-flex flex-column">
-      <!-- Brand/Logo -->
-      <div class="p-3 border-bottom">
-        <div class="d-flex align-items-center">
-          <div class="bg-primary rounded d-flex align-items-center justify-content-center text-white brand-icon">
-            <i class="fas fa-robot"></i>
-          </div>
-          <h1 class="ms-3 h5 mb-0 fw-medium text-dark">MediGo AI</h1>
-        </div>
-      </div>
+    <div class="sidebar d-flex flex-column">
       
       <!-- New Chat Button -->
-      <div class="p-3">
-        <button class="btn btn-primary w-100 d-flex align-items-center justify-content-center">
+      <div class="p-3 mt-4 align-self-center">
+        <button class="btn btn-new-chat d-flex justify-content-center">
           <i class="fas fa-plus me-2"></i>
           New Chat
         </button>
@@ -103,26 +94,34 @@
         <div class="max-w-messages mx-auto">
           <div class="d-flex align-items-center">
             <button class="btn btn-light rounded-circle me-2">
-              <i class="fas fa-camera"></i>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#004085" class="bi bi-camera" viewBox="0 0 16 16">
+                <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4z"/>
+                <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5m0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+              </svg>
             </button>
             <button class="btn btn-light rounded-circle me-2">
-              <i class="fas fa-microphone-alt"></i>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#004085" class="bi bi-mic" viewBox="0 0 16 16">
+                <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"/>
+                <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3"/>
+              </svg>
             </button>
             <div class="flex-grow-1 position-relative">
               <input type="text" class="form-control pe-4" placeholder="Message MediGo AI...">
               <button class="btn btn-link position-absolute end-0 top-50 translate-middle-y text-muted border-0">
-                <i class="fas fa-paper-plane"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#004085" class="bi bi-send zoom-effect" viewBox="0 0 16 16">
+                  <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
+                </svg>
               </button>
             </div>
           </div>
           
           <!-- Quick Actions -->
           <div class="d-flex justify-content-center mt-3">
-            <button class="btn btn-sm btn-light text-secondary rounded-pill mx-1">
+            <button class="btn btn-sm btn-quick rounded-pill mx-1">
               <i class="fas fa-check-circle me-1"></i>
               Symptom Check
             </button>
-            <button class="btn btn-sm btn-light text-secondary rounded-pill mx-1">
+            <button class="btn btn-sm btn-quick rounded-pill mx-1">
               <i class="fas fa-bolt me-1"></i>
               Quick Advice
             </button>
