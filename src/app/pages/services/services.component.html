@@ -1,0 +1,138 @@
+<!-- Healthcare Chat Component HTML -->
+<div class="bg-white vh-100 d-flex flex-column font-sans" style="max-height: 610px;">
+  <!-- Sidebar and Main Content Layout -->
+  <div class="d-flex h-100">
+    <!-- Sidebar -->
+    <div class="sidebar border-end bg-light d-flex flex-column">
+      <!-- Brand/Logo -->
+      <div class="p-3 border-bottom">
+        <div class="d-flex align-items-center">
+          <div class="bg-primary rounded d-flex align-items-center justify-content-center text-white brand-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h1 class="ms-3 h5 mb-0 fw-medium text-dark">MediGo AI</h1>
+        </div>
+      </div>
+      
+      <!-- New Chat Button -->
+      <div class="p-3">
+        <button class="btn btn-primary w-100 d-flex align-items-center justify-content-center">
+          <i class="fas fa-plus me-2"></i>
+          New Chat
+        </button>
+      </div>
+      
+      <!-- Recent Conversations -->
+      <div class="flex-grow-1 overflow-auto p-2">
+        <div class="text-uppercase small text-muted px-2 py-1 fw-medium">Recent chats</div>
+        <div class="mt-1 sidebar-chats">
+          <div class="px-2 py-2 rounded chat-item text-secondary small">
+            <div class="d-flex align-items-center">
+              <i class="fas fa-comment-medical me-2 text-muted"></i>
+              <span class="text-truncate">Medical Advice</span>
+            </div>
+          </div>
+          <div class="px-2 py-2 rounded chat-item text-secondary small">
+            <div class="d-flex align-items-center">
+              <i class="fas fa-pills me-2 text-muted"></i>
+              <span class="text-truncate">Medication Questions</span>
+            </div>
+          </div>
+          <div class="px-2 py-2 rounded chat-item text-secondary small">
+            <div class="d-flex align-items-center">
+              <i class="fas fa-heartbeat me-2 text-muted"></i>
+              <span class="text-truncate">Health Checkup</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- User Profile -->
+      <div class="p-3 border-top">
+        <div class="d-flex align-items-center">
+          <div class="rounded-circle bg-secondary bg-opacity-25 d-flex align-items-center justify-content-center text-secondary user-icon">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="ms-2">
+            <div class="small fw-medium text-dark">Chathura Ruwantha</div>
+            <div class="small text-muted">Premium Member</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main Chat Area -->
+    <div class="flex-grow-1 d-flex flex-column">
+      <!-- Chat Messages -->
+      <div class="flex-grow-1 overflow-auto p-4 message-container">
+        <!-- AI and User Messages -->
+        <div class="d-flex align-items-start max-w-messages mx-auto w-100 mb-4">
+          <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0 message-avatar">
+            <i class="fas fa-robot small"></i>
+          </div>
+          <div class="text-dark message-content">
+            <div>AI response here...</div>
+          </div>
+        </div>
+        <div class="d-flex align-items-start max-w-messages mx-auto w-100 mb-4">
+          <div class="bg-light text-muted rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0 message-avatar">
+            <i class="fas fa-user small"></i>
+          </div>
+          <div class="text-dark message-content">
+            <div>User message here...</div>
+          </div>
+        </div>
+        
+        <!-- Typing indicator -->
+        <div class="d-flex align-items-start max-w-messages mx-auto w-100 opacity-75">
+          <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center text-white me-3 flex-shrink-0 message-avatar">
+            <i class="fas fa-robot small"></i>
+          </div>
+          <div class="text-dark flex-grow-1">
+            <div class="d-flex align-items-center typing-indicator">
+              <div class="typing-dot"></div>
+              <div class="typing-dot delay-1"></div>
+              <div class="typing-dot delay-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Input Area -->
+      <div class="border-top p-3">
+        <div class="max-w-messages mx-auto">
+          <div class="d-flex align-items-center">
+            <button class="btn btn-light rounded-circle me-2">
+              <i class="fas fa-camera"></i>
+            </button>
+            <button class="btn btn-light rounded-circle me-2">
+              <i class="fas fa-microphone-alt"></i>
+            </button>
+            <div class="flex-grow-1 position-relative">
+              <input type="text" class="form-control pe-4" placeholder="Message MediGo AI...">
+              <button class="btn btn-link position-absolute end-0 top-50 translate-middle-y text-muted border-0">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Quick Actions -->
+          <div class="d-flex justify-content-center mt-3">
+            <button class="btn btn-sm btn-light text-secondary rounded-pill mx-1">
+              <i class="fas fa-check-circle me-1"></i>
+              Symptom Check
+            </button>
+            <button class="btn btn-sm btn-light text-secondary rounded-pill mx-1">
+              <i class="fas fa-bolt me-1"></i>
+              Quick Advice
+            </button>
+            <button class="btn btn-sm btn-danger bg-opacity-10 text-danger rounded-pill mx-1">
+              <i class="fas fa-ambulance me-1"></i>
+              Emergency
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

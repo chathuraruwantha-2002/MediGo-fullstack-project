@@ -44,7 +44,6 @@
   
   .card-title {
     margin-bottom: 0;
-    font-weight: 600;
     color: #0d326d; /* Dark blue for title */
   }
   
@@ -173,10 +172,7 @@
 
 
 
-  body {
-    background-color: #f8f9fa;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+
 
 .calendar-card {
     border: none;
@@ -197,7 +193,7 @@
 
 .month-year {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 100;
     margin: 0;
     text-align: center;
 }
@@ -251,7 +247,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 50px;
+    height: 30px;
     border-radius: 8px;
     cursor: pointer;
     position: relative;
