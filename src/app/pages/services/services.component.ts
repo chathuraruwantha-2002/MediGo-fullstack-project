@@ -21,7 +21,7 @@ export class ServicesComponent {
     [
       {
         role: 'ai',
-        content: 'Hello! I\'m MediGo your Healthcare Assistant. How can I help you today?'
+        content: 'Hello! I\'m MediGo, your Healthcare Assistant. How can I help you today?'
       }
     ];
 

@@ -1,0 +1,258 @@
+<!-- reports.component.html -->
+<div class="container-fluid mt-4" style="font-family: 'Urbanist', sans-serif;">
+  
+    
+  
+    <!-- Report Type Selector -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex flex-wrap">
+              <button class="btn btn-medigo m-1 active">All Reports</button>
+              <button class="btn btn-outline-medigo m-1">BMI History</button>
+              <button class="btn btn-outline-medigo m-1">Blood Pressure</button>
+              <button class="btn btn-outline-medigo m-1">Blood Sugar</button>
+              <button class="btn btn-outline-medigo m-1">Medication History</button>
+              <button class="btn btn-outline-medigo m-1">Consultation History</button>
+            </div>
+            <div class="mt-3">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search reports...">
+                    <div class="input-group-append">
+                      <button class="btn btn-medigo" type="button">
+                        <i class="bi bi-arrow-up"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Date Range</span>
+                    </div>
+                    <input type="date" class="form-control">
+                    <input type="date" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <button class="btn btn-medigo btn-block">
+                    <i class="fas fa-file-export mr-1"></i> Generate New Report
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Health Metrics Summary Cards -->
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <div class="card summary-card border-left-primary shadow-sm">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-uppercase mb-1 text-medigo">BMI</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">24.7</div>
+                <div class="small text-success">
+                  <i class="fas fa-arrow-down"></i> 1.2 from last check
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-weight fa-2x text-gray-300"></i>
+              </div>
+            </div>
+            <div class="mt-2 small">
+              <span class="badge badge-success">Normal</span>
+              <span class="text-muted ml-2">Last checked: March 15, 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4">
+        <div class="card summary-card border-left-info shadow-sm">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-uppercase mb-1 text-medigo">Blood Pressure</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">120/80 mmHg</div>
+                <div class="small text-success">
+                  <i class="fas fa-check"></i> Normal range
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-heartbeat fa-2x text-gray-300"></i>
+              </div>
+            </div>
+            <div class="mt-2 small">
+              <span class="badge badge-success">Optimal</span>
+              <span class="text-muted ml-2">Last checked: March 18, 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4">
+        <div class="card summary-card border-left-warning shadow-sm">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-uppercase mb-1 text-medigo">Blood Sugar</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">95 mg/dL</div>
+                <div class="small text-success">
+                  <i class="fas fa-arrow-down"></i> 3 from last check
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-tint fa-2x text-gray-300"></i>
+              </div>
+            </div>
+            <div class="mt-2 small">
+              <span class="badge badge-success">Normal</span>
+              <span class="text-muted ml-2">Last checked: March 17, 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Charts Row -->
+    <div class="row mb-4">
+      <!-- Health Metrics Trend Chart -->
+      <div class="col-lg-8">
+        <div class="card chart-card shadow-sm" style="height: 357px;">
+          <div class="card-header bg-medigo text-white">
+            <h6 class="m-0 font-weight-bold">Health Metrics Trends</h6>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="healthMetricsChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- AI Health Analysis -->
+      <div class="col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-medigo text-white">
+            <h6 class="m-0 font-weight-bold">AI Health Analysis</h6>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <h6 class="mb-2">Your Progress Summary</h6>
+              <p class="mb-3 small">Based on your recent health metrics, Medigo AI has analyzed your health status:</p>
+              <div class="progress mb-2">
+                <div class="progress-bar" role="progressbar" style="width: 85%; background: #35c953" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <p class="small text-muted">Overall Health Score: 85/100</p>
+            </div>
+            <div class="mb-3">
+              <h6 class="mb-2">Recommendations</h6>
+              <ul class="small">
+                <li>Continue your current exercise routine</li>
+                <li>Maintain current diet with reduced sodium intake</li>
+                <li>Consider scheduling your annual check-up in May</li>
+              </ul>
+            </div>
+            <button class="btn btn-sm btn-medigo">View Detailed Analysis</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Recent Reports Table -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card shadow-sm">
+          <div class="card-header bg-medigo text-white d-flex justify-content-between align-items-center">
+            <h6 class="m-0 font-weight-bold">Recent Reports</h6>
+            <button class="btn btn-sm btn-light">View All</button>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Report ID</th>
+                    <th>Type</th>
+                    <th>Generated Date</th>
+                    <th>Doctor</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>REP-2025-1058</td>
+                    <td>Comprehensive Health Check</td>
+                    <td>March 18, 2025</td>
+                    <td>Dr. Sarah Johnson</td>
+                    <td><span class="badge badge-success">Reviewed</span></td>
+                    <td>
+                      <button class="btn btn-sm btn-info me-1"><i class="bi bi-eye"></i></button>
+                      <button class="btn btn-sm btn-secondary me-1"><i class="bi bi-cloud-download"></i></button>
+                      <button class="btn btn-sm btn-primary"><i class="bi bi-printer"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>REP-2025-1042</td>
+                    <td>Blood Pressure Report</td>
+                    <td>March 15, 2025</td>
+                    <td>AI Generated</td>
+                    <td><span class="badge badge-info">Self-Test</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-info me-1"><i class="bi bi-eye"></i></button>
+                        <button class="btn btn-sm btn-secondary me-1"><i class="bi bi-cloud-download"></i></button>
+                        <button class="btn btn-sm btn-primary"><i class="bi bi-printer"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>REP-2025-1030</td>
+                    <td>BMI Report</td>
+                    <td>March 10, 2025</td>
+                    <td>AI Generated</td>
+                    <td><span class="badge badge-info">Self-Test</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-info me-1"><i class="bi bi-eye"></i></button>
+                        <button class="btn btn-sm btn-secondary me-1"><i class="bi bi-cloud-download"></i></button>
+                        <button class="btn btn-sm btn-primary"><i class="bi bi-printer"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>REP-2025-1021</td>
+                    <td>Blood Sugar Report</td>
+                    <td>March 5, 2025</td>
+                    <td>Dr. Michael Chen</td>
+                    <td><span class="badge badge-success">Reviewed</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-info me-1"><i class="bi bi-eye"></i></button>
+                        <button class="btn btn-sm btn-secondary me-1"><i class="bi bi-cloud-download"></i></button>
+                        <button class="btn btn-sm btn-primary"><i class="bi bi-printer"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>REP-2025-1018</td>
+                    <td>Medication Report</td>
+                    <td>March 1, 2025</td>
+                    <td>Dr. Sarah Johnson</td>
+                    <td><span class="badge badge-success">Reviewed</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-info me-1"><i class="bi bi-eye"></i></button>
+                        <button class="btn btn-sm btn-secondary me-1"><i class="bi bi-cloud-download"></i></button>
+                        <button class="btn btn-sm btn-primary"><i class="bi bi-printer"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

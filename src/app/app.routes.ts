@@ -5,6 +5,7 @@ import { AppointmentsComponent } from './pages/appointments/appointments.compone
 import { PatientNavbarComponent } from './common/patient-navbar/patient-navbar.component';
 import { FindComponent } from './pages/find/find.component';
 import { ServicesComponent } from './pages/services/services.component';
+import { ReportsComponent } from './pages/reports/reports.component';
 
 export const routes: Routes = [
     {
@@ -35,6 +36,10 @@ export const routes: Routes = [
             {
                 path: "services",
                 component:ServicesComponent
+            },
+            {
+                path: "reports",
+                component:ReportsComponent
             }
         ]
     }

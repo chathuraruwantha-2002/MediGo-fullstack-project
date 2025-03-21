@@ -1,0 +1,68 @@
+.btn-medigo {
+    background-color: #004085;
+    color: #ffffff;
+    border: 2px solid #004085;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-medigo:hover {
+    background-color: #002752;
+    border-color: #002752;
+    transform: scale(1.05);
+}
+
+.btn-outline-medigo {
+    background-color: #ffffff;
+    color: #004085;
+    border: 2px solid #004085;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-outline-medigo:hover {
+    background-color: #004085;
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+.btn-sm {
+    font-size: 0.9rem;
+    padding: 5px 12px;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+/* Card Header Customization */
+.bg-medigo {
+    background-color: hsl(211, 71%, 72%);
+    color: white;
+}
+
+/* Shadow and Hover Effects for Cards */
+.card {
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+/* Badge Customization */
+.badge-success {
+    background-color: #28a745;
+}
+
+.badge-info {
+    background-color: #17a2b8;
+}
+
+.badge-warning {
+    background-color: #ffc107;
+}
+
+.badge-danger {
+    background-color: #dc3545;
+}
