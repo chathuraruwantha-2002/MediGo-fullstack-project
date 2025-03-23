@@ -11,7 +11,6 @@ import lombok.ToString;
 @ToString
 public class PatientHealthData {
     private int recordId;
-    private String bloodType;
     private double bloodPressure;
     private double bloodSugar;
     private double heartRate;

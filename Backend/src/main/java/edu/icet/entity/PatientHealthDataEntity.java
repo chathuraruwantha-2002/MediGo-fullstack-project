@@ -16,7 +16,6 @@ public class PatientHealthDataEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int recordId;
-    private String bloodType;
     private double bloodPressure;
     private double bloodSugar;
     private double heartRate;
