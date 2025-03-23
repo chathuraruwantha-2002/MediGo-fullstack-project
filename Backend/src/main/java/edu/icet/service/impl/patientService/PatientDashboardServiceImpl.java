@@ -23,7 +23,7 @@ public class PatientDashboardServiceImpl implements PatientDashboardService {
     @Override
     public PatientHealthData getHealthStats(int id) {
         try {
-            return modelMapper.map(patientHealthDataRepository.findById(id).get(), PatientHealthData.class);
+            return modelMapper.map(patientHealthDataRepository.findLatestByUserId(id), PatientHealthData.class);
         } catch (Exception e) {
             return null;
         }
