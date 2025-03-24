@@ -26,6 +26,10 @@ public class DoctorEntity {
     private String location;
     private String availability;
     private double consultationFee;
-    private int userId;
-    private int hospitalId;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+    @ManyToOne
+    @JoinColumn(name = "hospital_id")
+    private HospitalEntity hospital;
 }

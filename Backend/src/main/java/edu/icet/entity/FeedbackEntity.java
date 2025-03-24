@@ -20,6 +20,10 @@ public class FeedbackEntity {
     private String response;
     private int rating;
     private String dateTimeStats;
-    private int userId;
-    private int doctorId;
+    @ManyToOne
+    @JoinColumn(name = "patientId")
+    private PatientEntity patient;
+    @ManyToOne
+    @JoinColumn(name = "doctorId")
+    private DoctorEntity doctor;
 }

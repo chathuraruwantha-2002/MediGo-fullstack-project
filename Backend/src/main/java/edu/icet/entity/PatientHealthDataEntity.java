@@ -25,5 +25,7 @@ public class PatientHealthDataEntity {
     private double bmi;
     private double bodyTemperature;
     private String dateTimeStats;
-    private int userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 }

@@ -21,5 +21,7 @@ public class SystemTeamEntity {
     private String email;
     private String gender;
     private String role;
-    private int userId;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 }

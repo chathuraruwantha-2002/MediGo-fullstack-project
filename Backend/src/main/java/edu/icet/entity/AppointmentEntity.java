@@ -20,6 +20,10 @@ public class AppointmentEntity {
     private String mode;
     private String status;
     private String DateTimeStats;
-    private int patientId;
-    private int doctorId;
+    @ManyToOne
+    @JoinColumn(name = "patientId")
+    private PatientEntity patient;
+    @ManyToOne
+    @JoinColumn(name = "doctorId")
+    private DoctorEntity doctor;
 }

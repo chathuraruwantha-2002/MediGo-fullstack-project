@@ -24,5 +24,7 @@ public class PatientEntity {
     private String bloodGroup;
     private String medicalHistory;
     private String allergies;
-    private int userId;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 }

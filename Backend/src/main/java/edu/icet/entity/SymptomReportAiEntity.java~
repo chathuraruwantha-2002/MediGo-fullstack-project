@@ -11,19 +11,15 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "payment")
-public class PaymentEntity {
+@Table(name = "symptom_report_ai")
+public class SymptomReportAiEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int paymentId;
-    private double amount;
-    private String method;
-    private String status;
+    private int reportId;
+    private String symptoms;
+    private String description;
+    private String predictedDisease;
+    private double confidenceScore;
     private String dateTimeStats;
-    @ManyToOne
-    @JoinColumn(name = "patientId")
-    private PatientEntity patient;
-    @ManyToOne
-    @JoinColumn(name = "doctorId")
-    private DoctorEntity doctor;
+    private int userId;
 }

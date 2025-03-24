@@ -21,5 +21,7 @@ public class SymptomReportAiEntity {
     private String predictedDisease;
     private double confidenceScore;
     private String dateTimeStats;
-    private int userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 }
