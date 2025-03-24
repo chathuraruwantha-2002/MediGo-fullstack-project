@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { PatientNavbarComponent } from "../../common/patient-navbar/patient-navbar.component";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Patient } from '../../model/patient';
 
 @Component({
   selector: 'app-homepage-patient',
@@ -8,5 +10,21 @@ import { PatientNavbarComponent } from "../../common/patient-navbar/patient-navb
   styleUrl: './homepage-patient.component.css'
 })
 export class HomepagePatientComponent {
+
+  patientStats: Patient | undefined;
+
+  constructor(private http: HttpClient) {
+    this.loadPatientData();
+  }
+
+  private loadPatientData() {
+    
+    this.http.get<Patient>('http://localhost:8080/patient/dashboard/get-health-stats/1').subscribe(data => {
+      console.log(data);
+      this.patientStats = data;
+    });
+
+  }
+
 
 }
