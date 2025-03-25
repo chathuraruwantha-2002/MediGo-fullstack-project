@@ -35,10 +35,10 @@
     font-size: 14px
   }
   
-  /* Card styling */
   .card {
     border: none;
     border-radius: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
   }
   
   .card-header {
@@ -48,7 +48,9 @@
   
   .card-title {
     margin-bottom: 0;
-    color: #0d326d; /* Dark blue for title */
+    color: #0d326d;
+    font-size: 18px;
+    font-weight: 600;
   }
   
   /* Status badge styling */
