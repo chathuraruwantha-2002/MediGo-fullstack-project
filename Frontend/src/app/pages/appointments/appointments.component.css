@@ -30,6 +30,10 @@
     padding: 0.75rem 1rem;
     vertical-align: middle;
   }
+  .appointments-table td {
+    color: #123e68; /* Dark blue text color */
+    font-size: 14px
+  }
   
   /* Card styling */
   .card {
@@ -73,47 +77,41 @@
     border: 1px solid #9E9E9E;
   }
   
-  /* Search bar styling */
+
+
+  
   .search-container {
     display: flex;
-    justify-content: flex-end;
-  }
-  
-  .search-input {
-    border-right: none;
-    box-shadow: none !important;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.search-input {
+    max-width: 300px;
     border-color: #dee2e6;
     color: #123e68;
     transition: all 0.3s ease;
-  }
-  
-  .search-input:focus {
+}
+
+.search-input:focus {
     border-color: #0d326d;
-  }
-  
-  .search-input::placeholder {
+    box-shadow: none;
+}
+
+.search-input::placeholder {
     color: #95aac9;
     opacity: 0.8;
-  }
-  
-  .search-icon {
-    background-color: white;
-    border-left: none;
-    color: #123e68;
-    border-color: #dee2e6;
-    transition: all 0.3s ease;
-  }
-  
-  .input-group:hover .search-input,
-  .input-group:hover .search-icon {
+}
+
+.search-input:hover {
     border-color: #4a89dc;
-  }
-  
-  .input-group:focus-within .search-input,
-  .input-group:focus-within .search-icon {
-    border-color: #0d326d;
-  }
-  
+}
+
+
+
+
+
+
   .input-group {
     max-width: 300px;
     transition: all 0.3s ease;
@@ -157,9 +155,18 @@
   .text-primary {
     color: #0d326d !important;
   }
+  
+  .zoom-effect {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .zoom-effect:hover {
+    transform: scale(1.2);
+  }
 
 
 
+  
 
 
 
@@ -355,3 +362,4 @@
         font-size: 1.25rem;
     }
 }
+
