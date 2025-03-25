@@ -52,9 +52,7 @@
     margin-top: 10px;
 }
 .status {
-    background: #d1f5d3;
     font-weight: bold;
-    color: #2d7b30;
     font-size: 12px;
     text-align: center;
     padding: 5px 10px;
@@ -63,6 +61,22 @@
     margin-top: 3px;
     width: 80px;
 }
+
+.high {
+    background: #ffdcdc;  /* Red color for high status */
+    color: rgb(227, 56, 56);  /* White text */
+}
+
+.medium {
+    background: #fff7d1;  /* Yellow color for medium status */
+    color: rgb(255, 217, 0);  /* White text */
+}
+
+.normal {
+    background: #d1f5d3;  /* Green color for normal status */
+    color: #2d7b30;  /* Dark green text */
+}
+
 .card-Ai {
     background: white;
     border-radius: 10px;

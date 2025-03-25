@@ -40,10 +40,14 @@
                             <div class="title">Blood Pressure</div>
                         </div>
                         <div class="value">
-                            120/180<span class="unit">mmHg</span>
+                            {{patientStats?.bloodPressure}} <span class="unit">mmHg</span>
                         </div>
                         <div class="status-container">
-                            <div class="status">Normal</div>
+                            <div [ngClass]="{
+                                'high': status === 'High',
+                                'medium': status === 'Medium',
+                                'normal': status === 'Normal',
+                            }"class="status">{{status}}</div>
                         </div>
                     </div>
                 </div>
@@ -59,9 +63,13 @@
                             </div>
                             <div class="title">Blood Sugar</div>
                         </div>
-                        <div class="value">120/180<span class="unit">mmHg</span></div>
+                        <div class="value">{{patientStats?.bloodSugar}} <span class="unit">mmHg</span></div>
                         <div class="status-container">
-                            <div class="status">Normal</div>
+                            <div [ngClass]="{
+                                'high': status === 'High',
+                                'medium': status === 'Medium',
+                                'normal': status === 'Normal',
+                            }"class="status">{{status}}</div>
                         </div>
                     </div>
                 </div>
@@ -77,9 +85,13 @@
                             </div>
                             <div class="title">BMI</div>
                         </div>
-                        <div class="value">120/180<span class="unit">mmHg</span></div>
+                        <div class="value">{{patientStats?.bmi}} <span class="unit">mmHg</span></div>
                         <div class="status-container">
-                            <div class="status">Normal</div>
+                            <div [ngClass]="{
+                                'high': status === 'High',
+                                'medium': status === 'Medium',
+                                'normal': status === 'Normal',
+                            }"class="status">{{status}}</div>
                         </div>
                     </div>
                 </div>
@@ -97,9 +109,13 @@
                             </div>
                             <div class="title">Blood Count</div>
                         </div>
-                        <div class="value">120/180<span class="unit">mmHg</span></div>
+                        <div class="value">{{patientStats?.heartRate}} <span class="unit">mmHg</span></div>
                         <div class="status-container">
-                            <div class="status">Normal</div>
+                            <div [ngClass]="{
+                                'high': status === 'High',
+                                'medium': status === 'Medium',
+                                'normal': status === 'Normal',
+                            }"class="status">{{status}}</div>
                         </div>
                     </div>
                 </div>
