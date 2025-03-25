@@ -63,18 +63,18 @@
 }
 
 .high {
-    background: #ffdcdc;  /* Red color for high status */
-    color: rgb(227, 56, 56);  /* White text */
+    background: #ffdcdc;  
+    color: rgb(227, 56, 56);
 }
 
-.medium {
-    background: #fff7d1;  /* Yellow color for medium status */
-    color: rgb(255, 217, 0);  /* White text */
+.low {
+    background: #fff7d1;  
+    color: rgb(255, 217, 0);  
 }
 
 .normal {
-    background: #d1f5d3;  /* Green color for normal status */
-    color: #2d7b30;  /* Dark green text */
+    background: #d1f5d3;  
+    color: #2d7b30;  
 }
 
 .card-Ai {

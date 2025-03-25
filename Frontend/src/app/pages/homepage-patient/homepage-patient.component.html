@@ -5,7 +5,7 @@
             <div class="card" style="height: 525px; border:1px solid #ffffff;">
                 <div class="card-body p-4">
                     <h5 class="card-title">welcome back</h5>
-                    <h1 style="font-size: 50px; color: #004085;">Chathuranga Perera</h1>
+                    <h1 style="font-size: 50px; color: #004085;">{{patient?.name ?? 'User'}}</h1>
                 </div>
                 <div class="card-Ai">
                     <div class="card-body p-4">
@@ -44,10 +44,10 @@
                         </div>
                         <div class="status-container">
                             <div [ngClass]="{
-                                'high': status === 'High',
-                                'medium': status === 'Medium',
-                                'normal': status === 'Normal',
-                            }"class="status">{{status}}</div>
+                                'high': statusBloodPressure === 'High',
+                                'low': statusBloodPressure === 'Low',
+                                'normal': statusBloodPressure === 'Normal',
+                            }"class="status">{{statusBloodPressure}}</div>
                         </div>
                     </div>
                 </div>
@@ -63,13 +63,13 @@
                             </div>
                             <div class="title">Blood Sugar</div>
                         </div>
-                        <div class="value">{{patientStats?.bloodSugar}} <span class="unit">mmHg</span></div>
+                        <div class="value">{{patientStats?.bloodSugar}} <span class="unit">mg/dL</span></div>
                         <div class="status-container">
                             <div [ngClass]="{
-                                'high': status === 'High',
-                                'medium': status === 'Medium',
-                                'normal': status === 'Normal',
-                            }"class="status">{{status}}</div>
+                                'high': statusBloodSugar === 'High',
+                                'low': statusBloodSugar === 'Low',
+                                'normal': statusBloodSugar === 'Normal',
+                            }"class="status">{{statusBloodSugar}}</div>
                         </div>
                     </div>
                 </div>
@@ -85,13 +85,13 @@
                             </div>
                             <div class="title">BMI</div>
                         </div>
-                        <div class="value">{{patientStats?.bmi}} <span class="unit">mmHg</span></div>
+                        <div class="value">{{patientStats?.bmi}} <span class="unit">kg/m²</span></div>
                         <div class="status-container">
                             <div [ngClass]="{
-                                'high': status === 'High',
-                                'medium': status === 'Medium',
-                                'normal': status === 'Normal',
-                            }"class="status">{{status}}</div>
+                                'high': statusBMI === 'High',
+                                'low': statusBMI === 'Low',
+                                'normal': statusBMI === 'Normal',
+                            }"class="status">{{statusBMI}}</div>
                         </div>
                     </div>
                 </div>
@@ -109,13 +109,13 @@
                             </div>
                             <div class="title">Blood Count</div>
                         </div>
-                        <div class="value">{{patientStats?.heartRate}} <span class="unit">mmHg</span></div>
+                        <div class="value">{{patientStats?.heartRate}} <span class="unit">g/dL</span></div>
                         <div class="status-container">
                             <div [ngClass]="{
-                                'high': status === 'High',
-                                'medium': status === 'Medium',
-                                'normal': status === 'Normal',
-                            }"class="status">{{status}}</div>
+                                'high': statusBloodCount === 'High',
+                                'low': statusBloodCount === 'Low',
+                                'normal': statusBloodCount === 'Normal',
+                            }"class="status">{{statusBloodCount}}</div>
                         </div>
                     </div>
                 </div>
