@@ -20,7 +20,7 @@ export class AppointmentsComponent {
 
 
   private loadAllAppointments() {
-    this.http.get<appointment[]>('http://localhost:8080/patient/appointment/get-all/2').subscribe(data => {
+    this.http.get<appointment[]>('http://localhost:8080/patient/appointment/get-all/3').subscribe(data => {
       console.log(data);
       this.appointments = data;
       this.loadAllDoctorsNames();

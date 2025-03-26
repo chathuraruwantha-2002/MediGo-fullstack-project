@@ -255,3 +255,15 @@ label {
       width: 100%;
     }
   }
+
+  .label-text {
+    color: #0c3868;
+    
+  }
+  
+  .availability-data {
+    color: #666;
+    font-size: 12px;
+   
+  }
+  

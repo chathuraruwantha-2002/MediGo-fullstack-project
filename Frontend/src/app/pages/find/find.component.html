@@ -62,16 +62,19 @@
             <div class="results-grid">
 
 
-                <div class="doctor-card">
+                <div class="doctor-card" *ngFor="let doctor of doctorList">
                     <div class="doctor-image">
                         <img src="/Icons/man.png" alt="Doctor">
                     </div>
                     <div class="doctor-info">
-                        <h3>Dr. Jane Smith</h3>
-                        <p class="specialization">Cardiology</p>
-                        <p class="hospital">General Hospital</p>
+                        <h3>{{doctor.name}}</h3>
+                        <p class="specialization">{{doctor.specialization}}</p>
+                        <p class="hospital">{{getHospitalName(doctor.hospitalId)}}</p>
                         <div class="availability">
-                            <span class="available-date">Available: Mar 15, 2025</span>
+                            <span class="available-date">
+                                <span class="label-text">Available: </span> 
+                                <span class="availability-data" [innerHTML]="formatAvailability(doctor.availability)"></span>
+                              </span>                              
                             <button class="book-btn">Book Appointment</button>
                         </div>
                     </div>
