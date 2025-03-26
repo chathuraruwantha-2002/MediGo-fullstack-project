@@ -10,11 +10,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Appointment {
-    private int appointmentid;
-    private String appointmentDateTime;
+    private int appointmentId;
+    private String appointmentDate;
+    private String appointmentTime;
+    private String location;
     private String mode;
     private String status;
-    private String DateTimeStats;
+    private String dateTimeStats;
     private int patientId;
     private int doctorId;
 }

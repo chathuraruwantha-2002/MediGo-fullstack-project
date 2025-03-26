@@ -2,7 +2,9 @@ package edu.icet.service.impl.patientService;
 
 import edu.icet.dto.Appointment;
 import edu.icet.entity.AppointmentEntity;
+import edu.icet.entity.DoctorEntity;
 import edu.icet.repository.AppointmentRepository;
+import edu.icet.repository.DoctorRepository;
 import edu.icet.service.interfaces.patientInterfaces.PatientAppointmentService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -16,6 +18,7 @@ public class PatientAppointmentServiceImpl implements PatientAppointmentService 
 
     private final ModelMapper modelMapper;
     private final AppointmentRepository appointmentRepository;
+    private final DoctorRepository doctorRepository;
     @Override
     public List<Appointment> getAll(int id) {
         List<Appointment> appointments = new ArrayList<>();
@@ -25,5 +28,15 @@ public class PatientAppointmentServiceImpl implements PatientAppointmentService 
             appointments.add(modelMapper.map(appointmentEntity, Appointment.class));
         }
         return appointments;
+    }
+
+    @Override
+    public List<String> getAllDoctors() {
+        List<String> doctors = new ArrayList<>();
+        List<DoctorEntity> all = doctorRepository.findAll();
+        for (DoctorEntity doctorEntity : all) {
+            doctors.add(doctorEntity.getName());
+        }
+        return doctors;
     }
 }

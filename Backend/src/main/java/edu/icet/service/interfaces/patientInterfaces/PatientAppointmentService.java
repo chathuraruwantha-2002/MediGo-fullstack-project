@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface PatientAppointmentService {
     List<Appointment> getAll(int id);
+
+    List<String> getAllDoctors();
 }

@@ -15,7 +15,7 @@ import lombok.ToString;
 public class AppointmentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int appointmentid; //update this aftr i --> I
+    private int appointmentid;
     private String appointmentDate;
     private String appointmentTime;
     private String location;
