@@ -33,6 +33,21 @@
     width: 100%;
 }
 
+
+
+
+.btn-info {
+    background-color: #ffffff00;
+    border:none;
+    color: #000000;
+}
+
+
+
+
+
+
+
 /* Card Header Customization */
 .bg-medigo {
     background-color: hsl(211, 71%, 72%);
@@ -68,18 +83,22 @@
 /* Badge Customization */
 .badge-success {
     background-color: #28a745;
+    width: 70px;
 }
 
 .badge-info {
     background-color: #17a2b8;
+    width: 70px;
 }
 
 .badge-warning {
     background-color: #ffc107;
+    width: 70px;
 }
 
 .badge-danger {
     background-color: #dc3545;
+    width: 70px;
 }
 
 .title-card {
