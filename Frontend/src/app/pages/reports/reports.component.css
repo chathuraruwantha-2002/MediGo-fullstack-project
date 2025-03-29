@@ -36,10 +36,17 @@
 
 
 
-.btn-info {
+.btn-reason-report {
     background-color: #ffffff00;
     border:none;
     color: #000000;
+    transition: transform 0.3s ease-in-out;
+}
+.btn-reason-report:hover {
+    background-color: #ffffff00;
+    border:none;
+    color: #000000;
+    transform: scale(1.2);
 }
 
 
