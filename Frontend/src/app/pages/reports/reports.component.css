@@ -110,8 +110,20 @@
 
 .title-card {
     font-size: 18px;
-    color: #111c29;
+    color: #243851;
     font-weight: bold;
+}
+
+.btn-light {
+    background-color: #ffffff;
+    color: #004085;
+    border: 1px solid #004085;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-light:hover {
+    background-color: #ecf1f7;
+    color: #004085;
 }
 
 
