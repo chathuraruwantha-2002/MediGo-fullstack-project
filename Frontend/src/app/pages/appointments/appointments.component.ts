@@ -7,7 +7,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-appointments',
   imports: [CommonModule],
   templateUrl: './appointments.component.html',
-  styleUrl: './appointments.component.css'
+  styleUrl: './appointments.component.css',
+  standalone: true
 })
 export class AppointmentsComponent {
 
@@ -27,7 +28,7 @@ export class AppointmentsComponent {
     });
   }
 
-  private loadAllDoctorsNames() {
+  public loadAllDoctorsNames() {
     this.http.get<string[]>('http://localhost:8080/patient/appointment/get-all-doctors').subscribe(data => {
       console.log(data);
       this.doctorsNames = data;

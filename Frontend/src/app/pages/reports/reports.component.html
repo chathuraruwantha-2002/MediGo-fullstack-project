@@ -204,54 +204,13 @@
                       <button class="btn btn-sm btn-reason-report"><i class="bi bi-printer" style="color: #a05d11"></i></button>
                     </td>
                   </tr>
-                  <tr>
-                    <td>REP-2025-1042</td>
-                    <td>Blood Pressure Report</td>
-                    <td>March 15, 2025</td>
-                    <td>AI Generated</td>
-                    <td><span class="badge badge-info">Self-Test</span></td>
-                    <td>
-                      <button class="btn btn-sm btn-reason-report me-1"><i class="bi bi-eye" style="color: #004085"></i></button>
-                      <button class="btn btn-sm btn-reason-report me-1"><i class="bi bi-cloud-download" style="color: #2aabfb"></i></button>
-                      <button class="btn btn-sm btn-reason-report"><i class="bi bi-printer" style="color: #a05d11"></i></button>
-                    </td>
+
+                  <tr *ngFor="let report of reportList">
+                    <td>{{report}}</td>
                   </tr>
-                  <tr>
-                    <td>REP-2025-1030</td>
-                    <td>BMI Report</td>
-                    <td>March 10, 2025</td>
-                    <td>AI Generated</td>
-                    <td><span class="badge badge-info">Self-Test</span></td>
-                    <td>
-                      <button class="btn btn-sm btn-reason-report me-1"><i class="bi bi-eye" style="color: #004085"></i></button>
-                      <button class="btn btn-sm btn-reason-report me-1"><i class="bi bi-cloud-download" style="color: #2aabfb"></i></button>
-                      <button class="btn btn-sm btn-reason-report"><i class="bi bi-printer" style="color: #a05d11"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>REP-2025-1021</td>
-                    <td>Blood Sugar Report</td>
-                    <td>March 5, 2025</td>
-                    <td>Dr. Michael Chen</td>
-                    <td><span class="badge badge-success">Reviewed</span></td>
-                    <td>
-                      <button class="btn btn-sm btn-reason-report me-1"><i class="bi bi-eye" style="color: #004085"></i></button>
-                      <button class="btn btn-sm btn-reason-report me-1"><i class="bi bi-cloud-download" style="color: #2aabfb"></i></button>
-                      <button class="btn btn-sm btn-reason-report"><i class="bi bi-printer" style="color: #a05d11"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>REP-2025-1018</td>
-                    <td>Medication Report</td>
-                    <td>March 1, 2025</td>
-                    <td>Dr. Sarah Johnson</td>
-                    <td><span class="badge badge-success">Reviewed</span></td>
-                    <td>
-                      <button class="btn btn-sm btn-reason-report me-1"><i class="bi bi-eye" style="color: #004085"></i></button>
-                      <button class="btn btn-sm btn-reason-report me-1"><i class="bi bi-cloud-download" style="color: #2aabfb"></i></button>
-                      <button class="btn btn-sm btn-reason-report"><i class="bi bi-printer" style="color: #a05d11"></i></button>
-                    </td>
-                  </tr>
+                   
+              
+
                 </tbody>
               </table>
             </div>
