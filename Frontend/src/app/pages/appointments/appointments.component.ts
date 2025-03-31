@@ -32,6 +32,7 @@ export class AppointmentsComponent {
     this.http.get<string[]>('http://localhost:8080/patient/appointment/get-all-doctors').subscribe(data => {
       console.log(data);
       this.doctorsNames = data;
+      
     });
   }
 

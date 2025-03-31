@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { Report } from '../../model/Report';
 import { Component } from '@angular/core';
 
 @Component({

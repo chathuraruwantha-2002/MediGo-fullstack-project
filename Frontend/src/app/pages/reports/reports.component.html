@@ -1,221 +1,228 @@
 <!-- reports.component.html -->
 <div class="container-fluid mt-4" style="font-family: 'Urbanist', sans-serif;">
-  
-    
-  
-    <!-- Report Type Selector -->
-    <div class="row mb-4 mt-5">
-      <div class="search-container">
-        <form class="search-form" id="doctorSearchForm">
-            <div class="form-group">
-                <label for="doctorName">Search</label>
-                <input type="text" id="doctorName" placeholder="Search Reports..." name="doctorName"
-                    class="form-control">
-            </div>
 
-            <div class="form-group">
-                <label for="specialization">Report</label>
-                <div class="select-wrapper">
-                    <select id="specialization" name="specialization" class="form-control">
-                        <option value="" disabled selected>Select Report</option>
-                        <option value="cardiology">All Reports</option>
-                        <option value="dermatology">BMI History</option>
-                        <option value="neurology">Blood Pressure</option>
-                        <option value="orthopedics">Medication History</option>
-                        <option value="pediatrics">Consultation History</option>
-                    </select>
-                    <span class="dropdown-icon">▼</span>
-                </div>
-            </div>  
-            <div class="form-group">
-                <label for="date">Date Range</label>
-                <div class="date-input-wrapper">
-                    <input type="date" id="date" name="date" class="form-control">
-                    <span class="calendar-icon"></span>
-                </div>
-            </div>
 
-            <div class="form-group">
-              <div class="date-input-wrapper">
-                  <input type="date" id="date" name="date" class="form-control">
-                  <span class="calendar-icon"></span>
-              </div>
+
+  <!-- Report Type Selector -->
+  <div class="row mb-4 mt-5">
+    <div class="search-container">
+      <form class="search-form" id="doctorSearchForm">
+        <div class="form-group">
+          <label for="doctorName">Search</label>
+          <input type="text" id="doctorName" placeholder="Search Reports..." name="doctorName" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="specialization">Report</label>
+          <div class="select-wrapper">
+            <select id="specialization" name="specialization" class="form-control">
+              <option value="" disabled selected>Select Report</option>
+              <option value="cardiology">All Reports</option>
+              <option value="dermatology">BMI History</option>
+              <option value="neurology">Blood Pressure</option>
+              <option value="orthopedics">Medication History</option>
+              <option value="pediatrics">Consultation History</option>
+            </select>
+            <span class="dropdown-icon">▼</span>
           </div>
+        </div>
+        <div class="form-group">
+          <label for="date">Date Range</label>
+          <div class="date-input-wrapper">
+            <input type="date" id="date" name="date" class="form-control">
+            <span class="calendar-icon"></span>
+          </div>
+        </div>
 
-            <div class="form-group search-btn-group ms-3">
-                <button type="submit" class="search-btn">Search</button>
-            </div>
-        </form>
+        <div class="form-group">
+          <div class="date-input-wrapper">
+            <input type="date" id="date" name="date" class="form-control">
+            <span class="calendar-icon"></span>
+          </div>
+        </div>
+
+        <div class="form-group search-btn-group ms-3">
+          <button type="submit" class="search-btn">Search</button>
+        </div>
+      </form>
     </div>
 
-    </div>
-    
-    <!-- Health Metrics Summary Cards -->
-    <div class="row mb-4 mt-5">
-      <div class="col-md-4">
-        <div class="card summary-card border-left-primary shadow-sm">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div class="text-xs text-uppercase mb-1 text-medigo">BMI</div>
-                <div class="h5 mb-0 text-gray-800 mb-1">24.7<span class="text-parameter">kg/m2</span></div>
+  </div>
 
-                <div class="small text-success">
-                  <i class="bi bi-arrow-down"></i> 1.2 from last check
-                </div>
-              </div>
-              <div class="col-auto">
-                <i class="fas fa-weight fa-2x text-gray-300"></i>
+  <!-- Health Metrics Summary Cards -->
+  <div class="row mb-4 mt-5">
+    <div class="col-md-4">
+      <div class="card summary-card border-left-primary shadow-sm">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs text-uppercase mb-1 text-medigo">BMI</div>
+              <div class="h5 mb-0 text-gray-800 mb-1">24.7<span class="text-parameter">kg/m2</span></div>
+
+              <div class="small text-success">
+                <i class="bi bi-arrow-down"></i> 1.2 from last check
               </div>
             </div>
-            <div class="mt-2 small">
-              <span class="badge badge-success me-3">Normal</span>
-              <span class="text-muted ml-2">Last checked: March 15, 2025</span>
+            <div class="col-auto">
+              <i class="fas fa-weight fa-2x text-gray-300"></i>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card summary-card border-left-primary shadow-sm">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div class="text-xs text-uppercase mb-1 text-medigo">Blood Pressure</div>
-                <div class="h5 mb-0 text-gray-800 mb-1">120/80<span class="text-parameter">mmHg</span></div>
-
-                <div class="small text-success">
-                  <i class="bi bi-arrow-down"></i> 1.2 from last check
-                </div>
-              </div>
-              <div class="col-auto">
-                <i class="fas fa-weight fa-2x text-gray-300"></i>
-              </div>
-            </div>
-            <div class="mt-2 small">
-              <span class="badge badge-success me-3">Normal</span>
-              <span class="text-muted ml-2">Last checked: March 15, 2025</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card summary-card border-left-primary shadow-sm">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div class="text-xs text-uppercase mb-1 text-medigo">Blood Sugar</div>
-                <div class="h5 mb-0 text-gray-800 mb-1">95<span class="text-parameter">mg/dL</span></div>
-
-                <div class="small text-success">
-                  <i class="bi bi-arrow-down"></i> 1.2 from last check
-                </div>
-              </div>
-              <div class="col-auto">
-                <i class="fas fa-weight fa-2x text-gray-300"></i>
-              </div>
-            </div>
-            <div class="mt-2 small">
-              <span class="badge badge-success me-3">Normal</span>
-              <span class="text-muted ml-2">Last checked: March 15, 2025</span>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      
-    </div>
-  
-    <!-- Charts Row -->
-    <div class="row mb-4">
-      <!-- Health Metrics Trend Chart -->
-      <div class="col-lg-8">
-        <div class="card chart-card shadow-sm" style="height: 380px;">
-            <h6 class="m-0 font-weight-bold title-card">Health Metrics Trends</h6>
-          <div class="card-body">
-            <div class="chart-container">
-              <canvas id="healthMetricsChart"></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <!-- AI Health Analysis -->
-      <div class="col-lg-4">
-        <div class="card shadow-sm">
-          
-            <h6 class="m-0 font-weight-bold title-card">AI Health Analysis</h6>
-          
-          <div class="card-body">
-            <div class="mb-3">
-              <h6 class="mb-2">Progress Summary</h6>
-              <p class="mb-3"style ="font-size: 14px; color: #4e535d;">Based on your recent health metrics, Medigo AI has analyzed your health status:</p>
-              <div class="progress mb-2">
-                <div class="progress-bar" role="progressbar" style="width: 85%; background: #4adb67" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              <p class="small text-muted" style="font-size: small; font-weight: bold;">Overall Health Score: 85/100</p>
-            </div>
-            <div class="mb-3">
-              <h6 class="mb-2">Recommendations</h6>
-              <ul class="small" style="font-size: small; color: #4e535d;">
-                <li>Continue your current exercise routine</li>
-                <li>Maintain current diet with reduced sodium intake</li>
-                <li>Consider scheduling your annual check-up in May</li>
-              </ul>
-            </div>
-            <button class="btn btn-sm btn-light" style="font-size: small; font-weight: bold;">View Detailed Analysis</button>
+          <div class="mt-2 small">
+            <span class="badge badge-success me-3">Normal</span>
+            <span class="text-muted ml-2">Last checked: March 15, 2025</span>
           </div>
         </div>
       </div>
     </div>
-  
-    <!-- Recent Reports Table -->
-    <div class="row">
-      <div class="col-12">
-        <div class="card shadow-sm">
-          <div class="d-flex justify-content-between align-items-center">
-            <h6 class="m-0 font-weight-bold title-card">Recent Reports</h6>
-            <button class="btn btn-sm btn-light" style="font-size:9px;">View All</button>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-hover">
-                <thead style="font-size:15px;">
-                  <tr>
-                    <th>Report ID</th>
-                    <th>Type</th>
-                    <th>Generated Date</th>
-                    <th>Doctor</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody style="font-size:13px;">
-                  <tr>
-                    <td>REP-2025-1058</td>
-                    <td>Comprehensive Health Check</td>
-                    <td>March 18, 2025</td>
-                    <td>Dr. Sarah Johnson</td>
-                    <td><span class="badge badge-success">Reviewed</span></td>
-                    <td>
-                      <button class="btn btn-sm btn-reason-report me-1"><i class="bi bi-eye" style="color: #004085"></i></button>
-                      <button class="btn btn-sm btn-reason-report me-1"><i class="bi bi-cloud-download" style="color: #2aabfb"></i></button>
-                      <button class="btn btn-sm btn-reason-report"><i class="bi bi-printer" style="color: #a05d11"></i></button>
-                    </td>
-                  </tr>
 
-                  <tr *ngFor="let report of reportList">
-                    <td>{{report}}</td>
-                  </tr>
-                   
-              
+    <div class="col-md-4">
+      <div class="card summary-card border-left-primary shadow-sm">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs text-uppercase mb-1 text-medigo">Blood Pressure</div>
+              <div class="h5 mb-0 text-gray-800 mb-1">120/80<span class="text-parameter">mmHg</span></div>
 
-                </tbody>
-              </table>
+              <div class="small text-success">
+                <i class="bi bi-arrow-down"></i> 1.2 from last check
+              </div>
             </div>
+            <div class="col-auto">
+              <i class="fas fa-weight fa-2x text-gray-300"></i>
+            </div>
+          </div>
+          <div class="mt-2 small">
+            <span class="badge badge-success me-3">Normal</span>
+            <span class="text-muted ml-2">Last checked: March 15, 2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card summary-card border-left-primary shadow-sm">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs text-uppercase mb-1 text-medigo">Blood Sugar</div>
+              <div class="h5 mb-0 text-gray-800 mb-1">95<span class="text-parameter">mg/dL</span></div>
+
+              <div class="small text-success">
+                <i class="bi bi-arrow-down"></i> 1.2 from last check
+              </div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-weight fa-2x text-gray-300"></i>
+            </div>
+          </div>
+          <div class="mt-2 small">
+            <span class="badge badge-success me-3">Normal</span>
+            <span class="text-muted ml-2">Last checked: March 15, 2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <!-- Charts Row -->
+  <div class="row mb-4">
+    <!-- Health Metrics Trend Chart -->
+    <div class="col-lg-8">
+      <div class="card chart-card shadow-sm" style="height: 380px;">
+        <h6 class="m-0 font-weight-bold title-card">Health Metrics Trends</h6>
+        <div class="card-body">
+          <div class="chart-container">
+            <canvas id="healthMetricsChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Health Analysis -->
+    <div class="col-lg-4">
+      <div class="card shadow-sm">
+
+        <h6 class="m-0 font-weight-bold title-card">AI Health Analysis</h6>
+
+        <div class="card-body">
+          <div class="mb-3">
+            <h6 class="mb-2">Progress Summary</h6>
+            <p class="mb-3" style="font-size: 14px; color: #4e535d;">Based on your recent health metrics, Medigo AI has
+              analyzed your health status:</p>
+            <div class="progress mb-2">
+              <div class="progress-bar" role="progressbar" style="width: 85%; background: #4adb67" aria-valuenow="85"
+                aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <p class="small text-muted" style="font-size: small; font-weight: bold;">Overall Health Score: 85/100</p>
+          </div>
+          <div class="mb-3">
+            <h6 class="mb-2">Recommendations</h6>
+            <ul class="small" style="font-size: small; color: #4e535d;">
+              <li>Continue your current exercise routine</li>
+              <li>Maintain current diet with reduced sodium intake</li>
+              <li>Consider scheduling your annual check-up in May</li>
+            </ul>
+          </div>
+          <button class="btn btn-sm btn-light" style="font-size: small; font-weight: bold;">View Detailed
+            Analysis</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Reports Table -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="d-flex justify-content-between align-items-center">
+          <h6 class="m-0 font-weight-bold title-card">Recent Reports</h6>
+          <button class="btn btn-sm btn-light" style="font-size:9px;">View All</button>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead style="font-size:15px;">
+                <tr>
+                  <th>Report ID</th>
+                  <th>Type</th>
+                  <th>Generated Date</th>
+                  <th>Doctor</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody style="font-size:13px;">
+
+                <tr *ngFor="let Report of reportList">
+                  <td>{{Report.reportId}}</td>
+                  <td>{{Report.type}}</td>
+                  <td>{{Report.dateGenerated}}</td>
+                  <td>{{doctorsNames[Report.doctorId-1]}}</td>
+                  <td>
+                    <div [ngClass]="{
+                        'badge-success': Report.status === 'Reviewed',
+                        'badge-warning': Report.status === 'Pending'
+                    }" class="badge">
+                      {{ Report.status }}
+                    </div>
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-reason-report me-1"><i class="bi bi-eye"
+                        style="color: #004085"></i></button>
+                    <button class="btn btn-sm btn-reason-report me-1"><i class="bi bi-cloud-download"
+                        style="color: #2aabfb"></i></button>
+                    <button class="btn btn-sm btn-reason-report"><i class="bi bi-printer"
+                        style="color: #a05d11"></i></button>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
