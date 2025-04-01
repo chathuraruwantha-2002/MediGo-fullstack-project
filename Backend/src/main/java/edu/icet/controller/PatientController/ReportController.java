@@ -1,5 +1,6 @@
 package edu.icet.controller.PatientController;
 
+import edu.icet.dto.Medication;
 import edu.icet.dto.Report;
 import edu.icet.service.interfaces.patientInterfaces.PatientReportService;
 import lombok.AllArgsConstructor;
@@ -14,9 +15,14 @@ import java.util.List;
 public class ReportController {
     private final PatientReportService service;
 
-    @GetMapping("/get-all/{id}")
-    public List<Report> getAll(@PathVariable int id) {
-        return service.getAll(id);
+    @GetMapping("/get-all-reports/{id}")
+    public List<Report> getAllReports(@PathVariable int id) {
+        return service.getAllReports(id);
+    }
+
+    @GetMapping("/get-all-prescriptions/{id}")
+    public List<Medication> getAllPrescriptions(@PathVariable int id) {
+        return service.getAllPrescriptions(id);
     }
 
 

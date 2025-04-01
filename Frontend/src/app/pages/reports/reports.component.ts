@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Report } from '../../model/Report';
 import { Component } from '@angular/core';
+import { Prescription } from '../../model/Prescription';
 
 @Component({
   selector: 'app-reports',
@@ -13,15 +14,17 @@ import { Component } from '@angular/core';
 export class ReportsComponent {
 
   reportList: Report[] = [];
+  prescriptionList: Prescription[] = [];
   doctorsNames: string[] = [];
 
   constructor(private http: HttpClient) {
     this.loadReports();
+    this.loadPrescriptions();
     this.loadAllDoctorsNames();
   }
 
   private loadReports(){
-    this.http.get<Report[]>('http://localhost:8080/patient/report/get-all/1').subscribe(data => {
+    this.http.get<Report[]>('http://localhost:8080/patient/report/get-all-reports/1').subscribe(data => {
       this.reportList = data;
       console.log(data);
     })
@@ -32,6 +35,13 @@ export class ReportsComponent {
       console.log(data);
       this.doctorsNames = data;
     });
+  }
+
+  private loadPrescriptions(){
+    this.http.get<Prescription[]>('http://localhost:8080/patient/report/get-all-prescriptions/1').subscribe(data => {
+      this.prescriptionList = data;
+      console.log(data);
+    })
   }
 
 }

@@ -18,6 +18,8 @@ public class Medication {
     private String medicationFrequency;
     private String medicationInstructions;
     private String dateTimeStats;
+    private String status;
     private int patientId;
     private int doctorId;
+
 }

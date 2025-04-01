@@ -23,6 +23,7 @@ public class MedicationEntity {
     private String medicationFrequency;
     private String medicationInstructions;
     private String dateTimeStats;
+    private String status;
     @ManyToOne
     @JoinColumn(name = "patientId")
     private PatientEntity patient;

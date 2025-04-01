@@ -130,7 +130,7 @@
   <div class="row mb-4">
     <!-- Health Metrics Trend Chart -->
     <div class="col-lg-8">
-      <div class="card chart-card shadow-sm" style="height: 380px;">
+      <div class="card chart-card shadow-sm" style="height: 375px;">
         <h6 class="m-0 font-weight-bold title-card">Health Metrics Trends</h6>
         <div class="card-body">
           <div class="chart-container">
@@ -174,7 +174,7 @@
 
   <!-- Recent Reports Table -->
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 mt-4">
       <div class="card shadow-sm">
         <div class="d-flex justify-content-between align-items-center">
           <h6 class="m-0 font-weight-bold title-card">Recent Reports</h6>
@@ -185,7 +185,7 @@
             <table class="table table-hover">
               <thead style="font-size:15px;">
                 <tr>
-                  <th>Report ID</th>
+                  <th></th>
                   <th>Type</th>
                   <th>Generated Date</th>
                   <th>Doctor</th>
@@ -225,4 +225,60 @@
       </div>
     </div>
   </div>
+
+  <!--prescription-->
+  <div class="row">
+    <div class="col-12 mt-5">
+      <div class="card shadow-sm">
+        <div class="d-flex justify-content-between align-items-center">
+          <h6 class="m-0 font-weight-bold title-card">Recent Prescriptions</h6>
+          <button class="btn btn-sm btn-light" style="font-size:9px;">View All</button>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead style="font-size:15px;">
+                <tr>
+                  <th></th>
+                  <th>Type</th>
+                  <th>Duration</th>
+                  <th>Prescript by</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody style="font-size:13px;">
+
+                <tr *ngFor="let Prescription of prescriptionList">
+                  <td>{{Prescription.medicationId}}</td>
+                  <td>{{Prescription.medicationName}}</td>
+                  <td>{{Prescription.medicationDuration}} days</td>
+                  <td>{{doctorsNames[Prescription.doctorId-1]}}</td>
+                  <td>
+                    <div [ngClass]="{
+                        'badge-success': Prescription.status === 'Ongoing',
+                        'badge-warning': Prescription.status === 'Finished'
+                    }" class="badge">
+                      {{ Prescription.status }}
+                    </div>
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-reason-report me-1"><i class="bi bi-eye"
+                        style="color: #004085"></i></button>
+                    <button class="btn btn-sm btn-reason-report me-1"><i class="bi bi-cloud-download"
+                        style="color: #2aabfb"></i></button>
+                    <button class="btn btn-sm btn-reason-report"><i class="bi bi-printer"
+                        style="color: #a05d11"></i></button>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>
