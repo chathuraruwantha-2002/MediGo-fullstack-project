@@ -1,5 +1,6 @@
 package edu.icet.dto;
 
+import edu.icet.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ public class Appointment {
     private String appointmentTime;
     private String location;
     private String mode;
-    private String status;
+    private Status status;
     private String dateTimeStats;
     private int patientId;
     private int doctorId;

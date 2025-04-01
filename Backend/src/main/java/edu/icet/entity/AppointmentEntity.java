@@ -1,5 +1,6 @@
 package edu.icet.entity;
 
+import edu.icet.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +21,8 @@ public class AppointmentEntity {
     private String appointmentTime;
     private String location;
     private String mode;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
     private String dateTimeStats;
     @ManyToOne
     @JoinColumn(name = "patientId")
