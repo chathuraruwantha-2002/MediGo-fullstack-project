@@ -7,6 +7,7 @@ public enum Status {
     ONGOING,
     REVIEWED,
     RESCHEDULED,
+    SCHEDULED,
     CANCELLED,
     COMPLETED,
     IN_PROGRESS

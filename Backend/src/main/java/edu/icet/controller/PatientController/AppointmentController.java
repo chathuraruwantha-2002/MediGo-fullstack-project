@@ -26,4 +26,10 @@ public class AppointmentController {
         return service.getAllDoctors();
     }
 
+    //add appointment
+    @PutMapping("/add-appointment")
+    public String addAppointment(@RequestBody Appointment appointment) {
+        return service.addAppointment(appointment);
+    }
+
 }

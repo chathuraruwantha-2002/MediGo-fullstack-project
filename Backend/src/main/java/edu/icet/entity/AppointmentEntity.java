@@ -16,13 +16,12 @@ import lombok.ToString;
 public class AppointmentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int appointmentid; //update this aftr i --> I
+    private int appointmentid;
     private String appointmentDate;
     private String appointmentTime;
     private String location;
     private String mode;
-    @Enumerated(EnumType.STRING)
-    private Status status;
+    private String status;
     private String dateTimeStats;
     @ManyToOne
     @JoinColumn(name = "patientId")

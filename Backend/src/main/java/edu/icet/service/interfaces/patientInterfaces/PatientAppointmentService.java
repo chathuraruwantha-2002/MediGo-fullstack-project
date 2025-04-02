@@ -8,4 +8,6 @@ public interface PatientAppointmentService {
     List<Appointment> getAll(int id);
 
     List<String> getAllDoctors();
+
+    String addAppointment(Appointment appointment);
 }

@@ -39,4 +39,10 @@ public class PatientAppointmentServiceImpl implements PatientAppointmentService 
         }
         return doctors;
     }
+
+    @Override
+    public String addAppointment(Appointment appointment) {
+        appointmentRepository.save(modelMapper.map(appointment, AppointmentEntity.class));
+        return "Success";
+    }
 }
