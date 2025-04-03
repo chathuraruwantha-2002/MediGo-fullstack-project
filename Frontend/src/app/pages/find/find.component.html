@@ -75,7 +75,8 @@
                                 <span class="label-text">Available: </span> 
                                 <span class="availability-data" [innerHTML]="formatAvailability(doctor.availability)"></span>
                               </span>                              
-                            <button class="book-btn">Book Appointment</button>
+                            <button (click)="showAppointmentForm()" class="book-btn">Book Appointment</button>
+                            <app-appointment-form *ngIf="isAppointmentFormVisible"></app-appointment-form>
                         </div>
                     </div>
                 </div>

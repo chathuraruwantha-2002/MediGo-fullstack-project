@@ -3,10 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Report } from '../../model/Report';
 import { Component } from '@angular/core';
 import { Prescription } from '../../model/Prescription';
+import { AppointmentFormComponent } from "../PopUps@Dialogs/appointment-form/appointment-form.component";
 
 @Component({
   selector: 'app-reports',
-  imports: [CommonModule],
+  imports: [CommonModule, AppointmentFormComponent],
   templateUrl: './reports.component.html',
   styleUrl: './reports.component.css',
   standalone: true

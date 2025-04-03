@@ -3,10 +3,11 @@ import { Doctor } from '../../model/doctor';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Hospital } from '../../model/hospital';
+import { AppointmentFormComponent } from "../PopUps@Dialogs/appointment-form/appointment-form.component";
 
 @Component({
   selector: 'app-find',
-  imports: [CommonModule],
+  imports: [CommonModule, AppointmentFormComponent],
   templateUrl: './find.component.html',
   styleUrl: './find.component.css'
 })
@@ -14,6 +15,7 @@ export class FindComponent implements OnInit {
 
   doctorList: Doctor[] = [];
   hospitalList: Hospital[] = [];
+  isAppointmentFormVisible = false;
   
   constructor(private http: HttpClient) { }
 
@@ -44,7 +46,16 @@ export class FindComponent implements OnInit {
   formatAvailability(availability: string): string {
     return availability ? availability.replace(/,/g, '&nbsp;&nbsp;') : '';
   }
-  
+
+
+  showAppointmentForm() {
+    this.isAppointmentFormVisible = true; 
+  }
+
+  hideAppointmentForm() {
+    this.isAppointmentFormVisible = false; 
+  }
+
   
   
 

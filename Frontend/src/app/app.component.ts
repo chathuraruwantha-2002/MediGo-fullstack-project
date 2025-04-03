@@ -6,10 +6,11 @@ import { PatientNavbarComponent } from "./common/patient-navbar/patient-navbar.c
 import { HomepagePatientComponent } from "./pages/homepage-patient/homepage-patient.component";
 import { FindComponent } from "./pages/find/find.component";
 import { OnInit } from '@angular/core';
+import { AppointmentFormComponent } from "./pages/PopUps@Dialogs/appointment-form/appointment-form.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent, HomepageComponent, PatientNavbarComponent, HomepagePatientComponent, FindComponent],
+  imports: [RouterOutlet, NavbarComponent, HomepageComponent, PatientNavbarComponent, HomepagePatientComponent, FindComponent, AppointmentFormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
