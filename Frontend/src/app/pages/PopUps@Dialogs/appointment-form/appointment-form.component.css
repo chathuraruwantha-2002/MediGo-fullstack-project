@@ -7,6 +7,11 @@
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   font-family: Arial, sans-serif;
+  transition: box-shadow 0.3s ease; /* Smooth transition on hover */
+}
+
+.appointment-container:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); /* Enhance shadow on hover */
 }
 
 /* Header Styles */
@@ -23,6 +28,7 @@
 .form-header p {
   color: #5a5a5a;
   font-size: 15px;
+  margin-bottom: 20px;
 }
 
 /* Form Styles */
@@ -68,6 +74,7 @@ textarea {
   border-radius: 4px;
   font-size: 14px;
   background-color: #fcfdff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 input:focus,
@@ -78,6 +85,7 @@ textarea:focus {
   box-shadow: 0 0 0 2px rgba(0, 64, 133, 0.1);
 }
 
+/* Select Styles */
 select {
   appearance: none;
   background-position: right 10px center;
@@ -123,6 +131,7 @@ textarea {
   border-radius: 4px;
   cursor: pointer;
   font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
 }
 
 .btn-primary {
@@ -132,6 +141,7 @@ textarea {
 
 .btn-primary:hover {
   background-color: #00346d;
+  transform: translateY(-2px); /* Slight lift effect */
 }
 
 .btn-secondary {
@@ -142,6 +152,7 @@ textarea {
 
 .btn-secondary:hover {
   background-color: #e5edf5;
+  transform: translateY(-2px); /* Slight lift effect */
 }
 
 /* Responsive Styles */
@@ -174,4 +185,11 @@ select:invalid:not(:placeholder-shown) {
 input:valid:not(:placeholder-shown),
 select:valid:not(:placeholder-shown) {
   border-color: #68a5d4;
+}
+
+/* Focused Input Styles */
+input:focus,
+select:focus,
+textarea:focus {
+  box-shadow: 0 0 0 2px rgba(0, 64, 133, 0.2); /* Soft glow effect */
 }

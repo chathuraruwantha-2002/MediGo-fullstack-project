@@ -15,6 +15,8 @@ export class FindComponent implements OnInit {
 
   doctorList: Doctor[] = [];
   hospitalList: Hospital[] = [];
+
+  selectedDoctor: Doctor | null = null;
   isAppointmentFormVisible = false;
   
   constructor(private http: HttpClient) { }
@@ -48,12 +50,14 @@ export class FindComponent implements OnInit {
   }
 
 
-  showAppointmentForm() {
+ 
+  showAppointmentForm(doctor: Doctor) {
+    this.selectedDoctor = doctor; 
     this.isAppointmentFormVisible = true; 
   }
-
   hideAppointmentForm() {
-    this.isAppointmentFormVisible = false; 
+    this.isAppointmentFormVisible = false;
+    this.selectedDoctor = null; 
   }
 
   
