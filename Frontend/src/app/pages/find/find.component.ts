@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Doctor } from '../../model/doctor';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Hospital } from '../../model/hospital';
 import { AppointmentFormComponent } from "../PopUps@Dialogs/appointment-form/appointment-form.component";
+
 
 @Component({
   selector: 'app-find',
@@ -12,6 +13,12 @@ import { AppointmentFormComponent } from "../PopUps@Dialogs/appointment-form/app
   styleUrl: './find.component.css'
 })
 export class FindComponent implements OnInit {
+
+
+
+  @ViewChild(AppointmentFormComponent)
+ appointmentFormComponent!: AppointmentFormComponent;
+
 
   doctorList: Doctor[] = [];
   hospitalList: Hospital[] = [];
@@ -54,6 +61,8 @@ export class FindComponent implements OnInit {
   showAppointmentForm(doctor: Doctor) {
     this.selectedDoctor = doctor; 
     this.isAppointmentFormVisible = true; 
+    this.appointmentFormComponent.setDoctor(doctor);
+
   }
   hideAppointmentForm() {
     this.isAppointmentFormVisible = false;

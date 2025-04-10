@@ -65,7 +65,7 @@
                 <div class="doctor-card" *ngFor="let doctor of doctorList">
                     <div class="doctor-image">
                         <img src="/Icons/man.png" alt="Doctor">
-                    </div>
+                    </div>  
                     <div class="doctor-info">
                         <h3>{{doctor.name}}</h3>
                         <p class="specialization">{{doctor.specialization}}</p>
@@ -87,7 +87,9 @@
     </div>
 
 
-    <app-appointment-form *ngIf="selectedDoctor === selectedDoctor && isAppointmentFormVisible"></app-appointment-form>
+    <div class="appointment-modal" *ngIf="isAppointmentFormVisible">
+        <app-appointment-form *ngIf="selectedDoctor === selectedDoctor && isAppointmentFormVisible"></app-appointment-form>
+    </div>
 
-    
+
 </div>
