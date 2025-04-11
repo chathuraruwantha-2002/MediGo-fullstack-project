@@ -59,11 +59,16 @@ export class FindComponent implements OnInit {
 
  
   showAppointmentForm(doctor: Doctor) {
-    this.selectedDoctor = doctor; 
-    this.isAppointmentFormVisible = true; 
-    this.appointmentFormComponent.setDoctor(doctor);
-
+    this.selectedDoctor = doctor;
+    this.isAppointmentFormVisible = true;
+  
+    setTimeout(() => {
+      if (this.appointmentFormComponent) {
+        this.appointmentFormComponent.setDoctor(doctor);
+      }
+    });
   }
+  
   hideAppointmentForm() {
     this.isAppointmentFormVisible = false;
     this.selectedDoctor = null; 
