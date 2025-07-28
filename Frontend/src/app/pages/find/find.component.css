@@ -26,11 +26,20 @@
 }
 
 
+.close-btn {
+  position: absolute;
+  top: 40px;
+  right: 530px;
+  color: #0c3868;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
 
-
-
-
-
+.close-btn:hover {
+  color: #0c3700;
+}
 
 
 .search-container {

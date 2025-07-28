@@ -1,23 +1,24 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { GeminiService } from '../../services/gemini.service';
 import { FormatMessageContentPipe } from '../format-message-content.pipe';
+import { SharedService } from '../../shared.service';
 
 @Component({
   selector: 'app-services',
-  imports: [FormsModule,CommonModule,FormatMessageContentPipe],
+  imports: [FormsModule, CommonModule, FormatMessageContentPipe],
   templateUrl: './services.component.html',
   styleUrl: './services.component.css',
   standalone: true
 })
-export class ServicesComponent {
-  
+export class ServicesComponent implements OnInit {
+
   private geminiService: GeminiService;
   userMessage = '';
 
 
-  chatHistory: { role: 'user' | 'ai', content: string } [] =
+  chatHistory: { role: 'user' | 'ai', content: string }[] =
     [
       {
         role: 'ai',
@@ -29,9 +30,32 @@ export class ServicesComponent {
 
 
 
-  constructor(geminiService: GeminiService) {
+  constructor(geminiService: GeminiService, private sharedService: SharedService) {
     this.geminiService = geminiService;
   }
+  ngOnInit(): void {
+
+    
+    this.sharedService.currentMessage$.subscribe((msg) => {
+      if (msg) {
+        this.userMessage = msg;
+        console.log('Received from SharedService:', msg);
+      }
+    });
+
+    //auto send
+    this.sharedService.autoSend$.subscribe((trigger) => {
+      if (trigger) {
+        this.sendMessage(); // auto submit
+        this.sharedService.clearAutoSend(); // reset
+      }
+    });
+
+  }
+
+
+
+
 
   async sendMessage() {
     if (this.userMessage.trim() !== '') {
@@ -60,13 +84,13 @@ export class ServicesComponent {
   }
 
   startNewChat() {
-    this.chatHistory = 
-    [
-      {
-        role: 'ai',
-        content: 'Hello! I\'m MediGo, your Healthcare Assistant. How can I help you today?' 
-      }
-    ];
+    this.chatHistory =
+      [
+        {
+          role: 'ai',
+          content: 'Hello! I\'m MediGo, your Healthcare Assistant. How can I help you today?'
+        }
+      ];
   }
 
 }

@@ -4,17 +4,23 @@ import { Observable } from 'rxjs';
 import { Patient } from '../../model/patient';
 import { CommonModule } from '@angular/common';
 import { PatientHealthData } from '../../model/patientHealthData';
+import { SharedService } from '../../shared.service';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-homepage-patient',
   templateUrl: './homepage-patient.component.html',
   styleUrl: './homepage-patient.component.css',
-  imports: [CommonModule]
+  imports: [CommonModule, FormsModule]
 })
 export class HomepagePatientComponent {
 
   patientStats: PatientHealthData | undefined;
   patient: Patient | undefined;
+
+  //message
+  message: string = '';
 
   statusBloodPressure: string = 'Normal';
   statusBloodSugar: string = 'Normal';
@@ -22,17 +28,31 @@ export class HomepagePatientComponent {
   statusBMI: string = 'Normal';
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient , private sharedService: SharedService , private router: Router) {
     this.loadPatientHealthStats();
     this.loadPatientData();
   }
+
+  //message manager
+  send() {
+    if (this.message.trim()) {
+      this.sharedService.setMessage(this.message);
+      console.log('Message sent:', this.message);
+      this.message = '';
+
+      this.router.navigate(['/patient/services']);
+
+    }
+  }
+
+
 
   private loadPatientHealthStats() {
 
     this.http.get<PatientHealthData>('http://localhost:8080/patient/dashboard/get-health-stats/1').subscribe(data => {
       console.log(data);
       this.patientStats = data;
-      
+
       this.displayStatusColors();
     });
   }

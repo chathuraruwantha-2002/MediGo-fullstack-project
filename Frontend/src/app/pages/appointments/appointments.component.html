@@ -9,7 +9,7 @@
                                 <div class="col-md-6 d-flex justify-content-start">
                                     <div class="search-container">
                                         <input type="text" class="form-control search-input" 
-                                            placeholder="Search appointments...">
+                                            placeholder="Search appointments..." [(ngModel)]="searchTerm">
                                     </div>
                                 </div>
                             </div>
@@ -30,7 +30,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let appointment of appointments">
+                                    <tr *ngFor="let appointment of filteredAppointments()">
                                         <td scope="row">{{appointment.appointmentId}}</td>
                                         <td>{{doctorsNames[appointment.doctorId-1]}}</td>
                                         <td>{{appointment.appointmentDate}}</td>

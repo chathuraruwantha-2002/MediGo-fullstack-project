@@ -1,37 +1,36 @@
-<!-- appointment-form.component.html -->
 <div class="appointment-container mt-4 mb-4">
   <div class="form-header">
-    <h2>{{doctor.phone}}</h2>
+    <h2>Make an Appointment</h2>
+    <p>Fill out the form below to schedule an appointment with our doctor.</p>
   </div>
-  
-  <form class="appointment-form">
+
+  <form class="appointment-form" (ngSubmit)="onSubmit()" #appointmentForm="ngForm">
     <div class="form-group">
       <label for="patientName">Full Name</label>
-      <input type="text" id="patientName" placeholder="Enter your full name" required>
+      <input type="text" id="patientName" name="patientName" [(ngModel)]="appointmentData.patientName" placeholder="Enter your full name" required>
     </div>
-    
+
     <div class="form-row">
       <div class="form-group">
         <label for="patientEmail">Email</label>
-        <input type="email" id="patientEmail" placeholder="Enter your email" required>
+        <input type="email" id="patientEmail" name="patientEmail" [(ngModel)]="appointmentData.patientEmail" placeholder="Enter your email" required>
       </div>
-      
+
       <div class="form-group">
         <label for="patientPhone">Phone Number</label>
-        <input type="tel" id="patientPhone" placeholder="Enter your phone number" required>
+        <input type="tel" id="patientPhone" name="patientPhone" [(ngModel)]="appointmentData.patientPhone" placeholder="Enter your phone number" required>
       </div>
     </div>
-    
-    
+
     <div class="form-row">
       <div class="form-group">
         <label for="appointmentDate">Preferred Date</label>
-        <input type="date" id="appointmentDate" required>
+        <input type="date" id="appointmentDate" name="appointmentDate" [(ngModel)]="appointmentData.appointmentDate" required>
       </div>
-      
+
       <div class="form-group">
         <label for="appointmentTime">Preferred Time</label>
-        <select id="appointmentTime" required>
+        <select id="appointmentTime" name="appointmentTime" [(ngModel)]="appointmentData.appointmentTime" required>
           <option value="" disabled selected>Select time</option>
           <option value="9:00">9:00 AM</option>
           <option value="10:00">10:00 AM</option>
@@ -43,25 +42,25 @@
         </select>
       </div>
     </div>
-    
+
     <div class="form-group">
       <label for="reasonVisit">Reason for Visit</label>
-      <textarea id="reasonVisit" rows="3" placeholder="Please briefly describe your symptoms or reason for appointment"></textarea>
+      <textarea id="reasonVisit" name="reasonVisit" rows="3" [(ngModel)]="appointmentData.reasonVisit" placeholder="Please briefly describe your symptoms or reason for appointment"></textarea>
     </div>
-    
+
     <div class="form-group checkbox-group">
-      <input type="checkbox" id="newPatient">
+      <input type="checkbox" id="newPatient" name="newPatient" [(ngModel)]="appointmentData.newPatient">
       <label for="newPatient">I am a new patient</label>
-    </div>
-    
+    </div>  
+
     <div class="form-group checkbox-group">
-      <input type="checkbox" id="termsAgree" required>
+      <input type="checkbox" id="termsAgree" name="termsAgree" [(ngModel)]="appointmentData.termsAgree" required>
       <label for="termsAgree">I agree to the terms and privacy policy</label>
     </div>
-    
+
     <div class="form-actions">
       <button type="reset" class="btn btn-secondary">Reset</button>
       <button type="submit" class="btn btn-primary">Schedule Appointment</button>
     </div>
   </form>
-</div>  
+</div>

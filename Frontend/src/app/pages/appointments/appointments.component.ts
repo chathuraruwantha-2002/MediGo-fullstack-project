@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { appointment } from '../../model/appointment';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-appointments',
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './appointments.component.html',
   styleUrl: './appointments.component.css',
   standalone: true
@@ -14,6 +15,7 @@ export class AppointmentsComponent {
 
   appointments: appointment[] = [];
   doctorsNames: string[] = [];
+  searchTerm: string = ''; 
 
   constructor(private http: HttpClient) {
     this.loadAllAppointments();
@@ -33,6 +35,19 @@ export class AppointmentsComponent {
       console.log(data);
       this.doctorsNames = data;
       
+    });
+  }
+
+  filteredAppointments(): appointment[] {
+    if (!this.searchTerm.trim()) return this.appointments;
+
+    return this.appointments.filter(app => {
+      const doctorName = this.doctorsNames[app.doctorId - 1] || '';
+      const lowerSearch = this.searchTerm.toLowerCase();
+      return doctorName.toLowerCase().includes(lowerSearch)
+        || app.appointmentDate.toLowerCase().includes(lowerSearch)
+        || app.appointmentTime.toLowerCase().includes(lowerSearch)
+        || app.location?.toLowerCase().includes(lowerSearch);
     });
   }
 
