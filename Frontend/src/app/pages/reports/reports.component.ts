@@ -6,6 +6,7 @@ import { Prescription } from '../../model/Prescription';
 import { AppointmentFormComponent } from "../PopUps@Dialogs/appointment-form/appointment-form.component";
 import { PatientHealthData } from '../../model/patientHealthData';
 
+
 @Component({
   selector: 'app-reports',
   imports: [CommonModule, AppointmentFormComponent],
@@ -14,6 +15,8 @@ import { PatientHealthData } from '../../model/patientHealthData';
   standalone: true
 })
 export class ReportsComponent {
+
+
 
   reportList: Report[] = [];
   prescriptionList: Prescription[] = [];
