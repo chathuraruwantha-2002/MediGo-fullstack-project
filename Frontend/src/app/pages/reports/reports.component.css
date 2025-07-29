@@ -36,6 +36,37 @@
 
 
 
+.high {
+    background: #8b0000;  
+    color: #ffffff;
+}
+
+.low {
+    background-color:#ffc107;
+    color: #ffffff; 
+}
+
+.normal {
+    background: #01b30a;  
+    color: #ffffff;  
+}
+
+
+.status-container {
+    
+}
+.status {
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+    padding: 3px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 3px;
+}
+
+
+
 .btn-reason-report {
     background-color: #ffffff00;
     border:none;
