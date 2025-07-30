@@ -2,7 +2,8 @@
     <div class="container-fluid">
 
         <div class="navbar-brand" id="logo">
-            <img src="/Icons/1.png" alt="MediGo Logo" class="logo-icon">
+            <img src="/Icons/1.png" alt="MediGo Logo" class="logo-icon" routerLink="/patient/homepage"
+                routerLinkActive="active">
             <span class="logo-text">MediGo</span>
         </div>
 
@@ -68,12 +69,15 @@
             </svg>
         </div>
 
-        <div class="dropdown profile-animation">
-            <img src="/Icons/man.png" alt="Profile" title="Profile" class="profile-img" data-toggle="dropdown">
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#"> Profile</a>
-                <a class="dropdown-item" href="#"> Logout</a>
-            </div>
+        
+        <div class="dropdown profile-animation" style="position: relative; display: inline-block;">
+            <a href="#" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="/Icons/man.png" alt="Profile" title="Profile" class="profile-img" style="cursor: pointer;">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="#">Logout</a></li>
+            </ul>
         </div>
 
 

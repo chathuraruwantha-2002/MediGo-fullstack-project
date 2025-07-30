@@ -51,13 +51,6 @@ ul {
    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
 }
 
-
-
-
-
-
-
-
 /* Profile Dropdown Container */
 .profile-animation {
     position: relative;
@@ -95,8 +88,8 @@ ul {
     z-index: 1000;
 }
 
-/* Show dropdown on click */
-.profile-animation:hover .dropdown-menu {
+/* Show dropdown when Bootstrap adds .show */
+.dropdown-menu.show {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -124,6 +117,7 @@ ul {
     color: white;
     border-radius: 5px;
 }
+
 
 
 
