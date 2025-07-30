@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Report } from '../../model/Report';
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Prescription } from '../../model/Prescription';
 import { AppointmentFormComponent } from "../PopUps@Dialogs/appointment-form/appointment-form.component";
 import { PatientHealthData } from '../../model/patientHealthData';
-
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-reports',
@@ -14,8 +14,21 @@ import { PatientHealthData } from '../../model/patientHealthData';
   styleUrl: './reports.component.css',
   standalone: true
 })
-export class ReportsComponent {
+export class ReportsComponent implements AfterViewInit{
 
+
+   @ViewChild('lineChart') lineChartRef!: ElementRef<HTMLCanvasElement>;
+    LineChart: any;
+
+
+    // Dummy data for the line chart
+  healthHistory = [
+    { date: '2025-07-01', systolic: 120, bmi: 22.3, sugar: 95, bloodCount: 80 },
+    { date: '2025-07-08', systolic: 125, bmi: 22.6, sugar: 102, bloodCount: 85 },
+    { date: '2025-07-15', systolic: 130, bmi: 23.0, sugar: 110, bloodCount: 90 },
+    { date: '2025-07-22', systolic: 138, bmi: 23.2, sugar: 118, bloodCount: 95 },
+    { date: '2025-07-29', systolic: 135, bmi: 23.1, sugar: 114, bloodCount: 100 }
+  ];
 
 
   reportList: Report[] = [];
@@ -34,6 +47,9 @@ export class ReportsComponent {
     this.loadPrescriptions();
     this.loadAllDoctorsNames();
     this.loadPatientHealthStats();
+  }
+  ngAfterViewInit(): void {
+    this.createLineChart();
   }
 
   private loadReports(){
@@ -93,6 +109,102 @@ export class ReportsComponent {
         (this.patientStats.heartRate >= 60 ? "Normal" : "Low");
     }
   }
+
+
+
+
+
+
+  private createLineChart() {
+    const labels = this.healthHistory.map(d => d.date);
+    const systolicData = this.healthHistory.map(d => d.systolic);
+    const bmiData = this.healthHistory.map(d => d.bmi);
+    const sugarData = this.healthHistory.map(d => d.sugar);
+    const bloodCountData = this.healthHistory.map(d => d.bloodCount);
+
+    this.LineChart = new Chart(this.lineChartRef.nativeElement, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Systolic Blood Pressure',
+            data: systolicData,
+            borderColor: 'rgba(255, 0, 55, 1)',
+            backgroundColor: 'rgba(255, 99, 133, 0)',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 5,
+            pointHoverRadius: 7
+          },
+          {
+            label: 'BMI',
+            data: bmiData,
+            borderColor: 'rgba(5, 125, 162, 1)',
+            backgroundColor: 'rgba(75, 192, 192, 0)',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 5,
+            pointHoverRadius: 7
+          },
+          {
+            label: 'Blood Sugar',
+            data: sugarData,
+            borderColor: '#0c3868',
+            backgroundColor: 'rgba(54, 163, 235, 0)',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 5,
+            pointHoverRadius: 7
+          },
+          {
+            label: 'blood count',
+            data: bloodCountData,
+            borderColor: '#edaa00ff',
+            backgroundColor: 'rgba(54, 163, 235, 0)',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 5,
+            pointHoverRadius: 7
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display: false,
+            text: 'Health Trend',
+            font: {
+              size: 15
+            }
+          },
+          legend: {
+            display: false,
+            position: 'top'
+          }
+        },
+        scales: {
+          x: {
+            grid: {
+              display: false
+            }
+          },
+          y: {
+            grid: {
+              display: false
+            },
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
+
+
+
+
 
 
 }
