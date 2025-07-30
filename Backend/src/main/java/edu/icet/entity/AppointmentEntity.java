@@ -20,7 +20,7 @@ public class AppointmentEntity {
     private String appointmentDate;
     private String appointmentTime;
     private String location;
-    private String mode;
+    private String reasonVisit;
     private String status;
     private String dateTimeStats;
     @ManyToOne

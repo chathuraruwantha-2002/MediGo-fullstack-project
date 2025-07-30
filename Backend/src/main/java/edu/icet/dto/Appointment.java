@@ -15,7 +15,7 @@ public class Appointment {
     private String appointmentDate;
     private String appointmentTime;
     private String location;
-    private String mode;
+    private String reasonVisit;
     private Status status;
     private String dateTimeStats;
     private int patientId;
