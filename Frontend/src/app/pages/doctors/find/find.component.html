@@ -1,0 +1,115 @@
+<div class="container-fluid" style="font-family: 'Urbanist', sans-serif;">
+
+
+
+  <!-- Charts Row -->
+  <div class="row mb-4">
+    <!-- Health Metrics Trend Chart -->
+    <div class="col-lg-8">
+
+
+      <!-- video-preview.component.html -->
+
+      <div class="video-container">
+        <!-- LIVE Badge top left -->
+        <div class="live-badge">LIVE</div>
+
+        <!-- MORE button top right -->
+        <button class="control-btn more" title="More options">
+          <i class="bi bi-three-dots-vertical"></i>
+        </button>
+
+        <!-- Video Placeholder -->
+        <div class="video-placeholder">
+          <i class="fas fa-stethoscope"></i>
+          <p>Video Consultation Preview</p>
+        </div>
+
+        <!-- Controls at bottom center -->
+        <div class="video-controls">
+          <button class="control-btn pause" title="Pause">
+            <i class="bi bi-pause"></i>
+          </button>
+          <button class="control-btn start" title="Start">
+            <i class="bi bi-play"></i>
+          </button>
+          <button class="control-btn stop" title="Stop">
+            <i class="bi bi-stop"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card chart-card shadow-sm" style="height: 550px;">
+        <h6 class="mb-2 font-weight-bold title-card">Informatics</h6>
+        <div class="card-body">
+
+          <div class="patient-info-pair">
+            <label class="patient-info-label">Patient Name:</label>
+            <span class="patient-info-value">John Doe</span>
+          </div>
+
+          <div class="patient-info-row" style="display:flex; gap: 20px;">
+            <div class="patient-info-pair">
+              <label class="patient-info-label">Age:</label>
+              <span class="patient-info-value">35</span>
+            </div>
+            <div class="patient-info-pair">
+              <label class="patient-info-label" style="margin-left: 90px; width: 70px;">Gender:</label>
+              <span class="patient-info-value">Male</span>
+            </div>
+          </div>
+
+          <div class="patient-info-pair">
+            <label class="patient-info-label">Contact:</label>
+            <span class="patient-info-value">📞 +94 77 123 4567<br />✉️ john.doeexample.com</span>
+          </div>
+
+          <div class="patient-info-pair">
+            <label class="patient-info-label">Appointment:</label>
+            <span class="patient-info-value">2025-08-05 10:30 AM</span>
+          </div>
+
+          <div class="patient-info-pair">
+            <label class="patient-info-label">Symptoms / Reason:</label>
+            <span class="patient-info-value" style="font-style: italic;">
+              Headache, fever, and dizziness for 2 days.
+            </span>
+          </div>
+
+          <div class="patient-info-pair">
+            <label class="patient-info-label">Medical History:</label>
+            <span class="patient-info-value">No chronic illnesses. Allergic to penicillin.</span>
+          </div>
+
+          <div class="patient-info-row" style="display:flex; gap: 10px;">
+            <div class="patient-info-pair">
+              <label class="patient-info-label">Blood Pressure:</label>
+              <span class="patient-info-value">120/80 mmHg</span>
+            </div>
+            <div class="patient-info-pair">
+              <label class="patient-info-label"style="margin-left: 40px; width: 70px;">Pulse:</label>
+              <span class="patient-info-value">75 bpm</span>
+            </div>
+          </div>
+
+          <div class="patient-alerts">
+            <label class="patient-alerts-label">Alerts / Notes:</label>
+            <div>Patient has mild allergy reaction to penicillin.</div>
+          </div>
+
+          <div class="medication-input-section">
+            <textarea id="medicationNotes" placeholder="Type medication instructions or notes here..."></textarea>
+            <button class="btn-send">Send</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
