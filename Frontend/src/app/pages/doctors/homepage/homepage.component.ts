@@ -1,16 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Chart } from 'chart.js';
-import { Patient } from '../../../model/patient';
-import { PatientHealthData } from '../../../model/patientHealthData';
 import { HttpClient } from '@angular/common/http';
 import { SharedService } from '../../../shared.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Doctor } from '../../../model/doctor';
 import { User } from '../../../model/user';
 import { DoctorStat } from '../../../model/doctorStats';
-import { OnInit } from '@angular/core';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-homepage',
@@ -19,18 +17,16 @@ import { OnInit } from '@angular/core';
   standalone: true,
   styleUrl: './homepage.component.css'
 })
-export class HomepageComponent implements AfterViewInit {
+export class HomepageComponent implements AfterViewInit, OnInit {
   @ViewChild('lineChart') lineChartRef!: ElementRef<HTMLCanvasElement>;
   LineChart: any;
-
-
 
   doctor: Doctor | undefined;
   user: User | undefined;
   doctorStats: DoctorStat | undefined;
 
-
-
+  message: string = '';
+  doctorId!: number;
 
   // Dummy monthly data
   monthlyStats = [
@@ -48,34 +44,27 @@ export class HomepageComponent implements AfterViewInit {
     { month: 'December', earnings: 108000, appointments: 58, rating: 4.7 }
   ];
 
-  message: string = '';
-  doctorId!: number;
-
-  statusBloodPressure: string = 'Normal';
-  statusBloodSugar: string = 'Normal';
-  statusBloodCount: string = 'Normal';
-  statusBMI: string = 'Normal';
-
   constructor(
     private http: HttpClient,
     private sharedService: SharedService,
     private router: Router,
-    private route: ActivatedRoute
-  ) { }
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.doctorId = +params['id'] || 0; // get id or fallback to 0
+    const id = this.userService.getUserId();
+    if (!id) {
+      console.warn('No doctor ID found. Redirecting to login...');
+      this.router.navigate(['/login']);
+      return;
+    }
 
-      if (this.doctorId > 0) {
-        // Now load all the data with this id
-        this.loadDoctorData();
-        this.loadUserData();
-        this.loadDoctorStats();
-      } else {
-        console.warn('Doctor ID not found in URL');
-      }
-    });
+    this.doctorId = +id;
+
+    // Load everything
+    this.loadDoctorData();
+    this.loadUserData();
+    this.loadDoctorStats();
   }
 
   ngAfterViewInit(): void {
@@ -92,31 +81,26 @@ export class HomepageComponent implements AfterViewInit {
     }
   }
 
-
-
-
   private loadUserData() {
     this.http.get<User>(`http://localhost:8080/doctor/dashboard/get-user/${this.doctorId}`).subscribe(data => {
-      console.log(data);
+      console.log('User data:', data);
       this.user = data;
     });
   }
 
   private loadDoctorData() {
     this.http.get<Doctor>(`http://localhost:8080/doctor/dashboard/get-user-info/${this.doctorId}`).subscribe(data => {
-      console.log(data);
+      console.log('Doctor data:', data);
       this.doctor = data;
     });
   }
 
   private loadDoctorStats() {
     this.http.get<DoctorStat>(`http://localhost:8080/doctor/dashboard/get-doctor-stats/${this.doctorId}`).subscribe(data => {
-      console.log(data);
+      console.log('Doctor stats:', data);
       this.doctorStats = data;
     });
   }
-
-
 
   private createLineChart() {
     const labels = this.monthlyStats.map(d => d.month);
@@ -132,7 +116,7 @@ export class HomepageComponent implements AfterViewInit {
           {
             label: 'Earnings (LKR)',
             data: earningsData,
-            borderColor: 'rgba(78, 115, 223, 1)',  // blue
+            borderColor: 'rgba(78, 115, 223, 1)',
             backgroundColor: 'rgba(78, 115, 223, 0)',
             fill: true,
             tension: 0.3,
@@ -143,7 +127,7 @@ export class HomepageComponent implements AfterViewInit {
           {
             label: 'Appointments',
             data: appointmentsData,
-            borderColor: 'rgba(28, 200, 138, 1)',  // green
+            borderColor: 'rgba(28, 200, 138, 1)',
             backgroundColor: 'rgba(28, 200, 138, 0)',
             fill: true,
             tension: 0.3,
@@ -154,7 +138,7 @@ export class HomepageComponent implements AfterViewInit {
           {
             label: 'Ratings',
             data: ratingsData,
-            borderColor: 'rgba(246, 194, 62, 1)', // yellow
+            borderColor: 'rgba(246, 194, 62, 1)',
             backgroundColor: 'rgba(246, 194, 62, 0)',
             fill: true,
             tension: 0.3,
@@ -170,12 +154,11 @@ export class HomepageComponent implements AfterViewInit {
         plugins: {
           title: {
             display: false,
-            text: 'Monthly Earnings, Appointments & Ratings',
+            text: 'Monthly Stats',
             font: { size: 15 }
           },
           legend: {
-            display: false,
-            position: 'top'
+            display: false
           }
         },
         scales: {
@@ -185,14 +168,12 @@ export class HomepageComponent implements AfterViewInit {
           y1: {
             type: 'linear',
             position: 'left',
-            title: { display: false, text: 'Earnings (LKR)' },
             beginAtZero: true,
             grid: { drawOnChartArea: false }
           },
           y2: {
             type: 'linear',
             position: 'right',
-            title: { display: false, text: 'Appointments & Ratings' },
             beginAtZero: true,
             min: 0,
             max: 70,
@@ -202,6 +183,4 @@ export class HomepageComponent implements AfterViewInit {
       }
     });
   }
-
-
 }

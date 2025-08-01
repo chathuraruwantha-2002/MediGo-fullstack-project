@@ -1,15 +1,13 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Patient } from '../../model/patient';
 import { CommonModule } from '@angular/common';
-import { PatientHealthData } from '../../model/patientHealthData';
-import { SharedService } from '../../shared.service';
+import { AfterViewInit, Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Chart } from 'chart.js/auto';
-import { ActivatedRoute } from '@angular/router';
-
+import { HttpClient } from '@angular/common/http';
+import { SharedService } from '../../shared.service';
+import { Router } from '@angular/router';
+import { Patient } from '../../model/patient';
+import { PatientHealthData } from '../../model/patientHealthData';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-homepage-patient',
@@ -18,16 +16,19 @@ import { ActivatedRoute } from '@angular/router';
   standalone: true,
   imports: [CommonModule, FormsModule]
 })
-export class HomepagePatientComponent implements AfterViewInit {
-
+export class HomepagePatientComponent implements AfterViewInit, OnInit {
   @ViewChild('lineChart') lineChartRef!: ElementRef<HTMLCanvasElement>;
   LineChart: any;
-
 
   patientStats: PatientHealthData | undefined;
   patient: Patient | undefined;
 
+  message: string = '';
 
+  statusBloodPressure: string = 'Normal';
+  statusBloodSugar: string = 'Normal';
+  statusBloodCount: string = 'Normal';
+  statusBMI: string = 'Normal';
 
   // Dummy data for the line chart
   healthHistory = [
@@ -38,38 +39,33 @@ export class HomepagePatientComponent implements AfterViewInit {
     { date: '2025-07-29', systolic: 135, bmi: 23.1, sugar: 114 }
   ];
 
-  message: string = '';
-
-  statusBloodPressure: string = 'Normal';
-  statusBloodSugar: string = 'Normal';
-  statusBloodCount: string = 'Normal';
-  statusBMI: string = 'Normal';
+  patientId!: number;
 
   constructor(
-  private http: HttpClient,
-  private sharedService: SharedService,
-  private router: Router,
-  private route: ActivatedRoute  // <-- Add this
-) {
-  this.route.queryParams.subscribe(params => {
-    const userId = +params['id']; // Use '+' to convert string to number
-    console.log('Received userId:', userId);
+    private http: HttpClient,
+    private sharedService: SharedService,
+    private router: Router,
+    private userService: UserService
+  ) {}
 
-    if (userId) {
-      this.loadPatientHealthStats(userId);
-      this.loadPatientData(userId);
-    } else {
-      console.error('No user ID found in route!');
+  ngOnInit(): void {
+    const id = this.userService.getUserId();
+    if (!id) {
+      console.warn('No patient ID found. Redirecting to login...');
+      this.router.navigate(['/login']);
+      return;
     }
-  });
-}
 
+    this.patientId = +id;
+
+    this.loadPatientHealthStats();
+    this.loadPatientData();
+  }
 
   ngAfterViewInit(): void {
     this.createLineChart();
   }
 
-  // Send message and route
   send() {
     if (this.message.trim()) {
       this.sharedService.setMessage(this.message);
@@ -79,55 +75,54 @@ export class HomepagePatientComponent implements AfterViewInit {
     }
   }
 
-  private loadPatientHealthStats(userId: number) {
-    this.http.get<PatientHealthData>('http://localhost:8080/patient/dashboard/get-health-stats/' + userId + '').subscribe(data => {
-      console.log(data);
-      this.patientStats = data;
-      this.displayStatusColors();
-      this.createLineChart();
-    });
+  private loadPatientHealthStats() {
+    this.http
+      .get<PatientHealthData>(`http://localhost:8080/patient/dashboard/get-health-stats/${this.patientId}`)
+      .subscribe((data) => {
+        console.log('Patient stats:', data);
+        this.patientStats = data;
+        this.displayStatusColors();
+        this.createLineChart();
+      });
   }
 
   private displayStatusColors() {
     if (this.patientStats?.bloodPressure != null) {
       this.statusBloodPressure =
-        this.patientStats.bloodPressure >= 160 ? "High" :
-          (this.patientStats.bloodPressure >= 120 ? "Normal" : "Low");
+        this.patientStats.bloodPressure >= 160 ? 'High' : this.patientStats.bloodPressure >= 120 ? 'Normal' : 'Low';
     }
 
     if (this.patientStats?.bloodSugar != null) {
       this.statusBloodSugar =
-        this.patientStats.bloodSugar > 180 ? "High" :
-          (this.patientStats.bloodSugar >= 120 ? "Normal" : "Low");
+        this.patientStats.bloodSugar > 180 ? 'High' : this.patientStats.bloodSugar >= 120 ? 'Normal' : 'Low';
     }
 
     if (this.patientStats?.bmi != null) {
-      this.statusBMI =
-        this.patientStats.bmi >= 30 ? "High" :
-          (this.patientStats.bmi >= 25 ? "Normal" : "Low");
+      this.statusBMI = this.patientStats.bmi >= 30 ? 'High' : this.patientStats.bmi >= 25 ? 'Normal' : 'Low';
     }
 
     if (this.patientStats?.heartRate != null) {
       this.statusBloodCount =
-        this.patientStats.heartRate >= 100 ? "High" :
-          (this.patientStats.heartRate >= 60 ? "Normal" : "Low");
+        this.patientStats.heartRate >= 100 ? 'High' : this.patientStats.heartRate >= 60 ? 'Normal' : 'Low';
     }
   }
 
-  private loadPatientData(userId: number) {
-    this.http.get<Patient>('http://localhost:8080/patient/dashboard/get-user/' + userId + '').subscribe(data => {
-      console.log(data);
-      this.patient = data;
-    });
+  private loadPatientData() {
+    this.http
+      .get<Patient>(`http://localhost:8080/patient/dashboard/get-user/${this.patientId}`)
+      .subscribe((data) => {
+        console.log('Patient data:', data);
+        this.patient = data;
+      });
   }
 
-
-
   private createLineChart() {
-    const labels = this.healthHistory.map(d => d.date);
-    const systolicData = this.healthHistory.map(d => d.systolic);
-    const bmiData = this.healthHistory.map(d => d.bmi);
-    const sugarData = this.healthHistory.map(d => d.sugar);
+    if (!this.lineChartRef) return;
+
+    const labels = this.healthHistory.map((d) => d.date);
+    const systolicData = this.healthHistory.map((d) => d.systolic);
+    const bmiData = this.healthHistory.map((d) => d.bmi);
+    const sugarData = this.healthHistory.map((d) => d.sugar);
 
     this.LineChart = new Chart(this.lineChartRef.nativeElement, {
       type: 'line',
@@ -198,7 +193,4 @@ export class HomepagePatientComponent implements AfterViewInit {
       }
     });
   }
-
-
-
 }
