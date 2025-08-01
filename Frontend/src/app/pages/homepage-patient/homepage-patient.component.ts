@@ -8,6 +8,8 @@ import { SharedService } from '../../shared.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Chart } from 'chart.js/auto';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-homepage-patient',
@@ -44,13 +46,24 @@ export class HomepagePatientComponent implements AfterViewInit {
   statusBMI: string = 'Normal';
 
   constructor(
-    private http: HttpClient,
-    private sharedService: SharedService,
-    private router: Router
-  ) {
-    this.loadPatientHealthStats();
-    this.loadPatientData();
-  }
+  private http: HttpClient,
+  private sharedService: SharedService,
+  private router: Router,
+  private route: ActivatedRoute  // <-- Add this
+) {
+  this.route.queryParams.subscribe(params => {
+    const userId = +params['id']; // Use '+' to convert string to number
+    console.log('Received userId:', userId);
+
+    if (userId) {
+      this.loadPatientHealthStats(userId);
+      this.loadPatientData(userId);
+    } else {
+      console.error('No user ID found in route!');
+    }
+  });
+}
+
 
   ngAfterViewInit(): void {
     this.createLineChart();
@@ -66,8 +79,8 @@ export class HomepagePatientComponent implements AfterViewInit {
     }
   }
 
-  private loadPatientHealthStats() {
-    this.http.get<PatientHealthData>('http://localhost:8080/patient/dashboard/get-health-stats/1').subscribe(data => {
+  private loadPatientHealthStats(userId: number) {
+    this.http.get<PatientHealthData>('http://localhost:8080/patient/dashboard/get-health-stats/' + userId + '').subscribe(data => {
       console.log(data);
       this.patientStats = data;
       this.displayStatusColors();
@@ -101,8 +114,8 @@ export class HomepagePatientComponent implements AfterViewInit {
     }
   }
 
-  private loadPatientData() {
-    this.http.get<Patient>('http://localhost:8080/patient/dashboard/get-user/1').subscribe(data => {
+  private loadPatientData(userId: number) {
+    this.http.get<Patient>('http://localhost:8080/patient/dashboard/get-user/' + userId + '').subscribe(data => {
       console.log(data);
       this.patient = data;
     });

@@ -1,4 +1,19 @@
-<app-navbar></app-navbar>
+<app-navbar (loginClick)="openLoginModal()"></app-navbar>
+
+<div id="custom-login-wrapper" *ngIf="showLogin"
+     style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: rgba(0, 0, 0, 0.6); display: flex;
+            justify-content: center; align-items: center; z-index: 9999;">
+  
+  <div>
+    <app-login-form></app-login-form>
+  </div>
+</div>
+
+
+
+
+
 
 <section class="jumbotron text-center hero-section">
     <div class="container">

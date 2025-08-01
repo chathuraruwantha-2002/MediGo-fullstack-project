@@ -1,0 +1,23 @@
+
+.text-primary-blue {
+  color: #004085;
+}
+
+.btn-primary-blue {
+  background-color: #004085;
+  color: #fff;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary-blue:hover {
+  background-color: #003366;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 800px;
+  min-width: 400px;
+  border-radius: 1rem;
+  background-color: #fff;
+}

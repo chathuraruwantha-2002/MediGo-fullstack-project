@@ -1,12 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
+  standalone: true,
   imports: [RouterLink],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  @Output() loginClick = new EventEmitter<void>();
 
+  onLoginClick(event: Event): void {
+    event.preventDefault();
+    this.loginClick.emit(); // Notify parent to open login modal
+  }
 }
