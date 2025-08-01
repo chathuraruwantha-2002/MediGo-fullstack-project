@@ -6,6 +6,7 @@ import { Prescription } from '../../model/Prescription';
 import { AppointmentFormComponent } from "../PopUps@Dialogs/appointment-form/appointment-form.component";
 import { PatientHealthData } from '../../model/patientHealthData';
 import { Chart } from 'chart.js';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-reports',
@@ -14,14 +15,14 @@ import { Chart } from 'chart.js';
   styleUrl: './reports.component.css',
   standalone: true
 })
-export class ReportsComponent implements AfterViewInit{
+export class ReportsComponent implements AfterViewInit {
 
 
-   @ViewChild('lineChart') lineChartRef!: ElementRef<HTMLCanvasElement>;
-    LineChart: any;
+  @ViewChild('lineChart') lineChartRef!: ElementRef<HTMLCanvasElement>;
+  LineChart: any;
 
 
-    // Dummy data for the line chart
+  // Dummy data for the line chart
   healthHistory = [
     { date: '2025-07-01', systolic: 120, bmi: 22.3, sugar: 95, bloodCount: 80 },
     { date: '2025-07-08', systolic: 125, bmi: 22.6, sugar: 102, bloodCount: 85 },
@@ -30,19 +31,23 @@ export class ReportsComponent implements AfterViewInit{
     { date: '2025-07-29', systolic: 135, bmi: 23.1, sugar: 114, bloodCount: 100 }
   ];
 
-
+  //data
   reportList: Report[] = [];
   prescriptionList: Prescription[] = [];
   doctorsNames: string[] = [];
-
   patientStats: PatientHealthData | undefined;
 
+  //status
   statusBloodPressure: string = 'Normal';
   statusBloodSugar: string = 'Normal';
   statusBloodCount: string = 'Normal';
   statusBMI: string = 'Normal';
 
-  constructor(private http: HttpClient) {
+  //account id
+  accountId: number | null = null;
+
+  constructor(private http: HttpClient, private userService: UserService) {
+    this.getAccountId();
     this.loadReports();
     this.loadPrescriptions();
     this.loadAllDoctorsNames();
@@ -52,8 +57,12 @@ export class ReportsComponent implements AfterViewInit{
     this.createLineChart();
   }
 
-  private loadReports(){
-    this.http.get<Report[]>('http://localhost:8080/patient/report/get-all-reports/1').subscribe(data => {
+  private getAccountId() {
+    this.accountId = this.userService.getAccountId();
+  }
+
+  private loadReports() {
+    this.http.get<Report[]>(`http://localhost:8080/patient/report/get-all-reports/${this.accountId}`).subscribe(data => {
       this.reportList = data;
       console.log(data);
     })
@@ -66,17 +75,17 @@ export class ReportsComponent implements AfterViewInit{
     });
   }
 
-  private loadPrescriptions(){
-    this.http.get<Prescription[]>('http://localhost:8080/patient/report/get-all-prescriptions/1').subscribe(data => {
+  private loadPrescriptions() {
+    this.http.get<Prescription[]>(`http://localhost:8080/patient/report/get-all-prescriptions/${this.accountId}`).subscribe(data => {
       this.prescriptionList = data;
       console.log(data);
     })
   }
 
-  
+
   private loadPatientHealthStats() {
 
-    this.http.get<PatientHealthData>('http://localhost:8080/patient/dashboard/get-health-stats/1').subscribe(data => {
+    this.http.get<PatientHealthData>(`http://localhost:8080/patient/dashboard/get-health-stats/${this.accountId}`).subscribe(data => {
       console.log(data);
       this.patientStats = data;
 
@@ -88,25 +97,25 @@ export class ReportsComponent implements AfterViewInit{
     if (this.patientStats?.bloodPressure != null) {
       this.statusBloodPressure =
         this.patientStats.bloodPressure >= 160 ? "High" :
-        (this.patientStats.bloodPressure >= 120 ? "Normal" : "Low");
+          (this.patientStats.bloodPressure >= 120 ? "Normal" : "Low");
     }
 
     if (this.patientStats?.bloodSugar != null) {
       this.statusBloodSugar =
         this.patientStats.bloodSugar > 180 ? "High" :
-        (this.patientStats.bloodSugar >= 120 ? "Normal" : "Low");
+          (this.patientStats.bloodSugar >= 120 ? "Normal" : "Low");
     }
 
     if (this.patientStats?.bmi != null) {
       this.statusBMI =
         this.patientStats.bmi >= 30 ? "High" :
-        (this.patientStats.bmi >= 25 ? "Normal" : "Low");
+          (this.patientStats.bmi >= 25 ? "Normal" : "Low");
     }
 
     if (this.patientStats?.heartRate != null) {
       this.statusBloodCount =
         this.patientStats.heartRate >= 100 ? "High" :
-        (this.patientStats.heartRate >= 60 ? "Normal" : "Low");
+          (this.patientStats.heartRate >= 60 ? "Normal" : "Low");
     }
   }
 

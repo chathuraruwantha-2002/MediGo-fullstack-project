@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { appointment } from '../../model/appointment';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-appointments',
@@ -14,37 +15,36 @@ import { FormsModule } from '@angular/forms';
 export class AppointmentsComponent {
 
   appointments: appointment[] = [];
-  doctorsNames: string[] = [];
   searchTerm: string = ''; 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient , private userService: UserService) {
     this.loadAllAppointments();
   }
 
 
   private loadAllAppointments() {
-    this.http.get<appointment[]>('http://localhost:8080/patient/appointment/get-all/3').subscribe(data => {
+
+    const accountId = this.userService.getAccountId();
+    
+    if (!accountId) {
+      console.warn("No account ID found. Redirecting or showing error...");
+      return;
+    }
+
+    this.http.get<appointment[]>(`http://localhost:8080/patient/appointment/get-all/${accountId}`).subscribe(data => {
       console.log(data);
       this.appointments = data;
-      this.loadAllDoctorsNames();
     });
   }
 
-  public loadAllDoctorsNames() {
-    this.http.get<string[]>('http://localhost:8080/patient/appointment/get-all-doctors').subscribe(data => {
-      console.log(data);
-      this.doctorsNames = data;
-      
-    });
-  }
 
   filteredAppointments(): appointment[] {
     if (!this.searchTerm.trim()) return this.appointments;
 
     return this.appointments.filter(app => {
-      const doctorName = this.doctorsNames[app.doctorId - 1] || '';
+      const patientName = app.doctorName || '';
       const lowerSearch = this.searchTerm.toLowerCase();
-      return doctorName.toLowerCase().includes(lowerSearch)
+      return patientName.toLowerCase().includes(lowerSearch)
         || app.appointmentDate.toLowerCase().includes(lowerSearch)
         || app.appointmentTime.toLowerCase().includes(lowerSearch)
         || app.location?.toLowerCase().includes(lowerSearch);

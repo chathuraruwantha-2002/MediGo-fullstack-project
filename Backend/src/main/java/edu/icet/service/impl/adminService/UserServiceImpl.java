@@ -3,6 +3,7 @@ package edu.icet.service.impl.adminService;
 import edu.icet.dto.User;
 import edu.icet.repository.AppointmentRepository;
 import edu.icet.repository.DoctorRepository;
+import edu.icet.repository.PatientRepository;
 import edu.icet.repository.UserRepository;
 import edu.icet.service.interfaces.adminInterfaces.UserService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,8 @@ public class UserServiceImpl implements UserService {
 
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
+    private final PatientRepository patientRepository;
+    private final DoctorRepository doctorRepository;
 
 
     @Override
@@ -41,5 +44,15 @@ public class UserServiceImpl implements UserService {
         } else {
             return List.of("INVALID");
         }
+    }
+
+    @Override
+    public int getDoctorId(int userId) {
+        return doctorRepository.findDoctorIdByUserId(userId);
+    }
+
+    @Override
+    public int getPatientId(int userId) {
+        return patientRepository.findPatientIdByUserId(userId);
     }
 }

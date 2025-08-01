@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { appointment } from '../../../model/appointment';
+import { UserService } from '../../../services/user.service';
+
 
 @Component({
   selector: 'app-appointments',
@@ -16,13 +18,21 @@ export class AppointmentsComponent {
   appointments: appointment[] = [];
   searchTerm: string = ''; 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient , private userService: UserService) {
     this.loadAllAppointments();
   }
 
 
   private loadAllAppointments() {
-    this.http.get<appointment[]>('http://localhost:8080/doctor/appointment/get-all/3').subscribe(data => {
+
+    const accountId = this.userService.getAccountId();
+    
+    if (!accountId) {
+      console.warn("No account ID found. Redirecting or showing error...");
+      return;
+    }
+
+    this.http.get<appointment[]>(`http://localhost:8080/doctor/appointment/get-all/${accountId}`).subscribe(data => {
       console.log(data);
       this.appointments = data;
     });
@@ -33,9 +43,10 @@ export class AppointmentsComponent {
     if (!this.searchTerm.trim()) return this.appointments;
 
     return this.appointments.filter(app => {
+      const patientName = app.patientName || '';
       const lowerSearch = this.searchTerm.toLowerCase();
-      return 
-        app.appointmentDate.toLowerCase().includes(lowerSearch)
+      return patientName.toLowerCase().includes(lowerSearch)
+        || app.appointmentDate.toLowerCase().includes(lowerSearch)
         || app.appointmentTime.toLowerCase().includes(lowerSearch)
         || app.location?.toLowerCase().includes(lowerSearch);
     });

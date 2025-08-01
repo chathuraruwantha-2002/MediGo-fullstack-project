@@ -31,8 +31,8 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let appointment of filteredAppointments()">
-                                        <td scope="row">{{appointment.appointmentId}}</td>
-                                        <td>{{doctorsNames[appointment.doctorId-1]}}</td>
+                                        <td scope="row"></td>
+                                        <td>{{appointment.doctorName}}</td>
                                         <td>{{appointment.appointmentDate}}</td>
                                         <td>{{appointment.appointmentTime}}</td>
                                         <td><span class="badge zoom-effect"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#004085" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">

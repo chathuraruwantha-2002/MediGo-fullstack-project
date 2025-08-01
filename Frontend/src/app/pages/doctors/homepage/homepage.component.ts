@@ -26,7 +26,10 @@ export class HomepageComponent implements AfterViewInit, OnInit {
   doctorStats: DoctorStat | undefined;
 
   message: string = '';
-  doctorId!: number;
+
+  //ids
+  userId!: number;
+  accountId!: number;
 
   // Dummy monthly data
   monthlyStats = [
@@ -51,21 +54,28 @@ export class HomepageComponent implements AfterViewInit, OnInit {
     private userService: UserService
   ) {}
 
+  //get user id and account id
   ngOnInit() {
-    const id = this.userService.getUserId();
-    if (!id) {
-      console.warn('No doctor ID found. Redirecting to login...');
-      this.router.navigate(['/login']);
-      return;
-    }
+  const userId = this.userService.getUserId();
+  const accId = this.userService.getAccountId();
 
-    this.doctorId = +id;
-
-    // Load everything
-    this.loadDoctorData();
-    this.loadUserData();
-    this.loadDoctorStats();
+  if (!userId || !accId) {
+    console.warn('Missing user ID or account ID. Redirecting to login...');
+    this.router.navigate(['/login']);
+    return;
   }
+
+  this.userId = userId;
+  this.accountId = accId;
+
+  console.log('Logged-in doctorId:', this.userId);
+  console.log('Doctor accountId:', this.accountId);
+
+  this.loadDoctorData();
+  this.loadUserData();
+  this.loadDoctorStats();
+}
+
 
   ngAfterViewInit(): void {
     this.createLineChart();
@@ -82,21 +92,21 @@ export class HomepageComponent implements AfterViewInit, OnInit {
   }
 
   private loadUserData() {
-    this.http.get<User>(`http://localhost:8080/doctor/dashboard/get-user/${this.doctorId}`).subscribe(data => {
+    this.http.get<User>(`http://localhost:8080/doctor/dashboard/get-user/${this.userId}`).subscribe(data => {
       console.log('User data:', data);
       this.user = data;
     });
   }
 
   private loadDoctorData() {
-    this.http.get<Doctor>(`http://localhost:8080/doctor/dashboard/get-user-info/${this.doctorId}`).subscribe(data => {
+    this.http.get<Doctor>(`http://localhost:8080/doctor/dashboard/get-user-info/${this.accountId}`).subscribe(data => {
       console.log('Doctor data:', data);
       this.doctor = data;
     });
   }
 
   private loadDoctorStats() {
-    this.http.get<DoctorStat>(`http://localhost:8080/doctor/dashboard/get-doctor-stats/${this.doctorId}`).subscribe(data => {
+    this.http.get<DoctorStat>(`http://localhost:8080/doctor/dashboard/get-doctor-stats/${this.accountId}`).subscribe(data => {
       console.log('Doctor stats:', data);
       this.doctorStats = data;
     });

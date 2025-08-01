@@ -4,4 +4,8 @@ import java.util.List;
 
 public interface UserService {
     List<String> validateUser(String username, String password);
+
+    int getDoctorId(int id);
+
+    int getPatientId(int id);
 }

@@ -20,4 +20,6 @@ public class Appointment {
     private String dateTimeStats;
     private int patientId;
     private int doctorId;
+    private String patientName;
+    private String doctorName;
 }

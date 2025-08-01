@@ -23,16 +23,4 @@ public class UserController {
 
     }
 
-    //get doctorId from UserId
-    @GetMapping("/get-doctor-id/{id}")
-    public int getDoctorId(@PathVariable int id) {
-        return userService.getDoctorId(id);
-    }
-
-    //get patientId from UserId
-    @GetMapping("/get-patient-id/{id}")
-    public int getPatientId(@PathVariable int id) {
-        return userService.getPatientId(id);
-    }
-
 }

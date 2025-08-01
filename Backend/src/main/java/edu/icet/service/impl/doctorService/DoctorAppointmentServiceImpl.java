@@ -27,8 +27,15 @@ public class DoctorAppointmentServiceImpl implements DoctorAppointmentService {
         List<AppointmentEntity> allByDoctorId = appointmentRepository.findAllByDoctorId(id);
 
         for (AppointmentEntity appointmentEntity : allByDoctorId) {
-            appointments.add(modelMapper.map(appointmentEntity, Appointment.class));
+
+            Appointment appointment = modelMapper.map(appointmentEntity, Appointment.class);
+
+            appointment.setPatientName(appointmentEntity.getPatient().getName());
+            appointment.setDoctorName(appointmentEntity.getDoctor().getName());
+
+            appointments.add(appointment);
         }
+
         return appointments;
     }
 

@@ -25,6 +25,9 @@ export class HomepagePatientComponent implements AfterViewInit, OnInit {
 
   message: string = '';
 
+  userId!: number;
+  accountId!: number;
+
   statusBloodPressure: string = 'Normal';
   statusBloodSugar: string = 'Normal';
   statusBloodCount: string = 'Normal';
@@ -39,24 +42,29 @@ export class HomepagePatientComponent implements AfterViewInit, OnInit {
     { date: '2025-07-29', systolic: 135, bmi: 23.1, sugar: 114 }
   ];
 
-  patientId!: number;
 
   constructor(
     private http: HttpClient,
     private sharedService: SharedService,
     private router: Router,
     private userService: UserService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    const id = this.userService.getUserId();
-    if (!id) {
-      console.warn('No patient ID found. Redirecting to login...');
+    const userId = this.userService.getUserId();
+    const accId = this.userService.getAccountId();
+
+    if (!userId || !accId) {
+      console.warn('Missing user ID or account ID. Redirecting to login...');
       this.router.navigate(['/login']);
       return;
     }
 
-    this.patientId = +id;
+    this.userId = userId;
+    this.accountId = accId;
+
+    console.log('Logged-in doctorId:', this.userId);
+    console.log('Doctor accountId:', this.accountId);
 
     this.loadPatientHealthStats();
     this.loadPatientData();
@@ -77,7 +85,7 @@ export class HomepagePatientComponent implements AfterViewInit, OnInit {
 
   private loadPatientHealthStats() {
     this.http
-      .get<PatientHealthData>(`http://localhost:8080/patient/dashboard/get-health-stats/${this.patientId}`)
+      .get<PatientHealthData>(`http://localhost:8080/patient/dashboard/get-health-stats/${this.accountId}`)
       .subscribe((data) => {
         console.log('Patient stats:', data);
         this.patientStats = data;
@@ -109,7 +117,7 @@ export class HomepagePatientComponent implements AfterViewInit, OnInit {
 
   private loadPatientData() {
     this.http
-      .get<Patient>(`http://localhost:8080/patient/dashboard/get-user/${this.patientId}`)
+      .get<Patient>(`http://localhost:8080/patient/dashboard/get-user/${this.userId}`)
       .subscribe((data) => {
         console.log('Patient data:', data);
         this.patient = data;
