@@ -10,5 +10,7 @@ public enum Status {
     SCHEDULED,
     CANCELLED,
     COMPLETED,
-    IN_PROGRESS
+    IN_PROGRESS,
+    CONFIRMED,
+    POSTPONED
 }

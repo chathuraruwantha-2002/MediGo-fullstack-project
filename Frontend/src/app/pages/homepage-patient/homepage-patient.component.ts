@@ -17,12 +17,14 @@ import { UserService } from '../../services/user.service';
   imports: [CommonModule, FormsModule]
 })
 export class HomepagePatientComponent implements AfterViewInit, OnInit {
+
   @ViewChild('lineChart') lineChartRef!: ElementRef<HTMLCanvasElement>;
   LineChart: any;
 
   patientStats: PatientHealthData | undefined;
   patient: Patient | undefined;
 
+  //ai mzg
   message: string = '';
 
   userId!: number;

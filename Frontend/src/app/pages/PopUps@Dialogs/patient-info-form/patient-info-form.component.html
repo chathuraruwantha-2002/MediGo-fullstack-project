@@ -1,0 +1,162 @@
+<div class="patient-card-container">
+  <!-- Header -->
+  <div class="card-header">
+    <h2><i class="fas fa-user-injured me-2"></i>Patient Information</h2>
+  </div>
+
+  <div class="row">
+    <!-- Patient Basic Info -->
+    <div class="col-lg-4 mb-3">
+      <div class="section-title">
+        <i class="fas fa-user"></i>
+        Patient Details
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">Full Name</div>
+        <div class="info-value">{{ selectedAppointment?.patientName }}</div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <div class="info-item">
+            <div class="info-label">Age</div>
+            <div class="info-value">{{patientAge}} years</div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="info-item">
+            <div class="info-label">Gender</div>
+            <div class="info-value">{{ patientStats?.gender }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">Blood Group</div>
+        <div class="info-value">
+          <span class="blood-group">{{ patientStats?.bloodGroup }}</span>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">Phone Number</div>
+        <div class="info-value">{{ patientStats?.phone }}</div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">Known Allergies</div>
+        <div class="info-value">
+          <span class="allergy-tag">
+            {{ patientStats?.allergies }}
+          </span>
+          <span *ngIf="patientStats?.allergies === ''" class="text-muted">No known allergies</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vitals Section -->
+    <div class="col-lg-8 mb-3">
+      <div class="section-title">
+        <i class="fas fa-heartbeat"></i>
+        Latest Vitals
+      </div>
+
+      <div class="vitals-grid">
+        <div class="vital-item">
+          <div class="vital-icon">
+            <i class="fas fa-tint"></i>
+          </div>
+          <div class="vital-label">Blood Pressure</div>
+          <div class="vital-value">{{ patientHealthStats?.bloodPressure }}</div>
+        </div>
+
+        <div class="vital-item">
+          <div class="vital-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <div class="vital-label">Heart Rate</div>
+          <div class="vital-value">{{ patientHealthStats?.heartRate }} bpm</div>
+        </div>
+
+        <div class="vital-item">
+          <div class="vital-icon">
+            <i class="fas fa-lungs"></i>
+          </div>
+          <div class="vital-label">O₂ Level</div>
+          <div class="vital-value">{{ patientHealthStats?.oxygenLevel }}%</div>
+        </div>
+
+        <div class="vital-item">
+          <div class="vital-icon">
+            <i class="fas fa-cube"></i>
+          </div>
+          <div class="vital-label">Blood Sugar</div>
+          <div class="vital-value">{{ patientHealthStats?.bloodSugar }} mg/dL</div>
+        </div>
+
+        <div class="vital-item">
+          <div class="vital-icon">
+            <i class="fas fa-weight"></i>
+          </div>
+          <div class="vital-label">BMI</div>
+          <div class="vital-value">{{ patientHealthStats?.bmi }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Appointment Information -->
+  <div class="row">
+    <div class="col-12">
+      <div class="section-title">
+        <i class="fas fa-calendar-alt"></i>
+        Current Appointment
+      </div>
+
+      <div class="appointment-card">
+        <div class="row align-items-center">
+          <div class="col-md-3">
+            <div class="info-label">Date & Time</div>
+            <div class="info-value">
+              <strong>{{ selectedAppointment?.appointmentDate| date:'MMM dd, yyyy' }}</strong><br>
+              <span class="text-muted">{{ selectedAppointment?.appointmentTime }}</span>
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="info-label">Status</div>
+            <div class="info-value">
+              <span class="status-badge" [ngClass]="getStatusClass(selectedAppointment?.status || 'pending')">
+                {{ selectedAppointment?.status || 'Pending' }}
+              </span>
+
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="info-label">Doctor</div>
+            <div class="info-value">{{ selectedAppointment?.doctorName }}</div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="info-label">Reason for Visit</div>
+            <div class="info-value">{{ selectedAppointment?.reasonVisit || 'General consultation' }}</div>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-12">
+            <div class="d-flex gap-2 flex-wrap">
+              <button class="btn-secondary-action" (click)="viewHistory()">
+                <i class="fas fa-file-medical me-1"></i>View History
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
