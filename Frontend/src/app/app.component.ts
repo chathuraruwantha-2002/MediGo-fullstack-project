@@ -3,8 +3,8 @@ import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./common/navbar/navbar.component";
 import { HomepageComponent } from "./pages/homepage/homepage.component";
 import { PatientNavbarComponent } from "./common/patient-navbar/patient-navbar.component";
-import { HomepagePatientComponent } from "./pages/homepage-patient/homepage-patient.component";
-import { FindComponent } from "./pages/find/find.component";
+import { HomepagePatientComponent } from "./pages/patient/homepage-patient/homepage-patient.component";
+import { FindComponent } from "./pages/patient/find/find.component";
 import { OnInit } from '@angular/core';
 import { AppointmentFormComponent } from "./pages/PopUps@Dialogs/appointment-form/appointment-form.component";
 

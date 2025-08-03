@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { AppointmentFormComponent } from "../PopUps@Dialogs/appointment-form/appointment-form.component";
 import { Form, FormsModule } from '@angular/forms';
 import { Doctor } from '../../../model/doctor';
 import { Hospital } from '../../../model/hospital';
+import { AppointmentFormComponent } from '../../PopUps@Dialogs/appointment-form/appointment-form.component';
 
 @Component({
   selector: 'app-find',

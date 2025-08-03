@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { AppointmentFormComponent } from "../PopUps@Dialogs/appointment-form/appointment-form.component";
 import { Chart } from 'chart.js';
 import { Prescription } from '../../../model/Prescription';
 import { PatientHealthData } from '../../../model/patientHealthData';
 import { Report } from '../../../model/Report';
 import { DoctorStat } from '../../../model/doctorStats';
 import { UserService } from '../../../services/user.service';
+import { AppointmentFormComponent } from '../../PopUps@Dialogs/appointment-form/appointment-form.component';
 
 @Component({
   selector: 'app-reports',

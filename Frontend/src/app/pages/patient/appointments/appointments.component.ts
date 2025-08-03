@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { appointment } from '../../model/appointment';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { UserService } from '../../services/user.service';
-import { AppointmentMoreInfoPatientComponent } from "../PopUps@Dialogs/appointment-more-info-patient/appointment-more-info-patient.component";
+import { appointment } from '../../../model/appointment';
+import { UserService } from '../../../services/user.service';
+import { AppointmentMoreInfoPatientComponent } from '../../PopUps@Dialogs/appointment-more-info-patient/appointment-more-info-patient.component';
 
 @Component({
   selector: 'app-appointments',

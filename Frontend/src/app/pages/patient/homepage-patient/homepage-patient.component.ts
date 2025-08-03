@@ -3,11 +3,11 @@ import { AfterViewInit, Component, ElementRef, ViewChild, OnInit } from '@angula
 import { FormsModule } from '@angular/forms';
 import { Chart } from 'chart.js/auto';
 import { HttpClient } from '@angular/common/http';
-import { SharedService } from '../../shared.service';
+import { SharedService } from '../../../shared.service';
 import { Router } from '@angular/router';
-import { Patient } from '../../model/patient';
-import { PatientHealthData } from '../../model/patientHealthData';
-import { UserService } from '../../services/user.service';
+import { Patient } from '../../../model/patient';
+import { PatientHealthData } from '../../../model/patientHealthData';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-homepage-patient',

@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Doctor } from '../../model/doctor';
+import { Doctor } from '../../../model/doctor';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Hospital } from '../../model/hospital';
-import { AppointmentFormComponent } from "../PopUps@Dialogs/appointment-form/appointment-form.component";
+import { Hospital } from '../../../model/hospital';
+import { AppointmentFormComponent } from "../../PopUps@Dialogs/appointment-form/appointment-form.component";
 import { Form, FormsModule } from '@angular/forms';
 
 @Component({

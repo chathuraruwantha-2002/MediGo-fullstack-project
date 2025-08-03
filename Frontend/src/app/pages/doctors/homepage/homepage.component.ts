@@ -87,7 +87,7 @@ export class HomepageComponent implements AfterViewInit, OnInit {
       this.sharedService.setMessage(this.message);
       console.log('Message sent:', this.message);
       this.message = '';
-      this.router.navigate(['/doctors/services']);
+      this.router.navigate(['/doctor/services']);
     }
   }
 

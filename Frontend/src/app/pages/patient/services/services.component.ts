@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { GeminiService } from '../../services/gemini.service';
-import { FormatMessageContentPipe } from '../format-message-content.pipe';
-import { SharedService } from '../../shared.service';
+import { FormatMessageContentPipe } from '../../format-message-content.pipe';
+import { GeminiService } from '../../../services/gemini.service';
+import { SharedService } from '../../../shared.service';
+
 
 @Component({
   selector: 'app-services',
