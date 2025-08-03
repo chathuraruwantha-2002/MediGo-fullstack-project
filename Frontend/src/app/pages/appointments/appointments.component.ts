@@ -4,10 +4,11 @@ import { appointment } from '../../model/appointment';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../services/user.service';
+import { AppointmentMoreInfoPatientComponent } from "../PopUps@Dialogs/appointment-more-info-patient/appointment-more-info-patient.component";
 
 @Component({
   selector: 'app-appointments',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule, AppointmentMoreInfoPatientComponent],
   templateUrl: './appointments.component.html',
   styleUrl: './appointments.component.css',
   standalone: true
@@ -15,9 +16,13 @@ import { UserService } from '../../services/user.service';
 export class AppointmentsComponent {
 
   appointments: appointment[] = [];
-  searchTerm: string = ''; 
+  searchTerm: string = '';
 
-  constructor(private http: HttpClient , private userService: UserService) {
+  // Patient info form navigation
+  showPatientForm = false;
+  selectedAppointment: appointment | null = null;
+
+  constructor(private http: HttpClient, private userService: UserService) {
     this.loadAllAppointments();
   }
 
@@ -25,7 +30,7 @@ export class AppointmentsComponent {
   private loadAllAppointments() {
 
     const accountId = this.userService.getAccountId();
-    
+
     if (!accountId) {
       console.warn("No account ID found. Redirecting or showing error...");
       return;
@@ -49,6 +54,40 @@ export class AppointmentsComponent {
         || app.appointmentTime.toLowerCase().includes(lowerSearch)
         || app.location?.toLowerCase().includes(lowerSearch);
     });
+  }
+
+
+
+  getStatusClass(status: string) {
+    switch (status?.toLowerCase()) {
+      case 'confirmed':
+        return 'badge-reviewed';
+      case 'pending':
+        return 'badge-pending';
+      case 'cancelled':
+      case 'rejected':
+        return 'badge-cancelled';
+      default:
+        return 'badge-pending';
+    }
+  }
+
+
+
+  isOnline(location: string): boolean {
+    return location?.toLowerCase().includes('online');
+  }
+
+  // Appointment info form navigation 
+  openAppointmentForm(appointment: any) {
+    this.selectedAppointment = appointment;
+    this.showPatientForm = true;
+    console.log(this.selectedAppointment);
+  }
+
+  closeAppointmentForm() {
+    this.showPatientForm = false;
+    this.selectedAppointment = null;
   }
 
 }

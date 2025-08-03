@@ -8,7 +8,7 @@
                             <div class="row align-items-center">
                                 <div class="col-md-6 d-flex justify-content-start">
                                     <div class="search-container">
-                                        <input type="text" class="form-control search-input" 
+                                        <input type="text" class="form-control search-input"
                                             placeholder="Search appointments..." [(ngModel)]="searchTerm">
                                     </div>
                                 </div>
@@ -24,7 +24,7 @@
                                         <th scope="col">Doctor</th>
                                         <th scope="col">Date</th>
                                         <th scope="col">Time</th>
-                                        <th scope="col">Location</th>
+                                        <th scope="col">Mode</th>
                                         <th scope="col">See more</th>
                                         <th scope="col">Status</th>
                                     </tr>
@@ -35,17 +35,31 @@
                                         <td>{{appointment.doctorName}}</td>
                                         <td>{{appointment.appointmentDate}}</td>
                                         <td>{{appointment.appointmentTime}}</td>
-                                        <td><span class="badge zoom-effect"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#004085" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
-                                          </svg></span></td>
-                                          
-                                        <td><span class="badge zoom-effect"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#004085" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
-                                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
-                                          </svg></span></td>
-                                        <td><span class="badge badge-reviewed">Confirmed</span></td>
+                                        <td>
+                                            <span class="badge"
+                                                [ngClass]="isOnline(appointment.location) ? 'badge badge-online' : 'badge badge-onsite'">
+                                                {{ isOnline(appointment.location) ? 'Online' : 'Onsite' }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="badge zoom-effect" (click)="openAppointmentForm(appointment)"
+                                                style="cursor: pointer;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                                    fill="#004085" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+                                                    <path
+                                                        d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
+                                                </svg>
+                                            </span>
+                                        </td>
+
+                                        <td>
+                                            <span class="badge" [ngClass]="getStatusClass(appointment.status)">
+                                                {{ appointment.status.toLocaleLowerCase() }}
+                                            </span>
+                                        </td>
                                     </tr>
-                                    
+
                                 </tbody>
                             </table>
                         </div>
@@ -56,10 +70,11 @@
 
 
         <div class="col-md-3 mt-5 d-flex flex-column justify-content-end">
-            <div class = "card" style="height: 100px;border-radius: 10px; margin-bottom: 30px; margin-top: 5px;">
-                <div class = "card-body">
-                    <h5 class = "card-title">Upcoming</h5>
-                    <p class = "mt-3" style="margin-left: 35px; font-size: 15px; color: #242b36;">You have {{appointments.length}} upcoming appointments</p>
+            <div class="card" style="height: 100px;border-radius: 10px; margin-bottom: 30px; margin-top: 5px;">
+                <div class="card-body">
+                    <h5 class="card-title">Upcoming</h5>
+                    <p class="mt-3" style="margin-left: 35px; font-size: 15px; color: #242b36;">You have
+                        {{appointments.length}} upcoming appointments</p>
                 </div>
             </div>
             <div style="height: 525px;">
@@ -87,7 +102,7 @@
                                 </div>
                             </div>
                         </div>
-    
+
                         <div class="calendar-body">
                             <div class="calendar-weekdays">
                                 <div class="weekday">Sun</div>
@@ -98,7 +113,7 @@
                                 <div class="weekday">Fri</div>
                                 <div class="weekday">Sat</div>
                             </div>
-    
+
                             <div class="calendar-days">
                                 <!-- February days -->
                                 <div class="day other-month">23</div>
@@ -107,7 +122,7 @@
                                 <div class="day other-month">26</div>
                                 <div class="day other-month">27</div>
                                 <div class="day other-month">28</div>
-    
+
                                 <!-- March days -->
                                 <div class="day">1</div>
                                 <div class="day">2</div>
@@ -147,7 +162,7 @@
                                 <div class="day">29</div>
                                 <div class="day">30</div>
                                 <div class="day">31</div>
-    
+
                                 <!-- April days -->
                                 <div class="day other-month">1</div>
                                 <div class="day other-month">2</div>
@@ -156,12 +171,22 @@
                                 <div class="day other-month">5</div>
                             </div>
                         </div>
-    
+
                     </div>
                 </div>
-    
+
             </div>
         </div>
-        
+
     </div>
+
+
+    <div *ngIf="showPatientForm" class="modal-overlay" (click)="closeAppointmentForm()">
+        <div class="modal-container" (click)="$event.stopPropagation()">
+            <app-appointment-more-info-patient [selectedAppointment]="selectedAppointment"
+                (closeForm)="closeAppointmentForm()"></app-appointment-more-info-patient>
+        </div>
+    </div>
+
+
 </div>
