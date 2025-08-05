@@ -1,0 +1,178 @@
+<div class="container-fluid px-4 bg-white vh-100 d-flex flex-column font-sans" style="max-height: 610px;">
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-xl-3 col-md-6">
+            <div class="stats-card">
+                <div class="stats-icon total">
+                    <svg width="20" height="20" fill="#0d326d" viewBox="0 0 24 24">
+                        <path
+                            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                    </svg>
+                </div>
+                <h3 class="stats-number" id="totalUsers">1,247</h3>
+                <p class="stats-label">Total Users</p>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="stats-card">
+                <div class="stats-icon doctors">
+                    <svg width="20" height="20" fill="#28a745" viewBox="0 0 24 24">
+                        <path
+                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+                    </svg>
+                </div>
+                <h3 class="stats-number" id="doctorCount">156</h3>
+                <p class="stats-label">Doctors</p>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="stats-card">
+                <div class="stats-icon patients">
+                    <svg width="20" height="20" fill="#17a2b8" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                    </svg>
+                </div>
+                <h3 class="stats-number" id="patientCount">1,078</h3>
+                <p class="stats-label">Patients</p>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="stats-card">
+                <div class="stats-icon admins">
+                    <svg width="20" height="20" fill="#ffc107" viewBox="0 0 24 24">
+                        <path
+                            d="M17 11c.34 0 .67.04 1 .09V6.27L10.5 3L3 6.27v4.91c0 4.54 3.2 8.79 7.5 9.82.55-.13 1.08-.32 1.6-.55-.69-.98-1.1-2.17-1.1-3.45 0-3.31 2.69-6 6-6z" />
+                        <path
+                            d="M17 13c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm-1.5 6L14 17.5l1.41-1.41L16 16.67l3.59-3.59L21 14.5 16.5 19z" />
+                    </svg>
+                </div>
+                <h3 class="stats-number" id="adminCount">13</h3>
+                <p class="stats-label">Admins</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filters and Search -->
+    <div class="table-container">
+        <div class="card-header-custom">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <div class="search-container">
+                        <input type="text" class="form-control search-input" placeholder="Search users..."
+                            id="searchInput">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <select class="form-select filter-select" id="roleFilter">
+                        <option value="">All Roles</option>
+                        <option value="doctor">Doctor</option>
+                        <option value="patient">Patient</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select class="form-select filter-select" id="statusFilter">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                </div>
+                <div class="col-md-4 text-end">
+                    <button class="btn btn-primary btn-primary-custom" id="addUserBtn" (click)="openAddUserForm()">
+                        <svg width="20" height="20" fill="currentColor" class="me-2" viewBox="0 0 16 16">
+                            <path
+                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                        </svg>
+                        Add New User
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover users-table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">User</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Last Login</th>
+                            <th scope="col">Joined On</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of users; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img src="'assets/img/default-user.png'" class="rounded-circle me-2" width="30"
+                                        height="30" alt="User image">
+                                    <span>{{ user.name }}</span>
+                                </div>
+                            </td>
+                            <td>{{ user.email }}</td>
+                            <td>
+                                <span class="badge badge-info">{{ user.role }}</span>
+                            </td>
+                            <td>
+                                <span class="badge" [ngClass]="{
+                'badge-success': user.status === 'active',
+                'bg-danger': user.status === 'inactive',
+                'bg-warning': user.status === 'pending'
+              }">
+                                    {{ user.status }}
+                                </span>
+                            </td>
+                            <td>{{ user.lastLogin | date: 'short' }}</td>
+                            <td>{{ user.joinDate | date: 'mediumDate' }}</td>
+                            <td>
+                                <button class="btn btn-sm me-1" style="color: #17a2b8;" (click)="openUpdateUserForm(user)">
+                                    <i class="bi bi-eye-fill"></i>
+                                </button>
+                                <button class="btn btn-sm">
+                                    <i class="bi bi-trash-fill" style="color: #dc3545;"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <!-- Pagination -->
+        <div class="d-flex justify-content-between align-items-center p-3">
+            <div class="text-muted">
+                Showing <span id="showingStart">1</span> to <span id="showingEnd">10</span> of <span
+                    id="totalEntries">247</span> entries
+            </div>
+            <nav>
+                <ul class="pagination pagination-custom mb-0" id="pagination">
+                    <!-- Pagination will be generated by JavaScript -->
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="showAddUserForm" class="modal-overlay" (click)="closeAddUserForm()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+        <app-add-user-form (closeForm)="closeAddUserForm()"></app-add-user-form>
+    </div>
+</div>
+
+<div *ngIf="showUpdateUserForm" class="modal-overlay" (click)="closeUpdateUserForm()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+        <app-update-user-form (closeForm)="closeUpdateUserForm()"></app-update-user-form>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="user-management.js"></script>

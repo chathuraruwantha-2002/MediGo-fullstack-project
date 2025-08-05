@@ -1,0 +1,100 @@
+<div class="container-fluid mt-4" style="font-family: 'Urbanist', sans-serif;">
+
+  <!-- Health Metrics Summary Cards -->
+  <div class="row mb-4 mt-5">
+    <!-- Earnings -->
+    <div class="col-md-4">
+      <div class="card summary-card border-left-primary shadow-sm">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs text-uppercase mb-2 text-medigo">Earnings</div>
+              <div class="h5 mb-0 text-gray-800 valueCount">{{ doctorStats?.balance?.toFixed(2)}}<span class="text-parameter">Lkr</span> </div> 
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-wallet fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ratings -->
+    <div class="col-md-4">
+      <div class="card summary-card border-left-primary shadow-sm">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs text-uppercase mb-2 text-medigo">Ratings</div>
+              <div class="h5 mb-0 text-gray-800 valueCount">
+                {{ doctorStats?.rating }} <span class="text-parameter">out of 5</span>
+              </div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-star fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Appointments -->
+    <div class="col-md-4">
+      <div class="card summary-card border-left-primary shadow-sm">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs text-uppercase mb-2 text-medigo">Handled Appointments</div>
+              <div class="h5 mb-0 text-gray-800 valueCount">
+                {{ doctorStats?.acceptedAppointments }}
+              </div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-star fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  
+  <!-- Charts Row -->
+  <div class="row mt-4">
+    <!-- Monthly Appointments Chart -->
+    <div class="col-lg-6">
+      <div class="card chart-card shadow-sm" style="height: 375px;">
+        <h6 class="m-0 font-weight-bold title-card">Monthly Appointments</h6>
+        <div class="card-body">
+          <div class="chart-container">
+            <div class="row mt-3">
+              <div class="col-12">
+                <div class="card-reports" style="height: 290px; position: relative;">
+                  <canvas #lineChart style="width: 100% !important; height: 100% !important;"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Monthly Earnings Chart -->
+    <div class="col-lg-6">
+      <div class="card chart-card shadow-sm" style="height: 375px;">
+        <h6 class="m-0 font-weight-bold title-card">Monthly Earnings</h6>
+        <div class="card-body">
+          <div class="chart-container">
+            <div class="row mt-3">
+              <div class="col-12">
+                <div class="card-reports" style="height: 290px; position: relative;">
+                  <canvas #earningsChart style="width: 100% !important; height: 100% !important;"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

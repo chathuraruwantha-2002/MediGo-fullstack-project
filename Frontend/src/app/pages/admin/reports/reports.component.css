@@ -1,0 +1,303 @@
+.btn-medigo {
+    background-color: #004085;
+    color: #ffffff;
+    border: 2px solid #004085;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-medigo:hover {
+    background-color: #002752;
+    border-color: #002752;
+    transform: scale(1.05);
+}
+
+.btn-outline-medigo {
+    background-color: #ffffff;
+    color: #004085;
+    border: 2px solid #004085;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-outline-medigo:hover {
+    background-color: #004085;
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+.btn-sm {
+    font-size: 0.9rem;
+    padding: 5px 12px;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+
+
+
+.high {
+    background: #8b0000;  
+    color: #ffffff;
+}
+
+.low {
+    background-color:#ffc107;
+    color: #ffffff; 
+}
+
+.normal {
+    background: #01b30a;  
+    color: #ffffff;  
+}
+
+
+.status-container {
+    
+}
+.status {
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+    padding: 3px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 3px;
+}
+
+
+
+.btn-reason-report {
+    background-color: #ffffff00;
+    border:none;
+    color: #000000;
+    transition: transform 0.3s ease-in-out;
+}
+.btn-reason-report:hover {
+    background-color: #ffffff00;
+    border:none;
+    color: #000000;
+    transform: scale(1.2);
+}
+
+
+
+
+
+
+
+/* Card Header Customization */
+.bg-medigo {
+    background-color: hsl(211, 71%, 72%);
+    color: white;
+}
+
+/* Shadow and Hover Effects for Cards */
+.card {
+    background-color: white;
+    border-radius:13px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 20px;
+    display: flex;
+    border: 1px solid #f7f6f6;
+}
+
+.card:hover {
+    
+}
+.text-medigo {
+    color: #004085;
+    font-weight: bold;
+    font-size: 17px
+}
+
+.text-parameter{
+    color:#3a3a3a;
+    margin-left: 4px;
+    font-size: 15px;
+
+}
+
+/* Badge Customization */
+.badge{
+    width:70px;
+    border-radius: 10px;
+    height:17px;
+}
+.badge-success {
+    background-color: #28a745;
+    
+}
+
+.badge-info {
+    background-color: #17a2b8;
+   
+}
+
+.badge-warning {
+    background-color: #ffc107;
+    
+}
+
+.badge-danger {
+    background-color: #dc3545;
+   
+}
+
+.title-card {
+    font-size: 18px;
+    color: #243851;
+    font-weight: bold;
+}
+
+.btn-light {
+    background-color: #ffffff;
+    color: #004085;
+    border: 1px solid #004085;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-light:hover {
+    background-color: #ecf1f7;
+    color: #004085;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.search-container {
+    padding: 25px;
+    background-color: #ffffff;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 10px;
+    color: #0c3868;
+    max-width: 1200px;
+    height: 125px;
+    margin: 0 auto;
+}
+
+.search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    align-items: flex-end;
+}
+
+.form-group {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 0;
+}
+
+.search-btn-group {
+    flex: 0 0 auto;
+    min-width: 100px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    height: 45px;
+    font-size: 14px;
+    appearance: none; 
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px #0c3868;
+}
+
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 30px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.dropdown-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none;
+    font-size: 12px;
+}
+
+/* Fix for overlapping calendar icon */
+.date-input-wrapper {
+    position: relative;
+}
+
+.form-control[type="date"] {
+    appearance: none; /* Hide default date picker icon */
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+
+.calendar-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Fixed search button border issue */
+.search-btn {
+    background-color: #ffffff;
+    color: #0c3868;
+    border: 1px solid #0c3868;
+    padding: 10px 20px;
+    border-radius: 12px;
+    height: 45px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.search-btn:hover {
+    background-color: #ecf1f7;
+}
+
+.valueCount {
+    color: #2f2f2f;
+    font-weight: bold;
+    font-size: 21px;
+}
+
+
+
