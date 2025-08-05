@@ -34,7 +34,7 @@ public class DoctorAppointmentController {
     //update appointment
     @PutMapping("/update-appointment")
     public String updateAppointment(@RequestBody Appointment appointment) {
-        return service.addAppointment(appointment);
+        return service.updateAppointment(appointment);
         //return "Success";
     }
 

@@ -1,25 +1,25 @@
-package edu.icet.controller.DoctorController;
+package edu.icet.controller.AdminController;
+
 
 import edu.icet.dto.Appointment;
-import edu.icet.service.interfaces.doctorInterfaces.DoctorAppointmentService;
+import edu.icet.service.interfaces.adminInterfaces.AdminAppointmentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/doctor/appointment")
-@RequiredArgsConstructor
+@RequestMapping("/admin/appointment")
 @CrossOrigin
-public class DoctorAppointmentController {
+@RequiredArgsConstructor
+public class AdminAppointmentController {
 
-    private final DoctorAppointmentService service;
+    private final AdminAppointmentService service;
 
     //get all
-    @GetMapping("/get-all/{id}")
-    public List<Appointment> getAll(@PathVariable int id) {
-        return service.getAll(id);
+    @GetMapping("/get-all")
+    public List<Appointment> getAll() {
+        return service.getAll();
     }
 
 
@@ -33,11 +33,11 @@ public class DoctorAppointmentController {
 
 
     //update appointment
-    @PutMapping("/update")
-    public ResponseEntity<String> updateAppointment(@RequestBody Appointment dto) {
-        return ResponseEntity.ok("Appointment Updated");
+    @PutMapping("/update-appointment")
+    public String updateAppointment(@RequestBody Appointment appointment) {
+        return service.updateAppointment(appointment);
+        //return "Success";
     }
-
 
 
     //delete appointment
@@ -46,6 +46,5 @@ public class DoctorAppointmentController {
         return service.deleteAppointment(id);
         //return "Success";
     }
-
 
 }

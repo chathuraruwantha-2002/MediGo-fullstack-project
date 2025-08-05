@@ -14,7 +14,6 @@ public interface AppointmentRepository extends JpaRepository<AppointmentEntity, 
     @Query(value = "SELECT * FROM appointment WHERE doctor_id = ?1", nativeQuery = true)
     List<AppointmentEntity> findAllByDoctorId(int id);
 
-
-
-
+    @Query(value = "SELECT status, COUNT(*) FROM appointment GROUP BY status", nativeQuery = true)
+    List<Object[]> findAllSeparateCounts();
 }
