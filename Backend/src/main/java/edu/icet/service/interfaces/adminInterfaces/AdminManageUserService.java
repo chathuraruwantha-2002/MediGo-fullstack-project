@@ -14,7 +14,7 @@ public interface AdminManageUserService {
 
     String updateUser(User user);
 
-    String deleteUser(int id);
+    String deleteUser(int id, String role);
 
     String addPatient(Patient patient);
 

@@ -1,36 +1,24 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../../../model/user';
 
 @Component({
   selector: 'app-update-user-form',
+  standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './update-user-form.component.html',
   styleUrl: './update-user-form.component.css'
 })
-export class UpdateUserFormComponent implements OnInit {
-
+export class UpdateUserFormComponent implements OnChanges {
   updateUserForm: FormGroup;
   showPassword: boolean = false;
 
+  @Input() showModal: boolean = false;
+  @Input() selectedUser: User | null = null;
 
-
-
-
-    // Modal control
-    @Input() showModal: boolean = false;
-    @Output() closeModalEvent = new EventEmitter<void>()
-
-    // User data
-    @Input() selectedUser: User | null = null;
-
-
-
-
-
-
-
+  @Output() closeModalEvent = new EventEmitter<void>();
+  @Output() updateUserEvent = new EventEmitter<User>();
 
   constructor(private formBuilder: FormBuilder) {
     this.updateUserForm = this.formBuilder.group({
@@ -40,20 +28,18 @@ export class UpdateUserFormComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    // Pre-populate form with existing user data
-    this.loadUserData();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['selectedUser'] && this.selectedUser) {
+      this.loadUserData();
+    }
   }
 
   loadUserData(): void {
-    // Simulate loading user data (in real app, this would come from a service)
-    const userData = {
-      fullName: 'John Smith',
-      email: 'john.smith@example.com',
-      password: '' // Don't pre-populate password for security
-    };
-
-    this.updateUserForm.patchValue(userData);
+    this.updateUserForm.patchValue({
+      fullName: this.selectedUser?.name || '',
+      email: this.selectedUser?.email || '',
+      password: this.selectedUser?.password || ''
+    });
   }
 
   togglePasswordVisibility(): void {
@@ -61,13 +47,17 @@ export class UpdateUserFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.updateUserForm.valid) {
+    if (this.updateUserForm.valid && this.selectedUser) {
       const formData = this.updateUserForm.value;
-      console.log('Updated User Data:', formData);
-      
-      // Here you would typically call a service to update the user
-      // this.userService.updateUser(formData).subscribe(...)
-      
+
+      const updatedUser: User = {
+        ...this.selectedUser,
+        name: formData.fullName,
+        email: formData.email,
+        password: formData.password
+      };
+
+      this.updateUserEvent.emit(updatedUser);
       alert('User updated successfully!');
     } else {
       this.markFormGroupTouched();
@@ -75,9 +65,9 @@ export class UpdateUserFormComponent implements OnInit {
   }
 
   onCancel(): void {
-    // Reset form or navigate back
     this.updateUserForm.reset();
     this.loadUserData();
+    this.closeModalEvent.emit();
   }
 
   private markFormGroupTouched(): void {
@@ -87,9 +77,8 @@ export class UpdateUserFormComponent implements OnInit {
     });
   }
 
-  // Getter methods for easy access to form controls
+  // Getter methods for easier access
   get fullName() { return this.updateUserForm.get('fullName'); }
   get email() { return this.updateUserForm.get('email'); }
   get password() { return this.updateUserForm.get('password'); }
-
 }

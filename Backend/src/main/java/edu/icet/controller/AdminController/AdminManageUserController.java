@@ -53,8 +53,8 @@ public class AdminManageUserController {
         return service.updateUser(user);
     }
     // delete user
-    @DeleteMapping("/delete-user/{id}")
-    public String deleteUser(@PathVariable int id) {
-        return service.deleteUser(id);
+    @DeleteMapping("/delete-user/{id}/{role}")
+    public String deleteUser(@PathVariable int id ,@PathVariable String role) {
+        return service.deleteUser(id,role);
     }
 }

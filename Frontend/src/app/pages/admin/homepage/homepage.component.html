@@ -5,7 +5,7 @@
             <div class="card" style="height: 525px; border:1px solid #ffffff;">
                 <div class="card-body p-4">
                     <h5 class="card-title">welcome back</h5>
-                    <h1 style="font-size: 50px; color: #004085;">{{doctor?.name ?? 'User'}}</h1>
+                    <h1 style="font-size: 50px; color: #004085;">{{user?.name ?? 'User'}}</h1>
                 </div>
                 <div class="card-Ai">
                     <div class="card-body p-4">
@@ -40,22 +40,22 @@
                             </div>
                             <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-1"
                                 style="font-size: 15px;">
-                                1,250
+                                {{ getTotalUsers() }}
                             </span>
                         </div>
                         <hr class="my-2">
                         <div class="mt-2" style="font-size: 14px;">
                             <div class="d-flex justify-content-between text-muted mb-1">
                                 <span>Doctors</span>
-                                <span class="fw-semibold text-dark">300</span>
+                                <span class="fw-semibold text-dark">{{ userRolesCount['doctor'] || 0 }}</span>
                             </div>
                             <div class="d-flex justify-content-between text-muted mb-1">
                                 <span>Patients</span>
-                                <span class="fw-semibold text-dark">920</span>
+                                <span class="fw-semibold text-dark">{{ userRolesCount['patient'] || 0 }}</span>
                             </div>
                             <div class="d-flex justify-content-between text-muted">
                                 <span>Admins</span>
-                                <span class="fw-semibold text-dark">30</span>
+                                <span class="fw-semibold text-dark">{{ userRolesCount['admin'] || 0 }}</span>
                             </div>
                         </div>
                     </div>
@@ -70,22 +70,22 @@
                             </div>
                             <span class="badge bg-success-subtle text-success fw-semibold px-3 py-1"
                                 style="font-size: 15px;">
-                                4,780
+                                {{ getTotalAppointments() }}
                             </span>
                         </div>
                         <hr class="my-2">
                         <div class="mt-2" style="font-size: 14px;">
                             <div class="d-flex justify-content-between text-muted mb-1">
-                                <span>Completed</span>
-                                <span class="fw-semibold text-dark">3,100</span>
+                                <span>Confirmed</span>
+                                <span class="fw-semibold text-dark">{{ appointmentsCount['confirmed'] || 0 }}</span>
                             </div>
                             <div class="d-flex justify-content-between text-muted mb-1">
                                 <span>Pending</span>
-                                <span class="fw-semibold text-dark">1,200</span>
+                                <span class="fw-semibold text-dark">{{ appointmentsCount['pending'] || 0 }}</span>
                             </div>
                             <div class="d-flex justify-content-between text-muted">
                                 <span>Cancelled</span>
-                                <span class="fw-semibold text-dark">480</span>
+                                <span class="fw-semibold text-dark">{{ appointmentsCount['cancelled'] || 0 }}</span>
                             </div>
                         </div>
                     </div>

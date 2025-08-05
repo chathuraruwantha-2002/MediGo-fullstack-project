@@ -5,9 +5,7 @@ import { Chart } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
 import { SharedService } from '../../../shared.service';
 import { Router } from '@angular/router';
-import { Doctor } from '../../../model/doctor';
 import { User } from '../../../model/user';
-import { DoctorStat } from '../../../model/doctorStats';
 import { UserService } from '../../../services/user.service';
 
 @Component({
@@ -21,10 +19,17 @@ export class HomepageComponent implements AfterViewInit, OnInit {
   @ViewChild('lineChart') lineChartRef!: ElementRef<HTMLCanvasElement>;
   LineChart: any;
 
-  doctor: Doctor | undefined;
+  //user
   user: User | undefined;
-  doctorStats: DoctorStat | undefined;
 
+  //appoinment info
+
+  appointmentsCount: { [key: string]: number } = {};
+  //user info
+ 
+  userRolesCount: { [key: string]: number } = {};
+
+  //ai massage
   message: string = '';
 
   //ids
@@ -52,29 +57,31 @@ export class HomepageComponent implements AfterViewInit, OnInit {
     private sharedService: SharedService,
     private router: Router,
     private userService: UserService
-  ) {}
+  ) { }
 
   //get user id and account id
   ngOnInit() {
-  const userId = this.userService.getUserId();
-  const accId = this.userService.getAccountId();
+    const userId = this.userService.getUserId();
+    const accId = this.userService.getAccountId();
 
-  if (!userId || !accId) {
-    console.warn('Missing user ID or account ID. Redirecting to login...');
-    this.router.navigate(['/login']);
-    return;
+    if (!userId || !accId) {
+      console.warn('Missing user ID or account ID. Redirecting to login...');
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    this.userId = userId;
+    this.accountId = accId;
+
+    console.log('Logged-in doctorId:', this.userId);
+    console.log('admin accountId:', this.accountId);
+
+    this.loadUserData();
+
+    // Load user info and appointment info
+    this.loadUserRoles();
+    this.loadAppoinmentDetails();
   }
-
-  this.userId = userId;
-  this.accountId = accId;
-
-  console.log('Logged-in doctorId:', this.userId);
-  console.log('Doctor accountId:', this.accountId);
-
-  this.loadDoctorData();
-  this.loadUserData();
-  this.loadDoctorStats();
-}
 
 
   ngAfterViewInit(): void {
@@ -87,7 +94,7 @@ export class HomepageComponent implements AfterViewInit, OnInit {
       this.sharedService.setMessage(this.message);
       console.log('Message sent:', this.message);
       this.message = '';
-      this.router.navigate(['/doctor/services']);
+      this.router.navigate(['/admin/services']);
     }
   }
 
@@ -98,19 +105,51 @@ export class HomepageComponent implements AfterViewInit, OnInit {
     });
   }
 
-  private loadDoctorData() {
-    this.http.get<Doctor>(`http://localhost:8080/doctor/dashboard/get-user-info/${this.accountId}`).subscribe(data => {
-      console.log('Doctor data:', data);
-      this.doctor = data;
+
+
+  // Load user details and appoinment details
+  private loadUserRoles() {
+    this.http.get<string[]>(`http://localhost:8080/admin/dashboard/get-total-users`).subscribe(data => {
+      data.forEach(item => {
+        const [role, count] = item.split(':').map(s => s.trim());
+        this.userRolesCount[role.toLowerCase()] = +count;
+      });
+      console.log(this.userRolesCount);
     });
   }
 
-  private loadDoctorStats() {
-    this.http.get<DoctorStat>(`http://localhost:8080/doctor/dashboard/get-doctor-stats/${this.accountId}`).subscribe(data => {
-      console.log('Doctor stats:', data);
-      this.doctorStats = data;
+  private loadAppoinmentDetails() {
+    this.http.get<String[]>(`http://localhost:8080/admin/dashboard/get-total-appointments`).subscribe(data => {
+      data.forEach(item => {
+        const [role, count] = item.split(':').map(s => s.trim());
+        this.appointmentsCount[role.toLowerCase()] = +count;
+      });
+      console.log(this.appointmentsCount);
     });
   }
+
+
+  //get total users
+  getTotalUsers(): number {
+    const doctor = this.userRolesCount['doctor'] || 0;
+    const patient = this.userRolesCount['patient'] || 0;
+    const admin = this.userRolesCount['admin'] || 0;
+    const user = this.userRolesCount['user'] || 0;
+
+    return doctor + patient + admin + user;
+  }
+
+  //get total appointments
+  getTotalAppointments(): number {
+    const confirmed = this.appointmentsCount['confirmed'] || 0;
+    const pending = this.appointmentsCount['pending'] || 0;
+    const cancleled = this.appointmentsCount['cancelled'] || 0;
+    const totalAppointments = confirmed + pending + cancleled;
+
+    return totalAppointments;
+  }
+
+
 
   private createLineChart() {
     const labels = this.monthlyStats.map(d => d.month);

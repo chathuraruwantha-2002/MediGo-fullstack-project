@@ -297,6 +297,13 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
 }
 
+.table-responsive {
+    max-height: 300px; /* or height: 400px; */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
 .card-header-custom {
     background: white;
     border-bottom: 1px solid #edf2f9;
