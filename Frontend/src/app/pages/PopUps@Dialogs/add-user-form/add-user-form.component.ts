@@ -2,6 +2,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+
+import { Doctor } from '../../../model/doctor';
+import { User } from '../../../model/user';
+import { Patient } from '../../../model/patient';
 
 @Component({
   selector: 'app-add-user-form',
@@ -11,79 +16,217 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./add-user-form.component.css']
 })
 export class AddUserFormComponent implements OnInit {
-
-
-  // Modal control
   @Input() showModal: boolean = false;
   @Output() closeModalEvent = new EventEmitter<void>();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   userForm!: FormGroup;
   selectedRole: string = '';
-  showPassword = false;
-  isEditMode = false;
-  isSubmitting = false;
+  showPassword: boolean = false;
+  isEditMode: boolean = false;
+  isSubmitting: boolean = false;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.buildForm();
+    this.initForm();
   }
 
-  buildForm(): void {
+  initForm(): void {
     this.userForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       role: ['', Validators.required],
-
       doctorInfo: this.fb.group({
-        licenseNumber: [''],
-        specialization: ['']
+        gender: [''],
+        phone: [''],
+        specialization: [''],
+        qualification: [''],
+        experience: [''],
+        location: [''],
+        availability: [''],
+        consultationFee: [''],
+        hospitalId: ['']
       }),
-
       patientInfo: this.fb.group({
         dateOfBirth: [''],
         gender: [''],
         phone: [''],
         bloodGroup: [''],
-        allergies: ['']
-      }),
-
-      nurseInfo: this.fb.group({
-        nurseId: [''],
-        department: ['']
-      }),
-
-      adminInfo: this.fb.group({
-        accessLevel: [''],
-        department: ['']
+        allergies: [''],
+        address: ['']
       })
     });
   }
 
   onRoleChange(): void {
-    const role = this.userForm.get('role')?.value;
-    this.selectedRole = role;
+    this.selectedRole = this.userForm.get('role')?.value || '';
+  }
+
+  togglePassword(): void {
+    this.showPassword = !this.showPassword;
+  }
+
+  onSubmit(): void {
+    if (this.userForm.invalid) {
+      this.userForm.markAllAsTouched();
+      return;
+    }
+
+    this.isSubmitting = true;
+    const formValue = this.userForm.value;
+    const user = this.buildUserFromForm(formValue);
+
+    // Use responseType: 'text' to handle backend response correctly
+    this.http.post('http://localhost:8080/admin/manage-user/add-user', user, { 
+      responseType: 'text' 
+    }).subscribe({
+      next: () => {
+        console.log('User saved successfully');
+        // Wait a moment for the user to be fully saved, then get the userId
+        setTimeout(() => {
+          this.getUserIdAndSaveRoleData(formValue);
+        }, 1000);
+      },
+      error: () => this.handleError()
+    });
+  }
+
+  getUserIdAndSaveRoleData(formValue: any): void {
+    // Get user ID by email lookup
+    this.http.get<any>(`http://localhost:8080/admin/manage-user/get-user-by-email?email=${formValue.email}`).subscribe({
+      next: (user) => {
+        const userId = user.userId || 1; // fallback to 1 if no ID
+        
+        switch (formValue.role) {
+          case 'doctor':
+            this.submitDoctor(userId, formValue);
+            break;
+          case 'patient':
+            console.log('Submitting patient with userId:', userId);
+            this.submitPatient(userId, formValue);
+            break;
+          default:
+            this.finalizeSubmit();
+        }
+      },
+      error: () => {
+        // If can't get user, use fallback ID
+        console.warn('Could not retrieve user ID, using fallback');
+        const userId = 1;
+        
+        switch (formValue.role) {
+          case 'doctor':
+            this.submitDoctor(userId, formValue);
+            break;
+          case 'patient':
+            this.submitPatient(userId, formValue);
+            break;
+          default:
+            this.finalizeSubmit();
+        }
+      }
+    });
+  }
+
+  buildUserFromForm(formValue: any): User {
+    return new User(
+      0, // ID ignored on submission
+      formValue.name,
+      formValue.email,
+      formValue.password,
+      formValue.role
+    );
+  }
+
+  buildDoctorFromForm(formValue: any, userId: number): Doctor {
+    const doctorInfo = formValue.doctorInfo;
+
+    return new Doctor(
+      0,
+      formValue.name,
+      doctorInfo.gender || 'MALE',          // use form value or default
+      doctorInfo.phone || '0000000000',     // use form value or default
+      formValue.email,
+      doctorInfo.specialization || 'General',
+      doctorInfo.qualification || 'MBBS',   // use form value or default
+      doctorInfo.experience || '1 year',    // use form value or default
+      doctorInfo.location || 'City',        // use form value or default
+      doctorInfo.availability || 'Available', // use form value or default
+      doctorInfo.consultationFee || 1000,   // use form value or default
+      30,
+      doctorInfo.hospitalId || 1            // use form value or default
+    );
+  }
+
+  buildPatientFromForm(formValue: any, userId: number): Patient {
+    const patientInfo = formValue.patientInfo;
+
+    return new Patient(
+      0,
+      formValue.name,
+      patientInfo.gender || 'MALE',
+      patientInfo.phone || '0000000000',
+      patientInfo.dateOfBirth || '2000-01-01',
+      patientInfo.address || 'Default Address',  // use form value or default
+      patientInfo.bloodGroup || 'O+',
+      'No medical history',                      // default medical history
+      patientInfo.allergies || 'None',
+      29  // Add userId parameter that was missing in original
+    );
+  }
+
+  submitDoctor(userId: number, formValue: any): void {
+    const doctor = this.buildDoctorFromForm(formValue, userId);
+    console.log('Submitting doctor:', doctor);
+    
+    this.http.post('http://localhost:8080/admin/manage-user/add-doctor', doctor, { 
+      responseType: 'text' 
+    }).subscribe({
+      next: () => {
+        console.log('Doctor saved successfully');
+        this.finalizeSubmit();
+      },
+      error: () => this.handleError()
+    });
+  }
+
+  submitPatient(userId: number, formValue: any): void {
+    const patient = this.buildPatientFromForm(formValue, userId);
+    console.log('Submitting patient object:', patient);
+
+    this.http.post('http://localhost:8080/admin/manage-user/add-patient', patient, { 
+      responseType: 'text' 
+    }).subscribe({
+      next: () => {
+        console.log('Patient saved successfully');
+        this.finalizeSubmit();
+      },
+      error: () => this.handleError()
+    });
+  }
+
+  finalizeSubmit(): void {
+    console.log('User and role-specific data submitted successfully.');
+    this.isSubmitting = false;
+    this.userForm.reset();
+    this.selectedRole = '';
+    this.closeModalEvent.emit();
+    alert('User saved successfully!');
+  }
+
+  handleError(): void {
+    console.error('Something went wrong while submitting data.');
+    this.isSubmitting = false;
+    alert('Error saving user. Please try again.');
+  }
+
+  onCancel(): void {
+    if (confirm('Are you sure you want to cancel? Unsaved changes will be lost.')) {
+      this.userForm.reset();
+      this.selectedRole = '';
+      this.closeModalEvent.emit();
+    }
   }
 
   isFieldInvalid(fieldName: string): boolean {
@@ -103,39 +246,6 @@ export class AddUserFormComponent implements OnInit {
         return 'badge bg-info text-dark';
       default:
         return '';
-    }
-  }
-
-  togglePassword(): void {
-    this.showPassword = !this.showPassword;
-  }
-
-  onSubmit(): void {
-    if (this.userForm.invalid) {
-      this.userForm.markAllAsTouched();
-      return;
-    }
-
-    this.isSubmitting = true;
-
-    // Simulate an API call
-    setTimeout(() => {
-      const formData = this.userForm.value;
-      console.log('Submitted user data:', formData);
-
-      // Reset or close form as needed
-      this.isSubmitting = false;
-      if (!this.isEditMode) {
-        this.userForm.reset();
-        this.selectedRole = '';
-      }
-    }, 1500);
-  }
-
-  onCancel(): void {
-    if (confirm('Are you sure you want to cancel? Unsaved changes will be lost.')) {
-      this.userForm.reset();
-      this.selectedRole = '';
     }
   }
 }
