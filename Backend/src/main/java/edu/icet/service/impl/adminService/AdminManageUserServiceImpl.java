@@ -84,4 +84,8 @@ public class AdminManageUserServiceImpl implements AdminManageUserService {
         return "Success";
     }
 
+    public User getUserByEmail(String email) {
+        return modelMapper.map(userRepository.findByEmail(email), User.class);
+    }
+
 }

@@ -21,4 +21,6 @@ public interface AdminManageUserService {
     String addDoctor(Doctor doctor);
 
     String addAdmin(User user);
+
+    User getUserByEmail(String email);
 }

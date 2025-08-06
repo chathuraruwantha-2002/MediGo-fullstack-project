@@ -111,8 +111,6 @@
                             <td>{{ i + 1 }}</td>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="'assets/img/default-user.png'" class="rounded-circle me-2" width="30"
-                                        height="30" alt="User image">
                                     <span>{{ user.name }}</span>
                                 </div>
                             </td>
@@ -122,15 +120,15 @@
                             </td>
                             <td>
                                 <span class="badge" [ngClass]="{
-                'badge-success': user.role === 'active',
+                'badge-success': 'active' === 'active',
                 'bg-danger': user.role === 'inactive',
                 'bg-warning': user.role === 'pending'
               }">
-                                    {{ user.role }}
+                                    {{ 'online' }}
                                 </span>
                             </td>
-                            <td>{{111}}</td>
-                            <td>{{111}}</td>
+                            <td>{{'recently'}}</td>
+                            <td>{{'this year'}}</td>
                             <td>
                                 <button class="btn btn-sm me-1" style="color: #17a2b8;"
                                     (click)="openUpdateUserForm(user)">

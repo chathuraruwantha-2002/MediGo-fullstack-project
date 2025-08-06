@@ -16,6 +16,7 @@ import { AdminNavbarComponent } from './common/admin-navbar/admin-navbar.compone
 import { HomepageComponent as HomepageAdminComponent} from './pages/admin/homepage/homepage.component'
 import { ServicesComponent as ServicesAdminComponent } from './pages/admin/services/services.component';
 import { ReportsComponent as ReportsAdminComponent } from './pages/admin/reports/reports.component';
+import { AppointmentsComponent as AppointmentsAdminComponent } from './pages/admin/appointments/appointments.component';
 import { UserManagementComponent } from './pages/admin/user-management/user-management.component';
 
 
@@ -105,7 +106,7 @@ export const routes: Routes = [
             },
             {
                 path: "appointments",//appointments
-                component: AppointmentsComponent
+                component: AppointmentsAdminComponent
             },
             {
                 path: "users",//find

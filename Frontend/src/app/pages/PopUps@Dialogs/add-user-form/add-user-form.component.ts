@@ -25,7 +25,7 @@ export class AddUserFormComponent implements OnInit {
   isEditMode: boolean = false;
   isSubmitting: boolean = false;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {}
+  constructor(private fb: FormBuilder, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -37,7 +37,9 @@ export class AddUserFormComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       role: ['', Validators.required],
+
       doctorInfo: this.fb.group({
+        licenseNumber: [''],
         gender: [''],
         phone: [''],
         specialization: [''],
@@ -48,13 +50,26 @@ export class AddUserFormComponent implements OnInit {
         consultationFee: [''],
         hospitalId: ['']
       }),
+
       patientInfo: this.fb.group({
         dateOfBirth: [''],
         gender: [''],
         phone: [''],
         bloodGroup: [''],
         allergies: [''],
-        address: ['']
+        address: [''],
+        medicalHistory: ['']
+      }),
+
+      //groups for nurse and admin
+      nurseInfo: this.fb.group({
+        nurseId: [''],
+        department: ['']
+      }),
+
+      adminInfo: this.fb.group({
+        accessLevel: [''],
+        department: ['']
       })
     });
   }
@@ -65,6 +80,7 @@ export class AddUserFormComponent implements OnInit {
 
   togglePassword(): void {
     this.showPassword = !this.showPassword;
+    console.log(this.userForm.get('email')?.value);
   }
 
   onSubmit(): void {
@@ -77,13 +93,13 @@ export class AddUserFormComponent implements OnInit {
     const formValue = this.userForm.value;
     const user = this.buildUserFromForm(formValue);
 
-    // Use responseType: 'text' to handle backend response correctly
-    this.http.post('http://localhost:8080/admin/manage-user/add-user', user, { 
-      responseType: 'text' 
+
+    this.http.post('http://localhost:8080/admin/manage-user/add-user', user, {
+      responseType: 'text'
     }).subscribe({
       next: () => {
         console.log('User saved successfully');
-        // Wait a moment for the user to be fully saved, then get the userId
+
         setTimeout(() => {
           this.getUserIdAndSaveRoleData(formValue);
         }, 1000);
@@ -93,11 +109,22 @@ export class AddUserFormComponent implements OnInit {
   }
 
   getUserIdAndSaveRoleData(formValue: any): void {
-    // Get user ID by email lookup
-    this.http.get<any>(`http://localhost:8080/admin/manage-user/get-user-by-email?email=${formValue.email}`).subscribe({
+    const email = this.userForm.get('email')?.value;
+    if (!email) {
+      console.error('Email is required to look up user ID.');
+      return;
+    }
+
+    const encodedEmail = encodeURIComponent(email);
+
+    this.http.get<User>(`http://localhost:8080/admin/manage-user/get-user-by-email/${encodedEmail}`).subscribe({
       next: (user) => {
-        const userId = user.userId || 1; // fallback to 1 if no ID
-        
+        const userId = user.userId;
+        if (!userId) {
+          console.error('User ID is missing in response.');
+          return;
+        }
+
         switch (formValue.role) {
           case 'doctor':
             this.submitDoctor(userId, formValue);
@@ -106,32 +133,30 @@ export class AddUserFormComponent implements OnInit {
             console.log('Submitting patient with userId:', userId);
             this.submitPatient(userId, formValue);
             break;
+          case 'nurse':
+
+            console.log('Nurse role selected - implement nurse submission if required');
+            this.finalizeSubmit();
+            break;
+          case 'admin':
+
+            console.log('Admin role selected - implement admin submission if required');
+            this.finalizeSubmit();
+            break;
           default:
             this.finalizeSubmit();
         }
       },
-      error: () => {
-        // If can't get user, use fallback ID
-        console.warn('Could not retrieve user ID, using fallback');
-        const userId = 1;
-        
-        switch (formValue.role) {
-          case 'doctor':
-            this.submitDoctor(userId, formValue);
-            break;
-          case 'patient':
-            this.submitPatient(userId, formValue);
-            break;
-          default:
-            this.finalizeSubmit();
-        }
+      error: (err) => {
+        console.error('User lookup failed:', err);
+        alert('Could not retrieve user by email. Please make sure the user was created.');
       }
     });
   }
 
   buildUserFromForm(formValue: any): User {
     return new User(
-      0, // ID ignored on submission
+      0,
       formValue.name,
       formValue.email,
       formValue.password,
@@ -145,17 +170,17 @@ export class AddUserFormComponent implements OnInit {
     return new Doctor(
       0,
       formValue.name,
-      doctorInfo.gender || 'MALE',          // use form value or default
-      doctorInfo.phone || '0000000000',     // use form value or default
+      doctorInfo.gender || 'MALE',
+      doctorInfo.phone || '0000000000',
       formValue.email,
       doctorInfo.specialization || 'General',
-      doctorInfo.qualification || 'MBBS',   // use form value or default
-      doctorInfo.experience || '1 year',    // use form value or default
-      doctorInfo.location || 'City',        // use form value or default
-      doctorInfo.availability || 'Available', // use form value or default
-      doctorInfo.consultationFee || 1000,   // use form value or default
-      30,
-      doctorInfo.hospitalId || 1            // use form value or default
+      doctorInfo.qualification || 'MBBS',
+      doctorInfo.experience || '1 year',
+      doctorInfo.location || 'City',
+      doctorInfo.availability || 'Available',
+      doctorInfo.consultationFee || 1000,
+      userId,
+      doctorInfo.hospitalId || 1
     );
   }
 
@@ -168,20 +193,20 @@ export class AddUserFormComponent implements OnInit {
       patientInfo.gender || 'MALE',
       patientInfo.phone || '0000000000',
       patientInfo.dateOfBirth || '2000-01-01',
-      patientInfo.address || 'Default Address',  // use form value or default
+      patientInfo.address || 'Default Address',
       patientInfo.bloodGroup || 'O+',
-      'No medical history',                      // default medical history
+      patientInfo.medicalHistory || 'No medical history',
       patientInfo.allergies || 'None',
-      29  // Add userId parameter that was missing in original
+      userId
     );
   }
 
   submitDoctor(userId: number, formValue: any): void {
     const doctor = this.buildDoctorFromForm(formValue, userId);
     console.log('Submitting doctor:', doctor);
-    
-    this.http.post('http://localhost:8080/admin/manage-user/add-doctor', doctor, { 
-      responseType: 'text' 
+
+    this.http.post('http://localhost:8080/admin/manage-user/add-doctor', doctor, {
+      responseType: 'text'
     }).subscribe({
       next: () => {
         console.log('Doctor saved successfully');
@@ -193,10 +218,10 @@ export class AddUserFormComponent implements OnInit {
 
   submitPatient(userId: number, formValue: any): void {
     const patient = this.buildPatientFromForm(formValue, userId);
-    console.log('Submitting patient object:', patient);
+    console.log('Submitting patient object:', patient.userId);
 
-    this.http.post('http://localhost:8080/admin/manage-user/add-patient', patient, { 
-      responseType: 'text' 
+    this.http.post('http://localhost:8080/admin/manage-user/add-patient', patient, {
+      responseType: 'text'
     }).subscribe({
       next: () => {
         console.log('Patient saved successfully');

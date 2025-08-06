@@ -23,6 +23,11 @@ public class AdminManageUserController {
         return service.getAll();
     }
 
+    @GetMapping("/get-user-by-email/{email}")
+    public User getUserByEmail(@PathVariable String email) {
+        return service.getUserByEmail(email);
+    }
+
     // add user
     @PostMapping("/add-user")
     public String addUser(@RequestBody User user) {

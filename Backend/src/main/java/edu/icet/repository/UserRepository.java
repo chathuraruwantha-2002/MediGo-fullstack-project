@@ -14,4 +14,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     @Query(value = "SELECT role, COUNT(*) FROM user GROUP BY role", nativeQuery = true)
     List<Object[]> findAllSeparateCounts();
 
+    //select latest user by email
+    @Query(value = "SELECT * FROM user WHERE email = ?1 ORDER BY user_id DESC LIMIT 1", nativeQuery = true)
+    UserEntity findByEmail(String email);
 }

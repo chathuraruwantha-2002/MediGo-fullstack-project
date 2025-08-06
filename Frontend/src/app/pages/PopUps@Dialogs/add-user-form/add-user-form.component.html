@@ -129,6 +129,106 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-venus-mars me-1"></i>
+                                Gender
+                            </label>
+                            <select class="form-select" formControlName="gender">
+                                <option value="">Select gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-phone me-1"></i>
+                                Phone Number
+                            </label>
+                            <input type="tel" class="form-control" formControlName="phone"
+                                placeholder="Enter phone number">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-graduation-cap me-1"></i>
+                                Qualification
+                            </label>
+                            <input type="text" class="form-control" formControlName="qualification"
+                                placeholder="e.g., MBBS, MD, MS">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-clock me-1"></i>
+                                Experience
+                            </label>
+                            <input type="text" class="form-control" formControlName="experience"
+                                placeholder="e.g., 5 years">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-map-marker-alt me-1"></i>
+                                Location
+                            </label>
+                            <input type="text" class="form-control" formControlName="location"
+                                placeholder="Enter location">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-calendar-alt me-1"></i>
+                                Availability
+                            </label>
+                            <select class="form-select" formControlName="availability">
+                                <option value="">Select availability</option>
+                                <option value="monday-friday-9am-5pm">Monday-Friday (9 AM - 5 PM)</option>
+                                <option value="monday-saturday-8am-6pm">Monday-Saturday (8 AM - 6 PM)</option>
+                                <option value="all-days-24-7">All Days (24/7)</option>
+                                <option value="weekends-only">Weekends Only</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-dollar-sign me-1"></i>
+                                Consultation Fee
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control" formControlName="consultationFee"
+                                    placeholder="0.00" min="0" step="0.01">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-hospital me-1"></i>
+                                Hospital ID
+                            </label>
+                            <input type="number" class="form-control" formControlName="hospitalId"
+                                placeholder="Enter hospital ID" min="1">
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Patient Fields -->
@@ -200,6 +300,30 @@
                             </label>
                             <input type="text" class="form-control" formControlName="allergies"
                                 placeholder="Enter known allergies (if any)">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-map-marker-alt me-1"></i>
+                                Address
+                            </label>
+                            <textarea class="form-control" formControlName="address" rows="3"
+                                placeholder="Enter full address"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-file-medical me-1"></i>
+                                Medical History
+                            </label>
+                            <textarea class="form-control" formControlName="medicalHistory" rows="4"
+                                placeholder="Enter medical history, previous conditions, surgeries, medications, etc."></textarea>
                         </div>
                     </div>
                 </div>

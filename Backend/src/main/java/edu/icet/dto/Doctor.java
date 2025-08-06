@@ -13,7 +13,7 @@ import lombok.ToString;
 public class Doctor {
     private int doctorId;
     private String name;
-    private Gender gender;
+    private String gender;
     private String phone;
     private String email;
     private String specialization;
