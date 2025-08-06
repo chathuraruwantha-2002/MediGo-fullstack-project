@@ -35,4 +35,10 @@ public class UserController {
         return userService.getPatientId(id);
     }
 
+    //get adminId from UserId
+    @GetMapping("/get-admin-id/{id}")
+    public int getAdminId(@PathVariable int id) {
+        return userService.getAdminId(id);
+    }
+
 }

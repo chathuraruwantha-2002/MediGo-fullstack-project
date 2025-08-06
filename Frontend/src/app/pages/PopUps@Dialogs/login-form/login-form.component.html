@@ -5,26 +5,28 @@
     <form (ngSubmit)="login()" #loginForm="ngForm">
       <div class="mb-3">
         <label for="email" class="form-label text-primary-blue">Email</label>
-        <input 
-          type="email" 
-          id="email" 
-          name="email" 
-          [(ngModel)]="username" 
-          required 
-          class="form-control"
-        />
+        <input type="email" id="email" name="email" [(ngModel)]="username" required class="form-control" />
       </div>
 
       <div class="mb-3">
         <label for="password" class="form-label text-primary-blue">Password</label>
-        <input 
-          type="password" 
-          id="password" 
-          name="password" 
-          [(ngModel)]="password" 
-          required 
-          class="form-control"
-        />
+        <div class="position-relative">
+          <input [type]="showPassword ? 'text' : 'password'" 
+                 id="password" 
+                 name="password" 
+                 [(ngModel)]="password" 
+                 required
+                 class="form-control pe-5" 
+                 style="padding-right: 3rem;" />
+
+          <!-- Toggle icon inside the input -->
+          <button type="button" 
+                  (click)="togglePasswordVisibility()"
+                  class="btn btn-link position-absolute top-50 end-0 translate-middle-y me-2 p-1 border-0"
+                  style="z-index: 10;">
+            <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" style="color: #6c757d;"></i>
+          </button>
+        </div>
       </div>
 
       <div class="d-flex justify-content-between align-items-center mb-3">
@@ -39,7 +41,9 @@
     </form>
 
     <p class="mt-4 text-center text-primary-blue small">
-      Don’t have an account? <a href="#" class="fw-semibold text-decoration-underline">Sign up</a>
+      Don't have an account? <a href="#" class="fw-semibold text-decoration-underline">Sign up</a>
     </p>
   </div>
 </div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">

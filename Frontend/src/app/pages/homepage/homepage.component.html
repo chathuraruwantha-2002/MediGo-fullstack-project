@@ -1,19 +1,12 @@
-<app-navbar (loginClick)="openLoginModal()"></app-navbar>
+<app-navbar (loginClick)="openLoginModal()" (featuresClick)="scrollToFeatures()" (doctorsClick)="scrollToGetStarted()" (contactClick)="scrollToContact()"></app-navbar>
 
-<div id="custom-login-wrapper" *ngIf="showLogin"
-     style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: rgba(0, 0, 0, 0.6); display: flex;
-            justify-content: center; align-items: center; z-index: 9999;">
-  
-  <div>
-    <app-login-form></app-login-form>
-  </div>
+<div id="custom-login-wrapper" *ngIf="showLogin" (click)="startCloseAnimation()" [ngClass]="{'closing': isClosing}"
+    class="login-modal-wrapper">
+
+    <div class="login-modal-content animated-login" (click)="$event.stopPropagation()">
+        <app-login-form></app-login-form>
+    </div>
 </div>
-
-
-
-
-
 
 <section class="jumbotron text-center hero-section">
     <div class="container">
@@ -23,8 +16,8 @@
         <p class="animated fadeInUp fw-normal">Introducing MediGo, a new way to access healthcare services powered
             by AI.</p>
         <div>
-            <a href="#" class="btn m-2 animated fadeInUp" id="getStarted">Get Started</a>
-            <a href="#" class="btn m-2 animated fadeInUp" id="learnMore">Learn More</a>
+            <a href="#" class="btn m-2 animated fadeInUp" id="getStarted"(click)="openLoginModal(); $event.preventDefault()">Get Started</a>
+            <a href="#features" class="btn m-2 animated fadeInUp" id="learnMore" (click)="$event.preventDefault(); scrollToFeatures()">Learn More</a>
         </div>
 
     </div>
@@ -32,7 +25,7 @@
 
 <!--  AI-powered Features -->
 <div class="container px-4 py-5 mt-5">
-    <h2 class="pb-2 border-bottom text-center">Our Features</h2>
+    <h2 class="pb-2 border-bottom text-center" id="features">Our Features</h2>
 
     <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5" style="height: 85vh;">
         <!-- Left Aligned Content -->
@@ -63,7 +56,7 @@
 
                 <div class="col d-flex flex-column gap-2">
                     <div
-                    class="feature-icon-small d-inline-flex align-items-center justify-content-center border bg-gradient fs-4 rounded-3 feature-icon">
+                        class="feature-icon-small d-inline-flex align-items-center justify-content-center border bg-gradient fs-4 rounded-3 feature-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                             class="bi bi-clock" viewBox="0 0 16 16" id="icon">
                             <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
@@ -77,7 +70,7 @@
 
                 <div class="col d-flex flex-column gap-2">
                     <div
-                    class="feature-icon-small d-inline-flex align-items-center justify-content-center border bg-gradient fs-4 rounded-3 feature-icon">
+                        class="feature-icon-small d-inline-flex align-items-center justify-content-center border bg-gradient fs-4 rounded-3 feature-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                             class="bi bi-gear-wide-connected" viewBox="0 0 16 16" id="icon">
                             <path
@@ -91,7 +84,7 @@
 
                 <div class="col d-flex flex-column gap-2">
                     <div
-                    class="feature-icon-small d-inline-flex align-items-center justify-content-center border bg-gradient fs-4 rounded-3 feature-icon">
+                        class="feature-icon-small d-inline-flex align-items-center justify-content-center border bg-gradient fs-4 rounded-3 feature-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                             class="bi bi-graph-up" viewBox="0 0 16 16" id="icon">
                             <path fill-rule="evenodd"
@@ -107,18 +100,20 @@
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid" id="getstarted">
     <div class="row justify-content-center">
         <h2 class="pb-2 border-bottom text-center" style="margin-bottom:60px;">Get Started</h2>
         <!-- Card for Patient -->
         <div class="col-md-5 mb-4 me-3">
             <div class="mb-4 bg-body-tertiary rounded-3">
                 <div class="container-fluid py-5">
-                    <h1 class="fw-bold text-center" style="padding-bottom: 30px; font-size: 28px; color:#004085;">Become a User</h1>
-                    <p class="text-center" style="font-size: 18px;">Track your health and schedule appointments easily. Personalized
+                    <h1 class="fw-bold text-center" style="padding-bottom: 30px; font-size: 28px; color:#004085;">Become
+                        a User</h1>
+                    <p class="text-center" style="font-size: 18px;">Track your health and schedule appointments easily.
+                        Personalized
                         healthcare tracking at your fingertips.</p>
                     <div class="text-center" style="margin-top: 35px;">
-                        <button class="btn text-white" type="button">Register</button>
+                        <button class="btn text-white" type="button"(click)="openLoginModal(); $event.preventDefault()">Register</button>
                     </div>
                 </div>
             </div>
@@ -128,11 +123,13 @@
         <div class="col-md-5 mb-4 ms-3">
             <div class="mb-4 bg-body-tertiary rounded-3">
                 <div class="container-fluid py-5">
-                    <h1 class="fw-bold text-center" style="padding-bottom: 30px; font-size: 28px; color:#004085;">Join as Doctor</h1>
-                    <p class="text-center" style="font-size: 18px;">Manage your patients' health data, schedule appointments, and receive
+                    <h1 class="fw-bold text-center" style="padding-bottom: 30px; font-size: 28px; color:#004085;">Join
+                        as Doctor</h1>
+                    <p class="text-center" style="font-size: 18px;">Manage your patients' health data, schedule
+                        appointments, and receive
                         reminders effortlessly.</p>
                     <div class="text-center" style="margin-top: 35px;">
-                        <button class="btn text-white" type="button">Register</button>
+                        <button class="btn text-white" type="button" (click)="openLoginModal(); $event.preventDefault()">Register</button>
                     </div>
                 </div>
             </div>
@@ -145,7 +142,7 @@
 
 
 <!-- Contact & FAQs -->
-<section class="bg-light py-5" style="height: 40vh">
+<section class="bg-light py-5" style="height: 40vh" id="contact">
     <div class="container text-center" style="padding-top: 50px;">
         <h2 class="fw-bold mb-4" style="color:#004085;">Need Help?</h2>
         <p>Contact us at <strong>support$medigo.com</strong> or visit our <a href="#">FAQ section</a>.</p>
@@ -159,7 +156,8 @@
             <!-- Company Section -->
             <div class="col-md-3 mb-3">
                 <h5 class="footer-title">MediGo</h5>
-                <p>Your trusted healthcare companion for medical consultations, expert advice, and healthcare solutions.</p>
+                <p>Your trusted healthcare companion for medical consultations, expert advice, and healthcare solutions.
+                </p>
             </div>
 
             <!-- Quick Links -->

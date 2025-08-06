@@ -8,4 +8,6 @@ public interface UserService {
     int getDoctorId(int id);
 
     int getPatientId(int id);
+
+    int getAdminId(int id);
 }

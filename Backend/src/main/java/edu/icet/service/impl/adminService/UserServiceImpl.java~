@@ -55,9 +55,4 @@ public class UserServiceImpl implements UserService {
     public int getPatientId(int userId) {
         return patientRepository.findPatientIdByUserId(userId);
     }
-
-    @Override
-    public int getAdminId(int userId) {
-        return userId;
-    }
 }

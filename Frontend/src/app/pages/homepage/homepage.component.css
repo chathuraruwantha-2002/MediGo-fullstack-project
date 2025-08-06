@@ -218,3 +218,64 @@
 
   
 
+
+
+
+
+
+
+/* Login Modal */
+
+.login-modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeBackground 0.3s ease-in-out forwards;
+}
+
+.login-modal-wrapper.closing {
+  animation: fadeOutBackground 0.3s ease-in-out forwards;
+}
+
+.login-modal-content {
+  background: rgba(255, 255, 255, 0);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.animated-login {
+  animation: popIn 0.35s ease-out;
+}
+
+/* Fade In */
+@keyframes fadeBackground {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Fade Out */
+@keyframes fadeOutBackground {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* Zoom In Form */
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+

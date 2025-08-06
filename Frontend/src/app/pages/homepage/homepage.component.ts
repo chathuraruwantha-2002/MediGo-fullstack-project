@@ -12,9 +12,45 @@ declare var bootstrap: any;
   styleUrl: './homepage.component.css'
 })
 export class HomepageComponent {
-showLogin = false;
+  showLogin = false;
+  isClosing = false;
 
   openLoginModal() {
     this.showLogin = true;
+    this.isClosing = false;
   }
+
+  startCloseAnimation() {
+    this.isClosing = true;
+
+    setTimeout(() => {
+      this.showLogin = false;
+      this.isClosing = false;
+    }, 300);
+  }
+
+  //scroll to features
+  scrollToFeatures() {
+    const el = document.getElementById('features');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  //scroll to get start
+  scrollToGetStarted() {
+    const el = document.getElementById('getstarted');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  //scroll to contact
+  scrollToContact() {
+    const el = document.getElementById('contact');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
 }
